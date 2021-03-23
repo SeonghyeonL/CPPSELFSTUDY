@@ -87,7 +87,7 @@ int main()
 // 0: false, 그 외: true
 
 // 비트 연산자
-int main(void)
+/*int main(void)
 {
 	int num1 = 15;
 	int num2 = 8;
@@ -96,4 +96,153 @@ int main(void)
 	cout << "<< 연산자에 의한 결괏값은 " << (num2 << 2) << "입니다." << endl;
 	cout << ">> 연산자에 의한 결괏값은 " << (num2 >> 2) << "입니다.";
 	return 0;
-}
+}*/
+
+// 삼항 연산자
+/*int main(void)
+{
+	int num1 = 11;
+	int num2 = 10;
+	int result;
+
+	result = (num1 < num2) ? num1 : num2;
+
+	cout << "둘 중에 더 작은수는 " << result << "입니다." << endl;
+	cout << "첫 번째 수는 " << num1 << "이고, 두 번째 수는 " << num2 << "입니다.";
+}*/
+
+// sizeof 연산자
+/*int main(void)
+{
+	cout << "char형에 할당되는 메모리 크기는 " << sizeof(char) << " 바이트" << endl;
+	cout << "short형에 할당되는 메모리 크기는 " << sizeof(short) << " 바이트" << endl;
+	cout << "int형에 할당되는 메모리 크기는 " << sizeof(int) << " 바이트" << endl;
+	cout << "long형에 할당되는 메모리 크기는 " << sizeof(long) << " 바이트" << endl;
+	cout << "long long형에 할당되는 메모리 크기는 " << sizeof(long long) << " 바이트" << endl;
+	cout << "float형에 할당되는 메모리 크기는 " << sizeof(float) << " 바이트" << endl;
+	cout << "double형에 할당되는 메모리 크기는 " << sizeof(double) << " 바이트" << endl;
+	cout << "long double형에 할당되는 메모리 크기는 " << sizeof(long double) << " 바이트";
+}*/
+
+// CPP에 추가된 연산자
+// 범위 지정 연산자: ::식별자 / 클래스이름::식별자 / 네임스페이스::식별자 / 열거체::식별자
+// 멤버 포인터 연산자: 클래스타입의객체.*멤버이름 / 클래스타입객체의포인터->*멤버이름
+// typeid 연산자: typeid(표현식)
+
+// 조건문 (if)
+/*int main(void)
+{
+	int num;
+	cin >> num;
+	if (num < 5)
+	{	cout << "입력하신 수는 5보다 작습니다." << endl;	}
+	else if (num == 5)
+	{	cout << "입력하신 수는 5입니다." << endl;	}
+	else
+	{	cout << "입력하신 수는 5보다 큽니다." << endl;	}
+	return 0;
+}*/
+
+// 조건문 (switch)
+/*int main(void)
+{
+	int num;
+	cin >> num;
+	switch (num)
+	{
+	case 1: cout << "입력하신 수는 1입니다." << endl; break;
+	case 2:	cout << "입력하신 수는 2입니다." << endl; break;
+	case 3: cout << "입력하신 수는 3입니다." << endl; break;
+	case 4: cout << "입력하신 수는 4입니다." << endl; break;
+	case 5: cout << "입력하신 수는 5입니다." << endl; break;
+	default: cout << "1부터 5까지의 수만 입력해 주세요!" << endl; break;
+	}
+	return 0;
+}*/
+
+// 반복문 (while)
+/*int main(void)
+{
+	int i = 0, num;
+	cin >> num;
+	while (i < num)
+	{
+		cout << "while 문이 현재 " << i + 1 << " 번째 반복 실행중입니다." << endl;
+		i++; // 이 부분을 삭제하면 무한 루프에 빠지게 됨
+	}
+	cout << "while 문이 종료된 후 변수 i의 값은 " << i << "입니다." << endl;
+	return 0;
+}*/
+
+// 반복문 (do while)
+/*int main(void)
+{
+	int i = 0, num;
+	cin >> num;
+	do {
+		cout << "do / while 문이 현재 " << i + 1 << " 번째 반복 수행중입니다." << endl;
+		i++; // 이 부분을 삭제하면 무한 루프에 빠지게 됨
+	} while (i > num);
+	cout << "do / while 문이 종료된 후 변수 i의 값은 " << i << "입니다." << endl;
+}*/
+
+// 반복문 (for)
+/*int main(void)
+{
+	int num;
+	cin >> num;
+	for (int i = 0; i < num; i++) // 변수 i는 이 for 문이 종료되면 같이 소멸됨.
+	{ cout << "첫 번째 for 문이 " << i + 1 << " 번째 반복 수행중입니다." << endl; }
+	for (int i = 0; i < num; i++) // 따라서 변수 i를 다시 선언해도 괜찮음.
+	{ cout << "두 번째 for 문이 " << i + 1 << " 번째 반복 수행중입니다." << endl; }
+	return 0;
+}*/
+
+// 범위 기반의 for문
+/*int main(void)
+{
+	int arr[5] = { 1, 3, 5, 7, 9 };
+
+	for (int element : arr)
+	{
+		cout << element << " ";
+	}
+	return 0;
+}*/
+
+// continue문
+/*int main(void)
+{
+	int except_num = 2;
+
+	for (int i = 0; i <= 100; i++)
+	{
+		if (i % except_num == 0)
+		{
+			continue;
+		}
+		cout << i << endl;
+	}
+	return 0;
+}*/
+
+// break문
+/*int main(void)
+{
+	int num = 1, sum = 0;
+	int end_num;
+	cin >> end_num;
+
+	while (1) // 무한 루프 
+	{
+		sum += num;
+		if (num == end_num)
+		{	break;	}
+		num++;
+	}
+
+	cout << "1부터 " << end_num << "까지 더한 값은 " << sum << "입니다.";
+	return 0;
+}*/
+
+//
