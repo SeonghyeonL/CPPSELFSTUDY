@@ -348,3 +348,218 @@ int main(void)
 }*/
 
 // 포인터
+/*int main(void)
+{
+	int num1 = 1234;
+	double num2 = 3.14;
+
+	int* ptr_num1 = &num1;
+	double* ptr_num2 = &num2;
+
+	cout << "포인터의 크기는 " << sizeof(ptr_num1) << "입니다." << endl;
+	cout << "포인터 ptr_num1가 가리키고 있는 주소값은 " << ptr_num1 << "입니다." << endl;
+	cout << "포인터 ptr_num1가 가리키고 있는 주소에 저장된 값은 " << *ptr_num1 << "입니다." << endl;
+	cout << "포인터 ptr_num2가 가리키고 있는 주소값은 " << ptr_num2 << "입니다." << endl;
+	cout << "포인터 ptr_num2가 가리키고 있는 주소에 저장된 값은 " << *ptr_num2 << "입니다.";
+	return 0;
+}*/
+
+// 포인터 연산
+/*int main(void)
+{
+	int arr[3] = { 10, 20, 30 };	// 배열 선언 
+	int* ptr_arr = arr;			// 포인터에 배열의 이름을 대입함.
+
+	cout << "배열의 이름을 이용하여 배열 요소에 접근 : "
+		<< arr[0] << ", " << arr[1] << ", " << arr[2] << endl;
+	cout << "    포인터를 이용하여 배열 요소에 접근 : "
+		<< ptr_arr[0] << ", " << ptr_arr[1] << ", " << ptr_arr[2] << endl;
+	cout << "배열의 이름으로 포인터 연산을 해 배열 요소에 접근 : "
+		<< *(arr + 0) << ", " << *(arr + 1) << ", " << *(arr + 2) << endl;
+	// 공식: arr[n] == *(arr + n)
+
+	cout << "배열의 이름을 이용한 배열의 크기 계산 : " << sizeof(arr) << endl;
+	cout << "    포인터를 이용한 배열의 크기 계산 : " << sizeof(ptr_arr);
+	//  포인터를 이용한 크기 계산 → 배열의 크기가 아닌 포인터 변수 자체의 크기가 출력
+	return 0;
+}*/
+
+// new & delete 연산자
+/*int main(void)
+{
+	int* ptr_int = new int;
+	// 타입* 포인터이름 = new 타입;
+	*ptr_int = 100;
+
+	double* ptr_double = new double;
+	*ptr_double = 100.123;
+
+	cout << "int형 숫자의 값은 " << *ptr_int << "입니다." << endl;
+	cout << "int형 숫자의 메모리 주소는 " << ptr_int << "입니다." << endl;
+
+	cout << "double형 숫자의 값은 " << *ptr_double << "입니다." << endl;
+	cout << "double형 숫자의 메모리 주소는 " << ptr_double << "입니다." << endl;
+
+	delete ptr_int;
+	delete ptr_double;
+	// delete 포인터이름;
+	return 0;
+}*/
+
+// 문자열 (string 클래스 사용 X)
+/*int main(void)
+{
+	const int SIZE = 20;
+	char address[SIZE];
+	char name[SIZE];
+
+	cout << "자신의 이름을 적어주세요 : ";
+	//cin >> name;
+	// cin 객체는 띄어쓰기, 탭 문자, 캐리지 리턴 문자 등을 모두 문자열의 끝으로 인식
+	//cin.get(name, SIZE).get();
+	// 여전히 20바이트 이상의 이름을 입력할 경우, 도시명을 입력받지 못함
+	cin.get(name, SIZE).ignore(SIZE, '\n');
+	cout << "자신이 살고 있는 도시를 적어주세요 : ";
+	//cin >> address;
+	//cin.get(address, SIZE).get();
+	cin.get(address, SIZE).ignore(SIZE, '\n');
+	cout << address << "에 살고 있는 " << name << "님~ 감사합니다!";
+}*/
+
+// 문자열 (string 클래스 사용 O)
+/*#include <string>
+int main(void)
+{
+	string address, name;
+	cout << "자신의 이름을 적어주세요 : ";
+	getline(cin, name);
+	cout << "자신이 살고 있는 도시를 적어주세요 : ";
+	getline(cin, address);
+	cout << address << "에 살고 있는 " << name << "님~ 감사합니다!";
+	return 0;
+	// 모든 문제 해결됨!
+}*/
+
+// 문자열 선언 및 초기화
+/*#include <string>
+int main(void)
+{
+	string dog;
+	cout << "현재 dog 변수의 길이는 " << dog.length() << "입니다." << endl;
+	dog = "Navi";
+	cout << dog << "! 정말 이쁜 이름이네요!" << endl;
+	cout << "현재 dog 변수의 길이는 " << dog.length() << "입니다." << endl;
+	cout << "강아지 이름의 첫 글자는 바로 " << dog[0] << "입니다.";
+	return 0;
+}*/
+
+// 문자열 처리
+/*#include <string>
+int main(void)
+{
+	string str1 = "C++ is Cool!";
+	string str2;
+	str2 = str1;	// 문자열 대입 연산 
+	cout << str2 << endl;
+
+	string strr1 = "C++ is ";
+	string strr2 = "Cool! and funny!";
+	string strr3;
+	strr3 = strr1 + strr2; // 문자열 결합 연산
+	cout << strr3 << endl;
+	strr1 += strr2;       // 문자열 추가 연산
+	cout << strr1 << endl;
+
+	// string 객체를 이용한 문자열 입력 → cin 객체, 출력 → cout 객체 사용
+	// cin 객체를 이용한 문자열의 입력은 한 단어 단위로 수행됨
+	// 문자열을 한 행(line)씩 읽고 싶을 때는 getline() 함수를 사용해야 함
+	string stname, stsubject;
+	cout << "자신의 이름을 적어주세요 : ";
+	getline(cin, stname);
+	cout << "가장 자신있는 과목을 적어주세요 : ";
+	getline(cin, stsubject);
+	cout << stname << "님이 가장 자신있어 하는 과목은 바로 " << stsubject << "입니다!";
+
+	return 0;
+}*/
+
+// string 메소드
+/*#include <string>
+// length(), size(), append(), find(), compare(), replace(), capacity(), max_size()
+int main(void)
+{
+	string str1 = "C++ Programming";
+	string str2 = "C++ Programming";
+	cout << "문자열 str1의 길이는 " << str1.length() << "입니다." << endl;
+	cout << "문자열 str2의 길이는 " << str2.size() << "입니다." << endl;
+	// length는 문자열 길이, size는 해당 string 객체의 메모리 사용 크기
+
+	// 문자열.append(추가할문자열); → 추가할 문자열을 맨 끝에 추가
+	// 문자열.append(추가할문자열, 시작위치, 개수);
+	//				  → 추가할 문자열의 시작 위치부터 개수만큼만 맨 끝에 추가
+	// 문자열.append(개수, 추가할문자); → 추가할 문자를 개수만큼 맨 끝에 추가
+	string s1str1, s1str2, s1str3;
+	s1str1.append("C++ Programming");
+	s1str2.append("C++ Programming", 4, 7);
+	s1str3.append(4, 'X');
+	cout << s1str1 << endl;
+	cout << s1str2 << endl;
+	cout << s1str3 << endl;
+
+	// 문자열.find(찾을문자열); → 인덱스 0부터 문자열을 찾아, 그 (시작)위치를 반환
+	// 문자열.find(찾을문자); → 인덱스 0부터 문자를 찾아, 그 위치를 반환
+	// 문자열.find(찾을문자열, 시작위치); → 시작 위치부터 문자열을 찾아, 그 위치를 반환
+	string s2str = "C++ Programming";
+	cout << s2str.find("Pro") << endl;
+	cout << s2str.find('r') << endl;
+	if (s2str.find("Pro", 5) != string::npos)
+	{
+		cout << "해당 문자열을 찾았습니다." << endl;
+	}
+	else
+	{
+		cout << "해당 문자열을 찾지 못했습니다." << endl;
+	}
+	// 정적 상수인 string::npos는 string 클래스에 static const size_type= -1 로 명시됨
+
+	// str1.compare(str_02) == 0 → str1과 str2이 같을 경우
+	// str1.compare(str_02) < 0  → str1이 str2보다 사전 편찬순으로 앞에 있을 경우
+	// str1.compare(str_02) > 0  → str1이 str2보다 사전 편찬순으로 뒤에 있을 경우
+	string s3str1 = "ABC";
+	string s3str2 = "ABD";
+	if (s3str1.compare(str2) == 0)
+	{
+		cout << s3str1 << "이 " << s3str2 << "와 같음" << endl;
+	}
+	else if (s3str1.compare(s3str2) < 0)
+	{
+		cout << s3str1 << "이 " << s3str2 << "보다 사전 편찬 순으로 앞에 있음" << endl;
+	}
+	else
+	{
+		cout << s3str1 << "이 " << s3str2 << "보다 사전 편찬 순으로 뒤에 있음" << endl;
+	}
+
+	// 문자열.replace(대체할문자열의시작위치, 대체할문자열의길이, 새로운문자열);
+	// → 전달된 시작 위치부터 문자열의 길이만큼을 제거한 후에, 새로운 문자열을 삽입함
+	string s4str1 = "C++ is very nice!";
+	string s4str2 = "nice";
+	string s4str3 = "awesome";
+	string::size_type index = s4str1.find(s4str2);
+	if (index != string::npos)
+	{
+		s4str1.replace(index, s4str2.length(), s4str3);
+	}
+	cout << s4str1 << endl;
+
+	// capacity() : 해당 문자열이 재대입 받지 않고 저장 가능한 최대 문자열 길이 반환
+	// max_size() : 해당 문자열이 최대한 대입받으면 가질 수 있는 최대 문자열 길이 반환
+	string s5str = "C++ programming";
+	cout << "문자열 str의 length는 " << s5str.length() << "입니다." << endl;
+	cout << "문자열 str의 capacity는 " << s5str.capacity() << "입니다." << endl;
+	cout << "문자열 str의 max_size는 " << s5str.max_size() << "입니다.";
+
+	return 0;
+}*/
+
+// 구조체
