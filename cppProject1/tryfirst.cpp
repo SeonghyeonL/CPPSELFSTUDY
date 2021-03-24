@@ -563,3 +563,163 @@ int main(void)
 }*/
 
 // 구조체
+/*#include <string>
+struct book
+{
+	string title;
+	string author;
+	int price;
+};
+int main(void)
+{
+	book web_book = { "HTML과 CSS", "홍길동", 28000 };
+	book java_book = { "Java language", "이순신" };
+	cout << "첫 번째 책의 제목은 " << web_book.title << "이고, 저자는 " << web_book.author
+		<< "이며, 가격은 " << web_book.price << "원입니다." << endl;
+	cout << "두 번째 책의 제목은 " << java_book.title << "이고, 저자는 " << java_book.author
+		<< "이며, 가격은 " << java_book.price << "원입니다.";
+	return 0;
+}*/
+
+// 함수와 구조체
+/*struct Prop
+{
+	int savings;
+	int loan;
+};
+int CalcProperty1(int, int);
+int CalcProperty2(Prop*);
+Prop InitProperty(void); int CalcProperty3(const Prop*);
+int main(void)
+{
+	int hong_prop;
+	//Prop hong = { 10000000, 4000000 };
+	//hong_prop = CalcProperty1(hong.savings, hong.loan);
+		// 구조체의 멤버 변수를 함수의 인수로 전달
+	//hong_prop = CalcProperty2(&hong);
+		// 구조체의 주소를 함수의 인수로 전달
+	Prop hong; hong = InitProperty();
+	hong_prop = CalcProperty3(&hong);
+		// 구조체의 멤버 변수를 함수의 인수로 전달함
+	cout << "홍길동의 재산은 적금 " << hong.savings << "원에 대출 " << hong.loan
+		<< "원을 제외한 총 " << hong_prop << "원입니다.";
+	return 0;
+}
+int CalcProperty1(int s, int l)
+{
+	return (s - l);
+}
+int CalcProperty2(Prop* money)
+{
+	money->savings = 100; // 호출된 함수에서 원본 구조체의 데이터를 변경
+	return (money->savings - money->loan);
+}
+Prop InitProperty(void)
+{
+	Prop hong_prop = { 10000000, 4000000 };
+	return hong_prop; // 구조체를 함수의 반환값으로 반환함.
+}
+int CalcProperty3(const Prop* money)
+// const 키워드를 사용하여 구조체의 데이터를 직접 수정하는 것을 방지
+{
+	//money->savings = 100; // 호출된 함수에서 원본 구조체의 데이터를 변경
+	return (money->savings - money->loan);
+}*/
+
+// 중첩된 구조체
+/*#include <string>
+struct Name
+{
+	string first;
+	string last;
+};
+struct Friends
+{
+	Name first_name;
+	string address;
+	string job;
+};
+int main(void)
+{
+	Friends hong =
+	{
+		{ "길동", "홍" },
+		"서울시 강남구 역삼동",
+		"학생"
+	};
+	cout << hong.address << endl << endl;
+	cout << hong.first_name.last << hong.first_name.first << "에게," << endl;
+	cout << "그동안 잘 지냈니? 아직도 " << hong.job << "이니?" << endl;
+	cout << "다음에 꼭 한번 보자." << endl << "잘 지내.";
+	return 0;
+}*/
+
+// 구조체 크기
+/*struct TypeSize
+{
+	char a;
+	int b;
+	double c;
+};
+int main(void)
+{
+	cout << "구조체 TypeSize의 각 멤버의 크기는 다음과 같습니다." << endl;
+	cout << sizeof(char) << ", " << sizeof(int) << ", " << sizeof(double) << endl << endl;
+	cout << "구조체 TypeSize의 크기는 다음과 같습니다." << endl;
+	cout << sizeof(TypeSize); // 13이 아니고 16임! (바이트 패딩(byte padding) 때문)
+	return 0;
+}*/
+
+// 공용체 (union)
+/*// 모든 멤버 변수가 하나의 메모리 공간을 공유
+// 공용체는 한 번에 하나의 멤버 변수밖에 사용할 수 없음!
+// 공용체는 크기가 가장 큰 멤버 변수의 크기로 메모리를 할당받음
+// 따라서 같은 크기로 구성된 배열 요소에 다양한 크기의 데이터를 저장할 수 있음!
+union ShareData
+{
+	unsigned char a;
+	unsigned short b;
+	unsigned int c;
+};
+int main(void)
+{
+	ShareData var;
+	var.c = 0x12345678;
+	// 공용체의 한 멤버 변수만을 초기화하면, 나머지 멤버 변수들도 같은 데이터를 공유함
+	cout << hex;
+	cout << var.a << endl;
+	cout << var.b << endl;
+	cout << var.c;
+	return 0;
+}*/
+
+// 열거체(enumerated types)
+/*// 새로운 타입을 선언하면서 동시에 그 타입이 가질 수 있는 정수형 상숫값도 같이 명시
+enum Weather { SUNNY = 0, CLOUD = 10, RAIN = 20, SNOW = 30 };
+int main(void)
+{
+	int input;
+	Weather wt;
+	cout << "오늘의 날씨를 입력해 주세요 : " << endl;
+	cout << "(SUNNY=0, CLOUD=10, RAIN=20, SNOW=30)" << endl;
+	cin >> input;
+	wt = (Weather)input;
+	switch (wt)
+	{
+	case SUNNY:
+		cout << "오늘의 날씨는 아주 맑아요!"; break;
+	case CLOUD:
+		cout << "오늘의 날씨는 흐리네요!"; break;
+	case RAIN:
+		cout << "오늘의 날씨는 비가 주룩주룩 오네요!"; break;
+	case SNOW:
+		cout << "오늘의 날씨는 하얀 눈이 내려요!"; break;
+	default:
+		cout << "정확한 상숫값을 입력해 주세요!"; break;
+	}
+	cout << endl << "열거체 Weather의 각 상숫값은 " << SUNNY << ", " << CLOUD << ", "
+		<< RAIN << ", " << SNOW << "입니다.";
+	return 0;
+}*/
+
+// 함수
