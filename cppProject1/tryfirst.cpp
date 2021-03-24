@@ -245,4 +245,52 @@ int main()
 	return 0;
 }*/
 
+// 배열 기초
+/*int main(void)
+{
+	int sum = 0;
+	int grade[3];	// 길이가 3인 int형 배열 선언 
+
+	// 인덱스를 이용한 배열의 초기화
+	grade[0] = 85;	// 국어 점수 
+	grade[1] = 65;	// 영어 점수 
+	grade[2] = 90;	// 수학 점수 
+
+	for (int i = 0; i < 3; i++)
+	{
+		sum += grade[i];	// 인덱스를 이용한 배열로의 접근 
+	}
+
+	cout << "국영수 과목 총 점수 합계는 " << sum << "점이고, 평균 점수는 " << (double)sum / 3 << "점입니다.";
+	return 0;
+}*/
+
+// 배열의 특징
+/*int main(void)
+{
+	int sum = 0;
+	int grade[3] = { 85, 65, 90 };	// grade[0], grade[1], grade[2]만 선언 및 초기화 
+	grade[3] = 100;					// grade[3]를 선언하지 않고 초기화 진행 
+
+	for (int i = 0; i < 4; i++)		// grade[3]도 수식에 포함 
+	{
+		sum += grade[i];			// 인덱스를 이용한 배열의 접근 
+	}
+
+	cout << "국영수 과목 총 점수 합계는 " << sum << "점이고, 평균 점수는 " << (double)sum / 3 << "점입니다.";
+	return 0;
+
+	// 오류 나타남
+}*/
+
+// 배열 길이 구하기
+/*int main(void)
+{
+	int grade[] = { 85, 65, 90 };					// 배열의 길이를 명시하지 않음 
+	int len = sizeof(grade) / sizeof(grade[0]);	// 배열의 길이를 구하는 공식 
+
+	cout << "배열 grade의 길이는 " << len << "입니다.";
+	return 0;
+}*/
+
 //
