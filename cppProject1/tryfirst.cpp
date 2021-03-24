@@ -293,4 +293,58 @@ int main()
 	return 0;
 }*/
 
-//
+// 2차원 배열
+/*int main(void)
+{
+	int arr1[2][3] = { 10, 20, 30, 40 };
+	int arr2[2][3] = {
+		{10, 20, 30},
+		{40, 50, 60}
+	};
+
+	cout << "arr1의 배열 요소의 값" << endl;
+	cout << arr1[0][0] << " ";
+	cout << arr1[0][1] << " ";
+	cout << arr1[0][2] << " ";
+	cout << arr1[1][0] << " ";
+	cout << arr1[1][1] << " ";
+	cout << arr1[1][2] << endl;
+
+	cout << "arr2의 배열 요소의 값" << endl;
+	cout << arr2[0][0] << " ";
+	cout << arr2[0][1] << " ";
+	cout << arr2[0][2] << " ";
+	cout << arr2[1][0] << " ";
+	cout << arr2[1][1] << " ";
+	cout << arr2[1][2];
+	return 0;
+}*/
+
+// 2차원 배열 일부만 초기화
+/*#include <iomanip>
+int main(void)
+{
+	int arr_col_len, arr_row_len;
+	int arr[3][4] = {
+		{10, 20},
+		{30, 40, 50, 60},
+		{0, 0, 70, 80}
+	};
+	// 행의 길이는 생략 가능, 열의 길이는 반드시 명시!
+
+	arr_col_len = sizeof(arr[0]) / sizeof(arr[0][0]);				// 2차원 배열의 열의 길이를 계산함 
+	arr_row_len = (sizeof(arr) / arr_col_len) / sizeof(arr[0][0]);	// 2차원 배열의 행의 길이를 계산함 
+
+	cout << "arr의 배열 요소의 값" << endl;
+	for (int i = 0; i < arr_row_len; i++)
+	{
+		for (int j = 0; j < arr_col_len; j++)
+		{
+			cout << setw(4) << arr[i][j];
+		}
+		cout << endl;
+	}
+	return 0;
+}*/
+
+// 포인터
