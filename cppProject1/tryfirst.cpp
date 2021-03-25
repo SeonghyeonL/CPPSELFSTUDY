@@ -723,3 +723,105 @@ int main(void)
 }*/
 
 // 함수
+/*int SmallNum(int, int); // main 전에 함수의 원형 선언!
+int main(void)
+{
+	int result;
+	result = SmallNum(4, 6);
+	cout << " 두 수 중 더 작은 수는 " << result << "입니다." << endl;
+	result = SmallNum(8, 6);
+	cout << " 두 수 중 더 작은 수는 " << result << "입니다." << endl;
+	result = SmallNum(2, 8);
+	cout << " 두 수 중 더 작은 수는 " << result << "입니다." << endl;
+	return 0;
+}
+int SmallNum(int num1, int num2)
+{
+	if (num1 <= num2) { return num1; }
+	else { return num2; }
+}*/
+
+// 값에 의한 전달(call by value) - 값만 복사, 별개의 변수
+/*void Local(int);
+int main(void)
+{
+	int var = 10;
+	cout << "변수 var의 초기값은 " << var << "입니다." << endl;
+	Local(var);
+	cout << "Local() 함수 호출 후 변수 var의 값은 " << var << "입니다.";
+	return 0;
+}
+void Local(int num)
+{	num += 10;	}*/
+
+// 참조에 의한 전달(call by reference) - 원본 데이터 전달, 주소값
+/*void Local(int&);
+int main(void)
+{
+	int var = 10;
+	cout << "변수 var의 초기값은 " << var << "입니다." << endl;
+	Local(var);
+	cout << "Local() 함수 호출 후 변수 var의 값은 " << var << "입니다.";
+	return 0;
+}
+void Local(int& num)
+{	num += 10;	}*/
+
+// 참고) main 함수의 원형 → void(또는 int) main(int argc,char *argv[]);
+
+// 재귀 호출
+/*int RecursiveSum(int);
+int main(void)
+{
+	int n;
+	cout << "n의 값을 입력하세요: ";
+	cin >> n;
+	cout << "1부터 " << n << "까지의 합: " << RecursiveSum(n);;
+	return 0;
+}
+int RecursiveSum(int n)
+{
+	if (n == 1)						// n이 1이면, 그냥 1을 반환함. 
+	{	return 1;	}
+	return n + RecursiveSum(n - 1);
+	// n이 1이 아니면, n을 1부터 (n-1)까지의 합과 더한 값을 반환함.
+}*/
+
+// 함수 포인터
+/*// 함수 원형이 void Func(int, int); → 포인터는 void (*ptr_func)(int, int);
+typedef double (*Arith)(double, double); // typedef로 새로운 이름 선언
+double Add(double, double);
+double Sub(double, double);
+double Mul(double, double);
+double Div(double, double);
+//double Calculator(double, double, double (*func)(double, double));
+double Calculator(double, double, Arith);
+int main(void)
+{
+	//double (*calc)(double, double) = NULL; // 함수 포인터 선언 (초기화)
+	Arith calc = NULL; // 함수 포인터 선언
+	double num1 = 3, num2 = 4, result = 0;
+	char oper = '*';
+	switch (oper)
+	{
+	case '+': calc = Add; break;
+	case '-': calc = Sub; break;
+	case '*': calc = Mul; break;
+	case '/': calc = Div; break;
+	default: cout << "사칙연산(+, -, *, /)만을 지원합니다."; break;
+	}
+	result = Calculator(num1, num2, calc);
+	cout << "사칙 연산의 결과는 " << result << "입니다.";
+	return 0;
+}
+double Add(double num1, double num2) { return num1 + num2; }
+double Sub(double num1, double num2) { return num1 - num2; }
+double Mul(double num1, double num2) { return num1 * num2; }
+double Div(double num1, double num2) { return num1 / num2; }
+//double Calculator(double num1, double num2, double (*func)(double, double))
+//{ return func(num1, num2); }
+double Calculator(double num1, double num2, Arith func)
+{ return func(num1, num2); }*/
+
+// 참조자
+
