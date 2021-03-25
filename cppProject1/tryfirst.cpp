@@ -824,4 +824,192 @@ double Calculator(double num1, double num2, Arith func)
 { return func(num1, num2); }*/
 
 // 참조자
+/*// int& 참조자이름 = 변수이름; → 참조자 선언 (타입 식별용)
+// 참조자: 대상 변수와 같은 메모리 위치를 참조
+int main(void)
+{
+	int x = 10;	// 변수의 선언 
+	int& y = x;	// 참조자 선언 
+	cout << "x : " << x << ", y : " << y << endl;
+	y++;		// 참조자를 이용한 증가 연산
+	cout << "x : " << x << ", y : " << y << endl;
+	cout << "x의 주소값 : " << &x << ", y의 주소값 : " << &y;
+	return 0;
+}*/
 
+// 참조자 + 함수
+/*void Swap(int&, int&);
+int main(void)
+{
+	int num1 = 3, num2 = 7;
+	cout << "변경 전: num1 = " << num1 << ", num2 = " << num2 << endl;
+	Swap(num1, num2);
+	cout << "변경 후: num1 = " << num1 << ", num2 = " << num2 << endl;
+	return 0;
+}
+void Swap(int& x, int& y)
+{
+	int temp;
+	temp = x;
+	x = y;
+	y = temp;
+}*/
+
+// C++에서 참조자는 크기가 큰 구조체나 클래스를 다룰 때에만 사용하는 것이 좋음
+
+// 참조자와 구조체
+/*struct Book
+{
+	string title;
+	string author;
+	int price;
+};
+void Display(const Book&);
+int main(void)
+{
+	Book web_book = { "HTML과 CSS", "홍길동", 28000 };
+	Display(web_book);
+	return 0;
+}
+void Display(const Book& bk)
+{
+	cout << "책의 제목은 " << bk.title << "이고, ";
+	cout << "저자는 " << bk.author << "이며, ";
+	cout << "가격은 " << bk.price << "원입니다.";
+}*/
+
+// 디폴트 인수 (기본값이 미리 정의되어 있는 인수)
+/*// 주의: 함수의 원형에만 가능, 가장 오른쪽부터 순서대로만 가능
+// void Display(int x, int y, char ch, int z = 4); // 가능
+// void Display(int x, int y, char ch = 'a', int z = 4); // 가능
+// void Display(int x, int y = 2, char ch, int z = 4); // 오류
+// void Display(int x = 1, int y = 2, char ch, int z); // 오류
+// void Display(int x, int y, char ch = 'a', int z = 4);에 대해서...
+// Display(1, 2); → 가능함, display(1, 2, 'a', 4)와 같음
+// Display(3, 4, 'b'); → 가능함, display(3, 4, 'b', 4)와 같음
+// Display(5, 6, 'c', 9); → 가능함, display(5, 6, 'c', 8)와 같음
+// Display(7, 8, , 9); → 오류 : 인수 전달은 건너뛸 수 없음!
+double Multi(double, double = 2);
+int main(void)
+{
+	cout << Multi(3) << endl;		// Multi(3, 2)와 같음 : 3 * 3 
+	cout << Multi(3, 3) << endl;	// 3 * 3 * 3
+	cout << Multi(3, 4);			// 3 * 3 * 3 * 3
+	return 0;
+}
+double Multi(double x, double n)
+{
+	double result = x;
+	for (int i = 1; i < n; i++)
+	{
+		result *= x;
+	}
+	return result;
+}*/
+
+// 함수 오버로딩 (같은 이름의 함수를 중복하여 정의하는 것)
+/*// 함수 시그니처: 함수의 원형에 명시되는 매개변수 리스트
+// 1. void Display(const char* str, int n); // 문자열 str을 n번 출력
+// 2. void Display(const char* str1, const char* str2); // str1과 str2를 연달아 출력
+// 3. void Display(int x, int y); // x * y를 출력
+// 4. void Display(double x, double y); // x / y를 출력
+// 1. Display("C++", 3);              // 1번 Display() 함수 호출 -> "C++C++C++"
+// 2. Display("C++", " Programming"); // 2번 Display() 함수 호출 -> "C++ Programming"
+// 3. Display(3, 4);                  // 3번 Display() 함수 호출 -> 12
+// 4. Display(4.2, 2.1);              // 4번 Display() 함수 호출 -> 2
+// 5. Display(4.2, 3);                // 3번과 4번 모두 호출 가능 -> 컴파일 오류 발생
+void Shift(int, int);
+void Shift(int, int, int);
+void Shift(int, int, int, int);
+int main(void)
+{
+	Shift(1, 2);
+	Shift(1, 2, 3);
+	Shift(1, 2, 3, 4);
+	return 0;
+}
+void Shift(int a, int b)
+{
+	int temp;
+	temp = a;
+	a = b;
+	b = temp;
+	cout << a << ", " << b << endl;
+}
+void Shift(int a, int b, int c)
+{
+	int temp;
+	temp = a;
+	a = b;
+	b = c;
+	c = temp;
+	cout << a << ", " << b << ", " << c << endl;
+}
+void Shift(int a, int b, int c, int d)
+{
+	int temp;
+	temp = a;
+	a = b;
+	b = c;
+	c = d;
+	d = temp;
+	cout << a << ", " << b << ", " << c << ", " << d << endl;
+}*/
+
+// 인라인 함수
+/*// 호출 시 함수의 모든 코드를 호출된 자리에 바로 삽입 (호출 시간↓)
+// inline 함수의원형 or inline 함수의정의
+// 아래는 인라인 함수 이용
+inline int Sub(int x, int y)
+{
+	return x - y;
+}
+inline void Print(int x)
+{
+	cout << "계산 결과는 " << x << "입니다.";
+}
+int main(void)
+{
+	int num1 = 5, num2 = 3;
+	int result;
+	result = Sub(num1, num2);
+	Print(result);
+	return 0;
+}
+// 아래는 인라인 코드 이용
+int main(void)
+{
+	int num1 = 5, num2 = 3;
+	int result;
+	{
+		int x = num1, y = num2;
+		result = x - y;
+	}
+	{
+		int x = result;
+		cout << "계산 결과는 " << x << "입니다.";
+	}
+	return 0;
+}*/
+
+// 매크로 함수와 인라인 함수
+/*// C언어에서는 C++의 인라인 함수와 비슷한 기능의 매크로 함수를 사용
+// 매크로 함수는 #define 선행처리 지시문에 인수로 함수의 정의를 전달
+// 매크로 함수를 일반 함수처럼 사용하려면 모든 인수를 괄호({})로 감싸야 함
+// 예를 들어 #define SQR(X) X*X가 아닌 #define SQR(X) ((X)*(X))로 사용!
+// 아래는 C의 매크로 함수를 C++의 인라인 함수로 나타낸 예시
+inline int Sqr(int x)
+{
+	return x * x;
+}
+int main(void)
+{
+	int result;
+	int x = 5;
+	cout << "계산 결과는 " << Sqr(10) << "입니다." << endl;
+	cout << "계산 결과는 " << Sqr(x) << "입니다." << endl;
+	cout << "계산 결과는 " << Sqr(x + 3) << "입니다.";
+	return 0;
+}*/
+
+//
