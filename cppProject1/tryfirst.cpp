@@ -1012,4 +1012,118 @@ int main(void)
 	return 0;
 }*/
 
+// 유효 범위: 하나의 변환 단위 내에서 해당 변수가 사용될 수 있는 범위
+// 연결: 해당 변수를 사용할 수 있는 파일의 접근 가능 여부
+// C++ 변수 종류: 자동 변수, 레지스터 변수, 정적 변수
+
+// 자동 변수
+/*// 자동 변수: 블록 내에서 선언된 변수 (C의 지역 변수)
+void Local(void);
+int main(void)
+{
+	int i = 5;
+	int var = 10;
+	cout << "main() 함수 내의 자동 변수 var의 값은 " << var << "입니다." << endl;
+	if (i < 10)
+	{
+		Local();
+		int var = 30;
+		cout << "if 문 내의 자동 변수 var의 값은 " << var << "입니다." << endl;
+	}
+	cout << "현재 자동 변수 var의 값은 " << var << "입니다." << endl;
+	return 0;
+}
+void Local(void)
+{
+	int var = 20;
+	cout << "Local() 함수 내의 자동 변수 var의 값은 " << var << "입니다." << endl;
+}*/
+
+// 레지스터 변수: register 키워드 사용 (레지스터에 저장)
+// 정적 변수: C에서는 프로그램 내내 유지되는 변수, 데이터에 저장
+// 연결을 갖지 않는, 내부 연결을 갖는, 외부 연결을 갖는 정적 변수
+
+// 연결을 가지지 않는 정적 변수
+/*// 블록 내부에서 static 키워드를 사용하여 정의
+// 지역 변수 + 전역 변수
+// 초기화 1번, 프로그램 종료 시 메모리상에서 사라짐, 해당 블록 내에서만
+void Local(void);
+void StaticVar(void);
+int main(void)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		Local();
+		StaticVar();
+	}
+	return 0;
+}
+void Local(void)
+{
+	int count = 1;
+	cout << "Local() 함수가 " << count << " 번째 호출되었습니다." << endl;
+	count++;
+}
+void StaticVar(void)
+{
+	static int static_count = 1; // 연결을 가지지 않는 정적 변수
+	cout << "StaticVar() 함수가 " << static_count << " 번째 호출되었습니다." << endl;
+	static_count++;
+}*/
+
+// 내부 연결을 가지는 정적 변수
+/*// 유효 범위를 변환 단위로 가지는 변수에 static 키워드 사용해 정의
+// 현재 파일의 모든 블록에서 접근 가능
+static int var; // 내부 연결을 가지는 정적 변수
+void Local(void);
+int main(void)
+{
+	cout << "변수 var의 초기값은 " << var << "입니다." << endl;
+	int i = 5;
+	int var = 10; // 자동 변수 선언 
+	cout << "main() 함수 내의 자동 변수 var의 값은 " << var << "입니다." << endl;
+	if (i < 10)
+	{
+		Local();
+		cout << "현재 변수 var의 값은 " << var << "입니다." << endl; // 자동 변수에 접근 
+	}
+	cout << "더 이상 main() 함수에서는 정적 변수 var에 접근할 수가 없습니다." << endl;
+	return 0;
+}
+void Local(void)
+{
+	var = 20; // 정적 변수의 값 변경
+	cout << "Local() 함수 내에서 접근한 정적 변수 var의 값은 " << var << "입니다." << endl;
+}*/
+
+// 외부 연결을 가지는 정적 변수
+// 유효 범위를 변환 단위로 가지는 변수
+// 외부 파일에서도 사용 가능 but 각 파일에서 extern으로 재선언 필요
+// 파일1.cpp) int var = 10; → 외부 변수 정의
+// 파일2.cpp) #include "파일1.cpp" & extern int var; → 외부 변수 사용 위한 재선언
+
+// 네임스페이스
+/*// 내부 식별자에 사용될 수 있는 유효 범위를 제공하는 선언적 영역
+<정의>
+namespace kang
+{
+	void Display(); // 함수의 원형
+	int count;      // 변수의 선언
+}
+or
+namespace kim
+{
+	double display; // 변수의 선언
+	int count;      // 변수의 선언
+}
+<접근>
+#include "namespace.h"
+kang::count = 4;
+kim::display = 3.14;
+kim::count = 100;
+즉,
+using 지시자(directive): using namespace 네임스페이스이름;
+or
+using 선언(declaration): using 네임스페이스이름::이름;*/
+
 //
