@@ -1126,4 +1126,239 @@ using 지시자(directive): using namespace 네임스페이스이름;
 or
 using 선언(declaration): using 네임스페이스이름::이름;*/
 
-//
+// 클래스
+/*// 구조체의 상위 호환!
+// 클래스의 멤버 변수는 프로퍼티(property), 멤버 함수는 메소드
+// 객체지향 특징: 추상화, 캡슐화, 정보 은닉, 상속성, 다형성
+<정의>
+class 클래스이름
+{
+접근제어지시자1:
+	멤버변수1의타입 멤버변수1의이름;
+	멤버변수2의타입 멤버변수2의이름;
+	...
+		멤버함수1의 원형
+		멤버함수2의 원형
+		...
+};
+<예시>
+Book web_book;
+void Book::Move(int page) { current_page_ = page; }
+<멤버함수 호출하기>
+1. 객체이름.멤버함수이름();               // 매개변수가 없는 멤버 함수 호출
+2. 객체이름.멤버함수이름(전달할인수목록); // 매개변수가 있는 멤버 함수 호출
+<접근제어지시자>
+class Book {
+private:                // 생략 가능함.
+	int current_page_;  // 현재 페이지
+	void set_percent(); // 해당 책을 읽은 정도를 구함.
+public;
+	string title_;
+	int total_page_;
+	double percent_;
+	void Move(int page);
+	void Open();
+	void Read();
+};
++) protected는 이를 선언한 클래스의 멤버함수/프렌드,
+	이 클래스에서 public이나 protected 접근 제어로 파생된 클래스에서만 접근 가능*/
+
+// this 포인터
+/*class Book
+{
+private:
+	int current_page_;
+	void set_percent();
+public:
+	Book(const string& title, int total_page);
+	string title_;
+	int total_page_;
+	double percent_;
+	void Move(int page);
+	void Open();
+	void Read();
+	const Book& ThickerBook(const Book&);	// ThickerBook() 함수의 원형 
+};
+int main(void)
+{
+	Book web_book("HTML과 CSS", 350);
+	Book html_book("HTML 레퍼런스", 200);
+	cout << web_book.ThickerBook(html_book).title_;	// 더 두꺼운 책의 이름을 출력함. 
+	return 0;
+}
+Book::Book(const string& title, int total_page)
+{
+	title_ = title;
+	total_page_ = total_page;
+	current_page_ = 0;
+	set_percent();
+}
+void Book::set_percent()
+{	percent_ = (double)current_page_ / total_page_ * 100;	}
+const Book& Book::ThickerBook(const Book& comp_book)
+{
+	if (comp_book.total_page_ > this->total_page_)
+	{	return comp_book;	}
+	else
+	{	return *this;	}
+}*/
+
+// 생성자
+/*class Book
+{
+private:
+	int current_page_;
+	void set_percent();
+public:
+	Book(const string& title, int total_page);
+	string title_;
+	int total_page_;
+	double percent_;
+	void Move(int page);
+	void Open();
+	void Read();
+};
+int main(void)
+{
+	Book web_book = Book("HTML과 CSS", 350);	// 생성자의 명시적 호출 
+	// 생성자가 호출되어 멤버 변수인 percent_가 초기화되었는지를 확인함. 
+	cout << web_book.percent_;
+	return 0;
+}
+Book::Book(const string& title, int total_page)
+{
+	title_ = title;
+	total_page_ = total_page;
+	current_page_ = 0;
+	set_percent();
+}
+void Book::set_percent()
+{
+	percent_ = (double)current_page_ / total_page_ * 100;
+}*/
+
+// 디폴트 생성자
+/*// ex. Book::Book() { }
+// Book web_book; or Book web_book = Book(); or Book * ptr_book = new Book;
+class Book
+{
+private:
+	int current_page_;
+	void set_percent();
+public:
+	Book(const string& title = "웹 프로그래밍", int total_page = 100);
+	string title_;
+	int total_page_;
+	double percent_;
+	void Move(int page);
+	void Open();
+	void Read();
+};
+int main(void)
+{
+	Book web_book;	// 디폴트 생성자의 암시적 호출
+	// 생성자가 호출되어 멤버 변수인 percent_가 초기화되었는지를 확인함. 
+	cout << web_book.percent_;
+	return 0;
+}
+Book::Book(const string& title, int total_page)
+{
+	title_ = title;
+	total_page_ = total_page;
+	current_page_ = 0;
+	set_percent();
+}
+void Book::set_percent()
+{
+	percent_ = (double)current_page_ / total_page_ * 100;
+}*/
+
+// 복사 생성자
+/*// 복사 생성자의 원형: Book(const Book&);
+class Book
+{
+private:
+	int current_page_;
+	void set_percent();
+public:
+	Book(const string& title, int total_page);
+	Book(const Book&);	// 복사 생성자의 원형 정의 
+	string title_;
+	int total_page_;
+	double percent_;
+	void Move(int page);
+	void Open();
+	void Read();
+};
+int main(void)
+{
+	Book web_book("HTML과 CSS", 350);
+	Book html_book(web_book);
+	cout << "1번 제목은 " << web_book.title_
+		<< ", 총 페이지는 " << web_book.total_page_ << "장입니다." << endl;
+	cout << "2번 제목은 " << html_book.title_
+		<< ", 총 페이지는 " << html_book.total_page_ << "장입니다.";
+	return 0;
+}
+Book::Book(const string& title, int total_page)
+{
+	title_ = title;
+	total_page_ = total_page;
+	current_page_ = 0;
+	set_percent();
+}
+Book::Book(const Book& origin)	// 복사 생성자의 선언 
+{
+	title_ = origin.title_;
+	total_page_ = origin.total_page_;
+	current_page_ = origin.current_page_;
+	percent_ = origin.percent_;
+}
+void Book::set_percent()
+{
+	percent_ = (double)current_page_ / total_page_ * 100;
+}*/
+
+// 소멸자
+/*// 소멸자의 원형: ~Book();
+// 소멸자의 선언: Book::~Book() { }
+class Book
+{
+private:
+	int current_page_;
+	void set_percent();
+public:
+	Book(const string& title, int total_page);
+	~Book();	// 소멸자의 원형 정의 
+	string title_;
+	int total_page_;
+	double percent_;
+	void Move(int page);
+	void Open();
+	void Read();
+};
+int main(void)
+{
+	Book web_book("HTML과 CSS", 350);	// 생성자의 암시적 호출 
+	// 생성자가 호출되어 멤버 변수인 percent_가 초기화되었는지를 확인함. 
+	cout << web_book.percent_ << endl;
+	return 0;
+}
+Book::Book(const string& title, int total_page)
+{
+	title_ = title;
+	total_page_ = total_page;
+	current_page_ = 0;
+	set_percent();
+}
+Book::~Book()	// 소멸자의 선언 
+{
+	// 프로그램이 종료될 때 컴파일러에 의해 자동으로 호출됨.
+	cout << "Book 객체의 소멸자가 호출되었습니다." << endl;
+}
+void Book::set_percent()
+{
+	percent_ = (double)current_page_ / total_page_ * 100;
+}*/
+
+// 연산자 오버로딩
