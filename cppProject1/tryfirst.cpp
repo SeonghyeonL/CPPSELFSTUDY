@@ -1430,4 +1430,222 @@ void Position::Display()
 }*/
 
 // 프렌드
+/*class Rect
+{
+private:
+	double height_;
+	double width_;
+public:
+	Rect(double height, double width);	// 생성자 
+	void DisplaySize();
+	Rect operator*(double mul) const;
+	friend Rect operator*(double mul, const Rect& origin); // 프렌드 함수
+};
+int main(void)
+{
+	Rect origin_rect(10, 20);
+	Rect rect01 = origin_rect * 2;
+	Rect rect02 = 3 * origin_rect;
+	rect01.DisplaySize();
+	rect02.DisplaySize();
+	return 0;
+}
+Rect::Rect(double height, double width)
+{
+	height_ = height;
+	width_ = width;
+}
+void Rect::DisplaySize()
+{
+	cout << "이 사각형의 높이는 " << this->height_
+		<< "이고, 너비는 " << this->width_ << "입니다." << endl;
+}
+Rect Rect::operator*(double mul) const
+{	return Rect(height_ * mul, width_ * mul);	}
+Rect operator*(double mul, const Rect& origin)
+{	return origin * mul;	}*/
+
+// 프렌드 클래스
+/*// 문법: friend class 클래스이름;
+#include <cmath>
+class Rect
+{
+private:
+	double height_;
+	double width_;
+public:
+	Rect(double height, double width);	// 생성자 
+	void height() const;
+	void width() const;
+	friend class Display;	// 프렌드 클래스 선언 
+};
+class Display
+{
+public:
+	void ShowSize(const Rect& target);
+	void ShowDiagonal(const Rect& target);
+};
+int main(void)
+{
+	Rect rect01(10, 20);
+	Display rect_display;
+	rect_display.ShowSize(rect01);
+	rect_display.ShowDiagonal(rect01);
+	return 0;
+}
+Rect::Rect(double height, double width)
+{
+	height_ = height;
+	width_ = width;
+}
+void Rect::height() const
+{ cout << "이 사각형의 높이는 " << this->height_ << "입니다." << endl; }
+void Rect::width() const
+{ cout << "이 사각형의 너비는 " << this->width_ << "입니다." << endl; }
+void Display::ShowSize(const Rect& target)
+{
+	target.height();
+	target.width();
+}
+void Display::ShowDiagonal(const Rect& target)
+{
+	double diagonal;
+	diagonal = sqrt(pow(target.height_, 2) + pow(target.width_, 2));
+	// cmath 헤더 파일's sqrt()는 제곱근, pow(a,b)는 a의 b승
+	cout << "이 사각형의 대각선의 길이는 " << diagonal << "입니다." << endl;
+}*/
+
+// 프렌드 멤버 함수
+/*#include <cmath>
+class Rect;
+class Display
+{
+public:
+	void ShowSize(const Rect& target);
+	void ShowDiagonal(const Rect& target);
+};
+class Rect
+{
+private:
+	double height_;
+	double width_;
+public:
+	Rect(double height, double width);	// 생성자 
+	void height() const;
+	void width() const;
+	friend void Display::ShowDiagonal(const Rect& target);	// 프렌드 멤버 함수 선언 
+	// ShowDiagonal() 함수만이 Rect 클래스의 모든 멤버에 접근 가능
+};
+int main(void)
+{
+	Rect rect01(10, 20);
+	Display rect_display;
+	rect_display.ShowSize(rect01);
+	rect_display.ShowDiagonal(rect01);
+	return 0;
+}
+Rect::Rect(double height, double width)
+{
+	height_ = height;
+	width_ = width;
+}
+void Rect::height() const
+{ cout << "이 사각형의 높이는 " << this->height_ << "입니다." << endl; }
+void Rect::width() const
+{ cout << "이 사각형의 너비는 " << this->width_ << "입니다." << endl; }
+void Display::ShowSize(const Rect& target)
+{
+	target.height();
+	target.width();
+}
+void Display::ShowDiagonal(const Rect& target)
+{
+	double diagonal;
+	diagonal = sqrt(pow(target.height_, 2) + pow(target.width_, 2));
+	cout << "이 사각형의 대각선의 길이는 " << diagonal << "입니다." << endl;
+}*/
+
+// 정적 멤버 변수
+/*// 정적 멤버: 클래스에 속함, 객체별 할당이 아닌 클래스의 모든 객체가 공유
+class Person
+{
+private:
+	string name_;
+	int age_;
+public:
+	static int person_count_;	// 정적 멤버 변수의 선언 
+	Person(const string& name, int age);	// 생성자 
+	~Person() { person_count_--; }			// 소멸자 
+	void ShowPersonInfo();
+};
+int Person::person_count_ = 0;	// 정적 멤버 변수의 정의 및 초기화 
+int main(void)
+{
+	Person hong("길동", 29);
+	hong.ShowPersonInfo();
+	Person lee("순신", 35);
+	lee.ShowPersonInfo();
+	Person kim("무지", 23);
+	kim.ShowPersonInfo();
+	return 0;
+}
+Person::Person(const string& name, int age)
+{
+	name_ = name;
+	age_ = age;
+	cout << ++person_count_ << " 번째 사람이 생성되었습니다." << endl;
+}
+void Person::ShowPersonInfo()
+{
+	cout << "이 사람의 이름은 " << name_ << "이고, 나이는 "
+		<< age_ << "살입니다." << endl;
+}*/
+
+// 정적 멤버 함수
+/*// 1. 객체이름.멤버함수이름();   // 일반 멤버 함수의 호출
+// 2. 클래스이름.멤버함수이름(); // 정적 멤버 함수의 호출
+// 특징: 객체 생성 X (this 포인터 없음), 클래스 이름만으로 호출,
+//		 특정 객체와 결합하지 않으므로, 정적 멤버 변수만 사용 가능
+class Person
+{
+private:
+	string name_;
+	int age_;
+public:
+	static int person_count_;	// 정적 멤버 변수의 선언 
+	static int person_count();	// 정적 멤버 함수의 선언
+	// 정적멤버변수 person_count_ 출력 위해 정적멤버함수 person_count() 선언
+	Person(const string& name, int age);	// 생성자 
+	~Person() { person_count_--; }			// 소멸자 
+	void ShowPersonInfo();
+};
+int Person::person_count_ = 0;	// 정적 멤버 변수의 정의 및 초기화 
+int main(void)
+{
+	Person hong("길동", 29);
+	Person lee("순신", 35);
+	cout << "현재까지 생성된 총 인원 수는 "
+		<< Person::person_count() << "명입니다." << endl;
+	return 0;
+}
+Person::Person(const string& name, int age)
+{
+	name_ = name;
+	age_ = age;
+	cout << ++person_count_ << " 번째 사람이 생성되었습니다." << endl;
+}
+void Person::ShowPersonInfo()
+{
+	cout << "이 사람의 이름은 " << name_
+		<< "이고, 나이는 " << age_ << "살입니다." << endl;
+}
+int Person::person_count() // 정적 멤버 함수의 정의 
+{ return person_count_; }*/
+
+// 상수 멤버 변수
+// 한 번 초기화하면 그 값 변경 불가 (const 타입 멤버변수이름;)
+// 상수 멤버 함수
+// 호출한 객체의 데이터 변경 불가 (함수의원형 const;)
+
+//
 
