@@ -1647,5 +1647,150 @@ int Person::person_count() // 정적 멤버 함수의 정의
 // 상수 멤버 함수
 // 호출한 객체의 데이터 변경 불가 (함수의원형 const;)
 
-//
+// 파생 클래스
+/*class Person
+{
+private:
+	string name_;
+	int age_;
+public:
+	Person(const string& name, int age); // 기초 클래스 생성자의 선언
+	void ShowPersonInfo();
+};
+class Student : public Person
+{
+private:
+	int student_id_;
+public:
+	Student(int sid, const string& name, int age); // 파생 클래스 생성자의 선언
+};
+int main(void)
+{
+	Student hong(123456789, "길동", 29);
+	hong.ShowPersonInfo();
+	return 0;
+}
+Person::Person(const string& name, int age) // 기초 클래스 생성자의 정의
+{
+	name_ = name;
+	age_ = age;
+}
+void Person::ShowPersonInfo()
+{
+	cout << name_ << "의 나이는 " << age_ << "살입니다." << endl;
+}
+// 파생 클래스 생성자의 정의 ↓
+Student::Student(int sid, const string& name, int age) : Person(name, age)
+{
+	student_id_ = sid;
+}*/
+
+// 오버라이딩 - 1
+/*// 오버로딩은 서로 다른 시그니처를 갖는 여러 함수를 같은 이름으로 정의
+// 오버라이딩은 이미 정의된 함수 무시하고 같은 이름의 함수를 새롭게 정의
+// 파생 클래스에서 직접 오버라이딩 or 가상 함수를 이용해 오버라이딩
+// 파생 클래스에서의 오버라이딩 ↓
+class Person
+{
+private:
+	string name_;
+	int age_;
+public:
+	Person(const string& name, int age);	// 기초 클래스 생성자의 선언 
+	void ShowPersonInfo();
+};
+class Student : public Person
+{
+private:
+	int student_id_;
+public:
+	Student(int sid, const string& name, int age);	// 파생 클래스 생성자의 선언 
+	void ShowPersonInfo();	// 파생 클래스에서 상속받은 멤버 함수의 재정의 
+};
+int main(void)
+{
+	Person lee("순신", 35);
+	lee.ShowPersonInfo();
+	Student hong(123456789, "길동", 29);
+	hong.ShowPersonInfo();
+	hong.Person::ShowPersonInfo(); // 원래 함수 호출
+	return 0;
+}
+Person::Person(const string& name, int age)	// 기초 클래스 생성자의 정의 
+{
+	name_ = name;
+	age_ = age;
+}
+void Person::ShowPersonInfo()
+{
+	cout << name_ << "의 나이는 " << age_ << "살입니다." << endl;
+}
+// 파생 클래스 생성자의 정의 
+Student::Student(int sid, const string& name, int age) : Person(name, age)	
+{
+	student_id_ = sid;
+}
+void Student::ShowPersonInfo()
+{
+	cout << "이 학생의 학번은 " << student_id_ << "입니다." << endl;
+}*/
+
+// 오버라이딩 - 2
+/*// 포인터 사용 시 문제 발생
+// 포인터 변수가 실제로 가리키는 객체의 타입을 기준으로 함수를 호출 X,
+// 해당 포인터의 타입을 기준으로 함수를 호출하기 때문!
+// → 가상 함수 이용
+// 포인터가 실제로 가리키는 객체에 따라 호출하는 대상을 바꿀 수 있음!
+class Person
+{
+private:
+	string name_;
+	int age_;
+public:
+	Person(const string& name, int age);	// 기초 클래스 생성자의 선언 
+	virtual void ShowPersonInfo();
+};
+class Student : public Person
+{
+private:
+	int student_id_;
+public:
+	Student(int sid, const string& name, int age);	// 파생 클래스 생성자의 선언 
+	virtual void ShowPersonInfo();	// 파생 클래스에서 상속받은 멤버 함수의 재정의 
+};
+int main(void)
+{
+	Person* ptr_person;
+	Person lee("순신", 35);
+	Student hong(123456789, "길동", 29);
+	ptr_person = &lee;
+	ptr_person->ShowPersonInfo();
+	ptr_person = &hong;
+	ptr_person->ShowPersonInfo();
+	return 0;
+}
+Person::Person(const string& name, int age)	// 기초 클래스 생성자의 정의 
+{
+	name_ = name;
+	age_ = age;
+}
+void Person::ShowPersonInfo()
+{
+	cout << name_ << "의 나이는 " << age_ << "살입니다." << endl;
+}
+// 파생 클래스 생성자의 정의 
+Student::Student(int sid, const string& name, int age) : Person(name, age)
+{
+	student_id_ = sid;
+}
+void Student::ShowPersonInfo()
+{
+	cout << "이 학생의 학번은 " << student_id_ << "입니다." << endl;
+}*/
+
+// 다중 상속
+// 두 개 이상의 클래스로부터 멤버를 상속받아 파생 클래스를 생성
+// class 파생클래스이름 : 접근제어지시자 기초클래스이름, 접제지 기클이, ...
+
+// 가상 함수
 
