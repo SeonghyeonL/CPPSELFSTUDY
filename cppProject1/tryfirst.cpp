@@ -1793,4 +1793,65 @@ void Student::ShowPersonInfo()
 // class 파생클래스이름 : 접근제어지시자 기초클래스이름, 접제지 기클이, ...
 
 // 가상 함수
+/*// 파생 클래스에서 재정의할 것으로 기대하는 멤버 함수 (재정의 필수 X)
+// 문법: virtual 멤버함수의원형;
+// 가상 함수 호출 → 컴파일러가 어떤 함수 호출할지 모름 = 동적 바인딩
+// 다음은 가상 함수를 사용한 동적 바인딩 예제
+class A
+{
+public:
+	virtual void Print() { cout << "A 클래스의 Print() 함수" << endl; }
+};
+class B : public A
+{
+	virtual void Print() { cout << "B 클래스의 Print() 함수" << endl; }
+};
+int main(void)
+{
+	A* ptr;
+	A obj_a;
+	B obj_b;
+	ptr = &obj_a;
+	ptr->Print();
+	ptr = &obj_b;
+	ptr->Print();
+	return 0;
+}
+// 컴파일러가 가상 함수를 다루는 가장 일반적인 방식: 가상 함수 테이블
+// 각 객체마다 가상 함수 테이블을 가리킬 포인터 저장을 위한 숨겨진 멤버 추가
+// 가상 함수 테이블 → 해당 클래스의 객체 위해 선언된 가상 함수의 주소 저장
+// 가상 함수를 사용 → 함수 호출 과정 복잡 (메모리와 실행 속도 측면 부담 ↑)
+// 또한, C++에서 기초 클래스의 소멸자는 반드시 가상으로 선언해야 함*/
 
+// 추상 클래스
+/*// 순수 가상 함수: 파생 클래스에서 "반드시" 재정의해야 하는 멤버 함수
+// 문법: virtual 멤버함수의원형=0; (즉, 함수만 있고 본체 없음)
+// 하나 이상의 순수 가상 함수를 포함하는 클래스 = "추상 클래스"
+class Animal
+{
+public:
+	virtual ~Animal() {}	// 가상 소멸자의 선언
+	virtual void Cry() = 0;	// 순수 가상 함수의 선언
+};
+class Dog : public Animal
+{
+public:
+	virtual void Cry() { cout << "멍멍!!" << endl; }
+};
+class Cat : public Animal
+{
+public:
+	virtual void Cry() { cout << "야옹야옹!!" << endl; }
+};
+// Animal 클래스를 상속받는 파생 클래스인 Dog 클래스와 Cat 클래스는
+// Cry() 함수를 오버라이딩해야만 인스턴스를 생성 가능...
+int main(void)
+{
+	Dog my_dog;
+	my_dog.Cry();
+	Cat my_cat;
+	my_cat.Cry();
+	return 0;
+}*/
+
+//
