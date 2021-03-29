@@ -2038,4 +2038,94 @@ T Data<T>::get_data()
 //     DoubleX double_x; // double_x는 X<double, 3.14> 타입*/
 
 // 스마트 포인터
+/*// 포인터처럼 동작하는 클래스 템플릿으로, 사용 끝난 메모리 자동으로 해제
+// new 키워드로 기본 포인터가 실제 메모리 가리키도록 초기화한 후,
+// 기본 포인터를 스마트 포인터에 대입
+// → 소멸자는 delete 키워드로 할당된 메모리를 자동으로 해제
+// 즉, 따로 메모리를 해제할 필요가 없어짐!
+// 종류: unique_ptr, shared_ptr, weak_ptr*/
 
+// unique_ptr
+/*// 하나의 스마트 포인터만이 특정 객체를 소유할 수 있도록
+// 해당 객체의 소유권을 갖고 있을 때만, 소멸자가 해당 객체 삭제 가능
+// move() 멤버 함수를 통해 소유권을 이전은 가능, 복사는 불가능
+// unique_ptr<int> ptr01(new int(5)); // int형 unique_ptr인 ptr01 선언, 초기화
+// auto ptr02 = move(ptr01);          // ptr01에서 ptr02로 소유권을 이전
+// unique_ptr<int> ptr03 = ptr01;     // 대입 연산자 이용한 복사 → 오류를 발생 
+// ptr02.reset();                     // ptr02가 가리키는 메모리 영역 삭제
+// ptr01.reset();                      // ptr01가 가리키는 메모리 영역을 삭제
+// make_unique() 함수를 사용 → unique_ptr 인스턴스를 안전하게 생성!
+// Person 객체 가리키는 unique_ptr(hong)를 make_unique()로 생성하는 예제 ↓
+#include <memory>
+class Person
+{
+private:
+	string name_;
+	int age_;
+public:
+	Person(const string& name, int age); // 기초 클래스 생성자의 선언
+	~Person() { cout << "소멸자가 호출되었습니다." << endl; }
+	void ShowPersonInfo();
+};
+int main(void)
+{
+	unique_ptr<Person> hong = make_unique<Person>("길동", 29);
+	// hong은 사용이 끝난 후에 delete 키워드로 메모리 해제할 필요 X
+	hong->ShowPersonInfo();
+	return 0;
+}
+Person::Person(const string& name, int age) // 기초 클래스 생성자의 정의
+{
+	name_ = name;
+	age_ = age;
+	cout << "생성자가 호출되었습니다." << endl;
+}
+void Person::ShowPersonInfo()
+{ cout << name_ << "의 나이는 "<< age_ << "살입니다." << endl; }*/
+
+// shared_ptr
+/*// 한 특정 객체를 참조하는 스마트 포인터가 몇 개인지
+// 이때 개수 =  참조 횟수
+// shared_ptr<int> ptr01(new int(5)); // int형 shared_ptr 선언, 초기화
+// cout << ptr01.use_count() << endl; // 1
+// auto ptr02(ptr01);                 // 복사 생성자를 이용한 초기화
+// cout << ptr01.use_count() << endl; // 2
+// auto ptr03 = ptr01;                // 대입을 통한 초기화
+// cout << ptr01.use_count() << endl; // 3 
+// Person 객체 가리키는 shared_ptr를 make_shared()로 생성하는 예시 ↓
+class Person
+{
+private:
+	string name_;
+	int age_;
+public:
+	Person(const string& name, int age);	// 기초 클래스 생성자의 선언 
+	~Person() { cout << "소멸자가 호출되었습니다." << endl; }
+	void ShowPersonInfo();
+};
+int main(void)
+{
+	shared_ptr<Person> hong = make_shared<Person>("길동", 29);
+	cout << "현재 소유자 수 : " << hong.use_count() << endl;	// 1
+	auto han = hong;
+	cout << "현재 소유자 수 : " << hong.use_count() << endl;	// 2
+	han.reset();		// shared_ptr인 han을 해제함
+	cout << "현재 소유자 수 : " << hong.use_count() << endl;	// 1
+	return 0;
+}
+Person::Person(const string& name, int age)	// 기초 클래스 생성자의 정의 
+{
+	name_ = name;
+	age_ = age;
+	cout << "생성자가 호출되었습니다." << endl;
+}
+void Person::ShowPersonInfo()
+{
+	cout << name_ << "의 나이는 " << age_ << "살입니다." << endl;
+}*/
+
+// weak_ptr
+/*// 하나 이상의 shared_ptr가 소유하는 객체에 대한 접근을 제공
+// but, 소유자의 수에는 포함 X*/
+
+// 반복자
