@@ -2128,4 +2128,119 @@ void Person::ShowPersonInfo()
 /*// 하나 이상의 shared_ptr가 소유하는 객체에 대한 접근을 제공
 // but, 소유자의 수에는 포함 X*/
 
-// 반복자
+// STL 반복자
+/*// C++ 표준 템플릿 라이브러리인 STL → 반복자, 컨테이너, 알고리즘
+// STL 컨테이너: 같은 타입의 여러 객체를 저장하는 일종의 집합
+// 반복자: 컨테이너에 저장된 요소를 계속 순회 → 각 요소로의 접근 제공
+// 즉, 컨테이너에 저장된 데이터를 순회하는 과정
+// 요구 사항: 참조 연산자(*), 대입 및 관계 연산자, 증가 연산자(++)
+// 종류: 입력/출력/순방향/역방향/임의접근 반복자
+// [입력 반복자]
+// 컨테이너로부터 값 읽기 가능, 프로그램이 그 값을 변경은 X
+// 증가 연산자(++)로 순방향 이동 or 참조 연산자(*)로 반복해서 요소 참조
+// Find() 함수의 원형은 다음과 같다
+// template<class InputIterator, class T>
+// InputIterator Find(InputIterator first, InputIterator last, const T& value);
+// [출력 반복자]
+// 컨테이너의 값 변경 가능, 프로그램에서 값을 읽을 수는 X
+// 증가 연산자(++)로 순방향 이동 or 참조 연산자(*)로 한 번만 값 쓰기
+// Copy() 함수의 원형은 다음과 같다
+// template<class InputIterator, class OutputIterator>
+// OutputIterator Copy
+// (InputIterator first, InputIterator last, OutputIterator result);
+// [순방향 반복자]
+// 입출력이 모두 가능
+// 증가 연산자(++)로 순방향 이동 or 참조 연산자(*)로 몇 번이고 참조, 변경 가능
+// Replace() 함수의 원형은 다음과 같다
+// template<class ForwardIterator, class T>
+// void Replace
+// (ForwardIterator first, ForwardIterator last, const T& target, const T& replacement);
+// [양방향 반복자]
+// 역시 입출력 모두 가능
+// 증가 연산자(++)는 순방향, 감소 연산자(--)는 역방향
+// 참조 연산자(*)로 몇 번이고 참조, 변경 가능
+// Reverse() 함수의 원형은 다음과 같다
+// template<class BidirectionalIterator, class OutputIterator>
+// OutputIterator Reverse
+// (BidirectionalIterator first, BidirectionalIterator last, OutputIterator result);
+// [임의 접근 반복자]
+// 양방향 반복자의 모든 기능을 포함, 첨자 연산자([])로 임의의 요소에 접근 가능,
+// 증감 연산자로 양방향 이동, 요소의 순서를 결정하기 위해 관계 연산자 사용
+// Sort() 함수의 원형은 다음과 같다
+// template<class RandomAccessIterator>
+// void Sort(RandomAccessIterator first, RandomAccessIterator last);*/
+
+// iterator 헤더 파일
+// 미리 정의된 반복자, 스트림 반복자, 반복자의 원형, 여러 지원 템플릿 포함!
+
+// 스트림 반복자
+/*// 입력 스트림 반복자는 istream_iterator
+// template <class T, class charT = char,
+//    class traits = char_traits<charT>,class Distance = ptrdiff_t>
+// class istream_iterator : public iterator<input_iterator_tag,
+//    T, Distance, const T*, const T&> { ... }
+// 출력 스트림 반복자는 ostream_iterator 
+// template <class T, class charT = char, class traits = char_traits<charT> >
+// class ostream_iterator : public iterator<output_iterator_tag,
+//    void, void, void, void> { ... }
+#include <iterator>
+#include <vector>
+int main(void)
+{
+	vector<int> vc = { 1, 2, 3, 4, 5 };
+	copy(vc.begin(), vc.end(), ostream_iterator<int>(cout));
+	cout << endl;
+	copy(vc.begin(), vc.end(), ostream_iterator<int>(cout, " "));
+	// copy() 함수fh vertor 객체의 첫 요소 ~ 마지막 요소를 출력
+	// cout 객체를 ostream_iterator 클래스 템플릿의 인수로 전달
+	return 0;
+}*/
+
+// 삽입 반복자
+/*// insert_iterator,  back_insert_iterator, front_insert_iterator
+#include <iterator>
+#include <list>
+int main(void)
+{
+	list<int> ls = { 10 };
+	ls.push_back(20);	// back_insert_iterator를 사용함. 
+	ls.push_front(30);	// front_insert_iterator를 사용함. 
+	copy(ls.begin(), ls.end(), ostream_iterator<int>(cout, " "));
+	//  push_back(), push_front() 함수의 삽입 반복자 사용 → 리스트에 요소 삽입
+	return 0;
+}*/
+
+// 역방향 반복자
+/*// 역방향 반복자의 증가 연산자(++)는 순방향 반복자의 역방향으로 이동!
+// rbegin(), rend() 멤버 함수를 사용 → 자동으로 reverse_iterator 반환
+#include <iterator>
+#include <list>
+int main(void)
+{
+	list<int> ls = { 10, 20, 30 };
+	copy(ls.rbegin(), ls.rend(), ostream_iterator<int>(cout, " "));
+	//  rbegin(), rend() 함수의 역방향 반복자로 리스트 요소를 역순 출력
+	return 0;
+}*/
+
+// 상수 반복자
+/*// 반복자가 가리키는 값의 변경이 불가능한 반복자
+// const_iterator 타입으로 정의
+#include <iterator>
+#include <list>
+int main(void)
+{
+	list<int> ls = { 10, 20, 30 };
+	list<int>::iterator iter;
+	list<int>::const_iterator citer;
+	iter = ls.begin();
+	*iter = 100;
+	citer = ls.end();
+	// *citer = 300;    // 상수 반복자로 값의 변경이 불가능 (읽기만 가능)
+	for (citer = ls.begin(); citer != ls.end(); citer++)
+	{	cout << *citer << " ";	}
+	// 반복자를 사용하여 리스트의 첫 번째 요소의 값을 변경
+	return 0;
+}*/
+
+// STL 컨테이너
