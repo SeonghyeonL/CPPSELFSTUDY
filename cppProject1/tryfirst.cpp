@@ -1854,4 +1854,188 @@ int main(void)
 	return 0;
 }*/
 
-//
+// 템플릿: 매개변수의 타입에 따라 함수나 클래스를 생성하는 메커니즘
+
+// 함수 템플릿
+/*// 함수의 일반화된 선언을 의미함
+// 같은 알고리즘 기반, 서로 다른 타입에서 동작하는 함수를 한 번에 정의!
+// 특정 타입을 매개변수로 전달 → 컴파일러가 해당 타입에 맞는 함수 생성
+// 문법: template <typename 타입이름>
+//       함수의원형
+//       {
+//			함수의본체
+//       }
+template <typename T>
+void Swap(T& a, T& b);
+int main(void)
+{
+	int c = 2, d = 3;
+	cout << "c : " << c << ", d : " << d << endl;
+	Swap(c, d);
+	cout << "c : " << c << ", d : " << d << endl;
+	string e = "hong", f = "kim";
+	cout << "e : " << e << ", f : " << f << endl;
+	Swap(e, f);
+	cout << "e : " << e << ", f : " << f << endl;
+	return 0;
+}
+template <typename T>
+void Swap(T& a, T& b)
+{
+	T temp;
+	temp = a;
+	a = b;
+	b = temp;
+}*/
+
+// 명시적 특수화 (for 함수 템플릿)
+/*// (함수 템플릿에서 제공) 해당 타입에 대해 특별한 동작을 정의!
+// 앞의 예시에서 double을 위한 명시적 특수화를 하면,
+// template <> void Swap<double>(double&, double&) { ... };
+template <typename T>
+void Swap(T& a, T& b);
+template <> void Swap<double>(double&, double&);
+int main(void)
+{
+	int c = 2, d = 3;
+	cout << "c : " << c << ", d : " << d << endl;
+	Swap(c, d);
+	cout << "c : " << c << ", d : " << d << endl;
+	double e = 1.234, f = 4.321;
+	cout << "e : " << e << ", f : " << f << endl;
+	Swap(e, f);
+	cout << "e : " << e << ", f : " << f << endl;
+	return 0;
+}
+template <typename T>
+void Swap(T& a, T& b)
+{
+	T temp;
+	temp = a;
+	a = b;
+	b = temp;
+}
+template <> void Swap<double>(double&, double&)
+{
+	// double형은 값을 서로 바꾸지 않음. 
+}*/
+
+// 클래스 템플릿
+/*// 클래스의 일반화된 선언을 의미
+// template <typename 타입이름>
+// class 클래스템플릿이름
+// {
+//	 클래스 멤버의 선언
+// }
+// 사용하고자 하는 타입을 명시적으로 제공해야 함!
+template <typename T>
+class Data
+{
+private:
+	T data_;
+public:
+	Data(T dt);
+	T get_data();
+};
+int main(void)
+{
+	Data<string> str_data("C++ 수업");
+	Data<int> int_data(12);
+	cout << "str_data : " << str_data.get_data() << endl;
+	cout << "int_data : " << int_data.get_data() << endl;
+	return 0;
+}
+template <typename T>
+Data<T>::Data(T dt)
+{
+	data_ = dt;
+}
+template <typename T>
+T Data<T>::get_data()
+{
+	return data_;
+}*/
+
+// 중첩 클래스 템플릿
+/*// template <typename T>
+// class X
+// {
+//	 template <typename U>
+//	 class Y
+//	 {	...		}
+//	 ...
+// }
+// int main(void)
+// {	...		}
+// template <typename T>
+// template <typename U>
+// X<T>::Y<U>::멤버함수이름()
+// {	...		}*/
+
+// 클래스 템플릿 특징
+/*// 1. 하나 이상의 템플릿 인수를 가지는 클래스 템플릿 선언 가능
+// ex. template <typename T, int i>
+// 2. 클래스 템플릿에 디폴트 템플릿 인수를 명시 가능
+// ex. template <typename T = int, int i>
+// 3. 클래스 템플릿를 기초 클래스로 하여 상속 가능
+// ex. template <typename Type>
+//     class Y : public X <Type> → 클래스 템플릿 X를 상속받음*/
+
+// 명시적 특수화 (for 클래스 템플릿)
+/*// for double → template <> class X<double> { ... };
+template <typename T>
+class Data
+{
+private:
+	T data_;
+public:
+	Data(T dt);
+	T get_data();
+};
+template <> class Data<double>	// double형에 대한 명시적 특수화 
+{
+private:
+	double data_;
+public:
+	Data(double dt) { data_ = dt; }
+	double get_data()
+	{
+		cout << "double형 데이터를 출력합니다." << endl;
+		return data_;
+	}
+	// double형에 대한 동작만을 변경!
+};
+int main(void)
+{
+	Data<string> str_data("C++ 수업");
+	Data<double> double_data(3.14);
+	cout << "str_data : " << str_data.get_data() << endl;
+	cout << "double_data : " << double_data.get_data() << endl;
+	return 0;
+}
+template <typename T>
+Data<T>::Data(T dt)
+{
+	data_ = dt;
+}
+template <typename T>
+T Data<T>::get_data()
+{
+	return data_;
+}*/
+
+// 부분 특수화
+/*// 템플릿 인수가 두 개 이상, 그중 일부만 특수화 할 때
+// template 다음에 나오는 <>에 특수화X 타입의 템플릿 인수 명시
+// 다음에 나오는 <>에 특수화O 타입을 명시
+// ex. template <typename T1, typename T2> class X {...};
+// → template <typename T1> class X<T1, double> { ... };
+// X를 double형에 대해 부분 특수화
+// → template <> class X<double, double> { ... };
+// T1 타입까지 특수화 (→ 명시적 특수화)
+// 추가로, typedef 키워드로 템플릿 특수화 위한 새 이름 선언 가능
+// ex. typedef X<double, 3.14> DoubleX;
+//     DoubleX double_x; // double_x는 X<double, 3.14> 타입*/
+
+// 스마트 포인터
+
