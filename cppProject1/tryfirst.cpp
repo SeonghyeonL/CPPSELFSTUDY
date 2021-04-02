@@ -2243,4 +2243,204 @@ int main(void)
 	return 0;
 }*/
 
-// STL 컨테이너
+// 시퀀스 컨테이너: vector, deque, list, forward_list
+// 데이터를 선형으로 저장하는 가장 일반적인 STL 컨테이너
+// 삽입된 요소의 순서가 그대로 유지됨
+
+// 벡터(vector) 컨테이너
+/*// 요소 추가 or 삭제 → 자동으로 메모리를 재할당해 크기를 동적으로 변경
+// vector<템플릿인수> 객체이름(생성자인수);
+#include <iterator>
+#include <vector>
+int main(void)
+{
+	vector<int> vc = { 10, 20, 30 };	// vector 객체의 선언 및 초기화 
+	cout << "현재 벡터의 크기는 " << vc.size() << "입니다." << endl;
+
+	vc.push_back(40);				// vector 요소의 추가 
+	cout << "현재 벡터의 크기는 " << vc.size() << "입니다." << endl;
+	cout << "현재 벡터의 네 번째 요소는 " << vc[3] << "입니다." << endl;
+
+	cout << "현재 벡터의 모든 요소는 다음과 같습니다 :" << endl;
+	copy(vc.begin(), vc.end(), ostream_iterator<int>(cout, " "));
+	return 0;
+}*/
+
+// 데큐(deque) 컨테이너
+/*// double-ended queue
+// 양 끝에서 빠르게 요소를 삽입하거나 삭제
+#include <iterator>
+#include <deque>
+int main(void)
+{
+	deque<int> dq = { 20 };	// deque 객체의 선언 및 초기화 
+	dq.push_back(30);		// 요소의 후방 삽입 
+	dq.push_front(10);		// 요소의 전방 삽입 
+
+	cout << "현재 데큐의 모든 요소는 다음과 같습니다 :" << endl;
+	copy(dq.begin(), dq.end(), ostream_iterator<int>(cout, " "));
+	cout << endl << "현재 데큐의 첫 번째 요소는 " << dq.front() << "입니다." << endl;
+
+	dq.pop_front();			// 요소의 전방 삭제 
+	cout << "현재 데큐의 모든 요소는 다음과 같습니다 :" << endl;
+	copy(dq.begin(), dq.end(), ostream_iterator<int>(cout, " "));
+	return 0;
+}*/
+
+// 리스트(list) 컨테이너
+/*// 이중 연결 리스트의 클래스 템플릿 표현
+// 모든 요소에서 양방향 접근, 빠른 삽입 & 삭제 가능 but 임의 접근 불가
+#include <iterator>
+#include <list>
+int main(void)
+{
+	list<int> ls = { 1, 2, 2, 3, 4, 3, 5, 5 };	// list 객체의 선언 및 초기화 
+	//ls.sort();	// 1, 2, 2, 3, 3, 4, 5, 5
+	//ls.unique();	// 1, 2, 3, 4, 3, 5
+	ls.reverse();	// 5, 5, 3, 4, 3, 2, 2, 1
+	// 그 외에 merge, splice 등의 함수
+	cout << "현재 리스트의 모든 요소는 다음과 같습니다 :" << endl;
+	copy(ls.begin(), ls.end(), ostream_iterator<int>(cout, " "));
+	return 0;
+}*/
+
+// 순방향 리스트(forward_list) 컨테이너
+/*// 단방향 연결 리스트의 클래스 템플릿 표현
+// 순방향 반복자(forward iterator)만을 사용
+#include <iterator>
+#include <forward_list>
+int main(void)
+{
+	forward_list<int> fls01 = { 10, 20, 400, 30 };	// forward_list 객체의 선언 및 초기화 
+	forward_list<int> fls02 = { 40, 50 };
+	forward_list<int>::iterator itr;
+
+	fls01.remove(400);				// 값이 400인 모든 요소를 삭제함.
+	cout << "현재 순방향 리스트의 모든 요소는 다음과 같습니다 :" << endl;
+	copy(fls01.begin(), fls01.end(), ostream_iterator<int>(cout, " "));
+	cout << endl;
+
+	itr = fls01.begin();			// fls01의 첫 번째 요소를 가리키도록 반복자 초기화
+	fls01.splice_after(itr, fls02);	// fls02의 모든 요소를 fls01의 첫 번째 요소 다음에 삽입 
+	cout << "fls01 : ";
+	copy(fls01.begin(), fls01.end(), ostream_iterator<int>(cout, " "));
+	cout << endl << "fls02 : ";
+	copy(fls02.begin(), fls02.end(), ostream_iterator<int>(cout, " "));
+	return 0;
+}*/
+
+// 연관 컨테이너: set, multiset, map, multimap
+// 키와 값처럼 관련있는 데이터를 한 쌍으로 저장 (트리 기반 동작)
+// 연관 컨테이너는 삽입되는 요소의 위치를 지정할 수 없음!
+// +) 순서 지정 X 연관 컨테이너 → 해시 테이블 기반 동작
+
+// 집합과 멀티집합 컨테이너
+/*// 집합(set) 컨테이너는 저장하는 데이터 그 자체 = 키 (오름차순)
+// 멀티집합(multiset)은 키의 중복을 허용 (같은 값 여러 번 저장 가능)
+// 집합 컨테이너 → set<템플릿인수> 객체이름;
+#include <iterator>
+#include <set>
+int main(void)
+{
+	int arr[5] = { 10, 20, 30, 40, 50 };	// 배열 생성 및 초기화 
+	set<int> st(arr, arr + 3);			// 배열의 일부 요소를 가지고 셋 컨테이너를 생성함. 
+	cout << "현재 집합의 모든 요소는 다음과 같습니다." << endl;
+	copy(st.begin(), st.end(), ostream_iterator<int>(cout, " "));
+	cout << endl;
+
+	st.insert(60);	// 요소의 추가 
+	st.insert(70);	// 요소의 추가 
+	st.erase(20);	// 요소의 삭제 
+	cout << "현재 집합의 모든 요소는 다음과 같습니다." << endl;
+	copy(st.begin(), st.end(), ostream_iterator<int>(cout, " "));
+	return 0;
+}*/
+
+// 맵과 멀티맵 컨테이너
+/*// 키와 값의 쌍으로 데이터를 관리, 정렬된 위치에 데이터 삽입
+// 멀티맵은 값의 중복 허용 (하나의 키가 여러 값과 연결 가능!)
+// 맵 컨테이너 → map<템플릿인수> 객체이름;
+#include <iterator>
+#include <map>
+int main(void)
+{
+	map<string, int> mp;
+	mp.insert(pair<string, int>("국어", 80));	// 익명의 pair 객체를 생성하여 추가함. 
+	mp["수학"] = 100;							// 첨자 연산자를 이용하여 추가함. 
+
+	cout << "현재 맵의 모든 요소는 다음과 같습니다." << endl;
+	map<string, int>::iterator it;
+	for (it = mp.begin(); it != mp.end(); it++)
+	{
+		cout << it->first << " : " << it->second << endl;
+	}
+	return 0;
+}*/
+
+// 컨테이너 어댑터: stack, queue, priority_queue
+// 기존 컨테이너의 인터페이스를 제한하여 만든 기능이 제한 or 변형된 컨테이너
+// 각 기초가 되는 클래스의 인터페이스를 제한 → 특정 형태의 동작만 수행
+// 반복자 지원하지 않음!
+
+// 스택(stack) 컨테이너
+/*// 가장 나중에 저장된(push) 데이터가 가장 먼저 인출(pop)
+#include <stack>
+int main(void)
+{
+	int decimal = 123;
+	stack<int> st;
+	do {
+		st.push(decimal % 2);
+		decimal /= 2;
+	} while (decimal); // 10진수를 2진수로 변환 
+	while (!st.empty())
+	{
+		cout << st.top();
+		st.pop();
+	} // 스택의 모든 요소를 인출 
+	return 0;
+}*/
+
+// 큐(queue) 컨테이너
+/*// 가장 먼저 저장된(push) 데이터가 가장 먼저 인출(pop)
+#include <queue>
+int main(void)
+{
+	int n = 20;		// 20개의 피보나치 수열을 출력함. 
+	queue<int> que;
+	que.push(0);	// 초기값인 0과 1을 저장함. 
+	que.push(1);
+
+	// 피보나치 수열 
+	for (int i = 2; i < n; i++)
+	{
+		int temp = que.front();
+		cout << temp << " ";
+		que.pop();
+		que.push(temp + que.front());
+	}
+	return 0;
+}*/
+
+// 우선순위 큐(priority_queue) 컨테이너
+/*// 가장 먼저 저장된 요소가 아닌, 가장 큰 값을 지닌 요소가 맨 앞에 위치
+// 즉, 우선순위 큐의 요소는 언제나 값의 내림차순으로 정렬!
+#include <queue>
+int main(void)
+{
+	priority_queue<int> pq;
+	pq.push(10);
+	pq.push(20);
+	pq.push(100);
+	pq.push(3);
+
+	// 우선 순위 큐의 모든 요소를 인출 
+	while (!pq.empty())
+	{
+		cout << pq.top() << " ";
+		pq.pop();
+	}
+	return 0;
+}*/
+
+// 함수 객체
