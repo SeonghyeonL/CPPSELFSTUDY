@@ -2507,5 +2507,64 @@ int main(void)
 // numeric 헤더 파일에 정의
 // accumulate() : 모든 요소의 합을 반환*/
 
-// 스트림과 버퍼
+// 파일 입출력
+/*// 파일의 입력은 ifstream 클래스, 출력은 ofstream 클래스의 멤버 함수로 처리
+// <입출력 동작 과정>
+// 1. 스트림을 관리하기 위한 ifstream(또는 ofstream) 객체를 생성
+// 2. 특정 파일과의 연결
+//    ifstream ifs;            // ifs라는 ifstream 객체를 생성
+//    ifs.open("example.txt"); // ifs를 example.txt와 연결
+//    또는
+//    ifstream ifs("example.txt"); // ifstream 객체 생성 후 example.txt와 연결
+// 3. cin 객체나 cout 객체와 같은 방법으로 객체를 사용하여 입출력 수행
+//    char ch;
+//    char buf[20];
+//    string str;
+//    ifs >> ch;            // example.txt 파일에서 한 문자를 읽어 변수 ch에 저장
+//    ifs.getline(buf, 20); // example.txt에서 한 행을 읽어 배열 buf에 저장
+//    getline(ifs, str);    // example.txt에서 한 행을 읽어 문자열 객체 str에 저장
+// 4. 모든 작업이 끝나면 파일과의 연결 종료
+//     ifs.close(); // 파일과의 연결을 닫음 (안 해도 자동으로 닫힘)
+// <스트림의 상태 검사하기>
+// 1. if (ifs.fail()) { ... }  // 파일을 여는데 실패한 경우
+// 2. if (!ifs.good()) { ... } // 파일을 여는데 실패한 경우
+// 3. if (!ifs) { ... }        // 파일을 여는데 실패한 경우
+// 또는 if (!ifs.is_open()) { ... } // 파일을 여는데 실패한 경우
+// 다음은 단순히 파일을 열어 그 안에 저장된 텍스트 한 줄을 읽어 오는 예제
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+int main()
+{
+	ifstream ifs;
+	string str;
+	ifs.open("example.txt"); // "C++ 프로그래밍"
+	if (!ifs.is_open())
+	{
+		cout << "파일을 열 수가 없습니다!" << endl;
+		exit(1);
+	}
+	else
+	{
+		cout << "파일을 성공적으로 열었습니다!" << endl;
+		getline(ifs, str);
+		cout << str << endl;
+		ifs.close();
+	}
+}*/
 
+// 파일 모드
+/*// 파일의 사용 용도와 파일의 데이터를 어떤 방식으로 입출력할지 결정하는 상수
+// ifs라는 ifstream 객체를 생성하고, example.txt와 읽기 모드로 연결
+// → ifstream ifs("example.txt", ios_base::in);
+// ifstream의 생성자와 open() 멤버 함수는 파일 모드 디폴트 인수가 ios_base::in
+// ofstream의 경우에는 ios_base::out | ios_base::trunc
+// ios_base::in → 파일을 오로지 읽는 것만 가능한 모드로 개방
+// ios_base::out → 파일을 쓰는 것만이 가능한 모드로 개방
+// ios_base::ate → 파일을 개방할 때 파일의 끝으로 파일 포인터를 이동시킴
+// ios_base::app → 해당 파일의 맨 끝에서부터 데이터를 추가
+// ios_base::trunc → 파일이 있으면 해당 파일의 모든 데이터를 지우고 개방
+// ios_base::binary → 바이너리 모드로 개방*/
+
+// 예외 처리
