@@ -2443,4 +2443,69 @@ int main(void)
 	return 0;
 }*/
 
-// 함수 객체
+// 함수 객체 (functor) - 1
+/*// 호출 연산자(())와 함께 사용할 수 있는 객체
+// 타입 선언 후, 해당 클래스에서 호출 연산자를 오버로딩해서 구현
+// 장점: 상태 포함 가능, 타입이므로 템플릿 인수로 사용 가능
+#include <functional>
+int main(void)
+{
+	plus<int> add;
+	minus<int> sub;
+	multiplies<int> mult;
+	equal_to<int> comp;
+	greater_equal<int> ge;
+	cout << add(7, 3) << endl;
+	cout << sub(7, 3) << endl;
+	cout << mult(7, 3) << endl;
+	cout << comp(7, 3) << endl;
+	cout << ge(7, 3);
+	return 0;
+}*/
+
+// 함수 객체 - 2
+/*// 아래는 greater, less를 각각 sort()의 인수로 전달해 사용
+// 이때 greater, less가 함수 객체임!
+#include <vector>
+#include <iterator>
+#include <algorithm>
+#include <functional>
+using namespace std;
+int main(void)
+{
+	vector<int> vc = { 20, 40, 10, 30 };	// vector 객체의 선언 및 초기화 
+
+	sort(vc.begin(), vc.end(), greater<int>());
+	copy(vc.begin(), vc.end(), ostream_iterator<int>(cout, " "));
+	cout << endl;
+
+	sort(vc.begin(), vc.end(), less<int>());
+	copy(vc.begin(), vc.end(), ostream_iterator<int>(cout, " "));
+	return 0;
+}*/
+
+// STL 알고리즘
+/*// STL의 목적 → 일반적인 알고리즘에 대한 효율적인 구현 제공
+// 따라서 STL은 STL 알고리즘 함수 or STL 컨테이너의 멤버 함수 사용
+// STL 알고리즘: 읽기, 변경, 정렬, 수치 알고리즘으로 구분
+// <읽기 알고리즘>
+// 컨테이너를 변경 X, 컨테이너의 지정된 범위에서 특정 데이터 읽기만
+// find() :  특정 값을 가지는 첫 번째 요소 가리키는 입력 반복자 반환
+// for_each() : 모든 요소를 함수 객체에 대입 후, 대입한 함수 객체 반환
+// <변경 알고리즘>
+// 컨테이너 변경 X, 컨테이너의 지정된 범위에서 요소의 값만 변경
+// copy() : 모든 요소를 출력 반복자가 가리키는 위치에 복사
+// swap() : 두 개의 참조가 가리키는 위치의 값을 서로 교환
+// transform() : 모든 요소를 함수 객체에 대입 후, 출력 반복자가 가리키는 곳에 복사
+// <정렬 알고리즘>
+// 컨테이너의 지정된 범위의 요소들이 정렬되도록 컨테이너를 변경
+// 임의 접근 반복자를 사용하므로 임의 접근이 가능한 컨테이너만이 사용 가능
+// sort() : 모든 요소 서로 비교 후 오름차순 정렬
+// stable_sort() : 모든 요소 서로 비교 후 오름차순 정렬 (같은 값은 상대적 순서 유지)
+// binary_search() : 오름차순 정렬 후, 전달된 값과 같은 값이 있으면 true 반환
+// <수치 알고리즘>
+// numeric 헤더 파일에 정의
+// accumulate() : 모든 요소의 합을 반환*/
+
+// 스트림과 버퍼
+
