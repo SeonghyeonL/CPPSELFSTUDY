@@ -2568,3 +2568,109 @@ int main()
 // ios_base::binary → 바이너리 모드로 개방*/
 
 // 예외 처리
+/*// try 문 : 예외가 발생할 가능성이 있는 코드 블록
+// throw 문 : try 문에서 발생한 오류에 대한 정보를 전달
+// catch 절 : 발생한 예외에 대해 예외 핸들러가 처리할 내용을 담은 코드 블록
+// try문 뒤에 반드시 하나 이상의 catch절이 있어야 함
+// 각 catch절은 자신이 처리할 예외 타입 지정 가능
+// 이때, 특정 예외 타입 되신에 ... 사용하면, 모든 타입의 예외를 처리!
+// 하지만 ...는 반드시 catch절 중 가장 마지막에만 사용
+// 다음은 사용자가 정확히 양의 정수를 입력했는가를 throw 문으로 검사하는 예시
+int IncreaseNumber(int n)
+{
+	if (n < 0)
+		throw n;
+	else if (n == 0)
+		throw "0은 입력 불가능";
+	return ++n;
+}
+int main(void)
+{
+	int num;
+	cout << "양의 정수 하나 입력: ";
+	while (cin >> num)
+	{
+		try
+		{
+			cout << "입력한 정수에서 1 증가시킨 값: " << IncreaseNumber(num) << endl;
+		}
+		catch (int input)
+		{
+			cout << input << "은 양의 정수가 아닙니다" << endl;
+			cout << "양의 정수를 다시 입력하세요: ";
+			continue;
+		}
+		catch (const char* st)
+		{
+			cout << st << endl;
+			cout << "양의 정수를 다시 입력하세요: ";
+			continue;
+		}
+		break;
+	}
+	return 0;
+}*/
+
+// 스택 풀기(stack unwinding)
+/*// 예외를 처리하는 영역을 찾지 못해서
+// 해당 예외가 호출된 영역의 상위 함수로 예외가 계속해서 전달되는 현상
+// 즉, 예외 발생 시 catch 핸들러는 다음의 순서로 적절한 catch 절을 찾음
+// 1. 스택에서 try 문과 가장 가까운 catch 절부터 차례대로 검사
+// 2. 적절한 catch 절을 못 찾았으면,
+//    바로 다음 바깥쪽 try 문 다음에 위치한 catch 절을 차례대로 검사
+// 3. 이러한 과정을 가장 바깥쪽 try 문까지 계속 검사
+// 4. 그래도 적절한 catch 절을 못 찾았으면, 미리 정의된 terminate() 함수가 호출
+void Func03() { throw 0; }
+void Func02() { Func03(); }
+void Func01() { Func02(); }
+int main(void)
+{
+	try
+	{
+		Func01();
+	}
+	catch (int ex)
+	{
+		cout << "예외 처리(main) : " << ex << endl;
+	}
+	return 0;
+}
+// 이 예시는 Func03() 함수에서 예외가 발생
+// but Func03() 함수에는 예외를 처리할 catch 절이 없음
+// → 프로그램은 Func02() 함수로 예외 전달
+// 이때 스택에 저장되어 있던 Func03() 함수에 관한 스택 프레임을 모두 인출 후 이동
+// but Func02() 함수에서도 예외를 처리할 수 없음
+// → Func01() 함수로 예외 전달
+// but Func01() 함수에도 예외를 처리할 catch 절이 없음
+// → Func01() 함수를 호출한 main() 함수로 전달
+// 즉, 예외의 실제 처리는 main() 함수 내의 catch 절에서 수행*/
+
+// Exception 클래스
+/*// logic_error : 일반적인 논리에 관한 오류들 처리 가능
+// runtime_error : 프로그램 실행 중 발생 가능한 다양한 오류들 처리 가능
+// <처리 되지 않은 예외>
+// 발생한 예외를 처리할 catch 절 못 찾으면, 미리 정의된 terminate() 함수 호출
+// terminate()는 기본적으로 abort() 함수를 호출해 프로그램 강제로 종료시킴
+// 단, set_terminate()를 사용하면 이러한 terminate()의 기본 동작 변경 가능!
+#include <iostream>
+#include <exception>
+using namespace std;
+void MyErrorHandler()
+{
+	cout << "처리되지 않은 예외가 발생했습니다." << endl;
+	exit(-1);
+}
+int main(void)
+{
+	set_terminate(MyErrorHandler);
+	try { throw 1; }
+	catch (char* const ex)
+	{
+		// 이 catch 절은 정수형 예외를 처리할 수 없음.
+	}
+	return 0;
+}
+// try 문에서 정수형 예외가 발생 but 아래의 catch 절은 해당 예외를 처리 X
+// → 따라서 set_terminate() 함수로 미리 정의한 내용이 출력!*/
+
+// The End
