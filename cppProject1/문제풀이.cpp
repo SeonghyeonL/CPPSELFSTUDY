@@ -164,3 +164,171 @@ int main()
 }*/
 
 // for문
+// 2739
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int N, i;
+    cin >> N;
+    for (i = 1;i <= 9;i++)
+        cout << N << " * " << i << " = " << N * i << endl;
+    return 0;
+}*/
+
+// 10950
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int T;
+    cin >> T;
+    int a, b;
+    for (int i = 0;i < T;i++)
+    {
+        cin >> a >> b;
+        cout << a + b << endl;
+    }
+    return 0;
+}*/
+
+// 8393
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int n, sum=0;
+    cin >> n;
+    for (int i = 1;i <= n;i++)
+        sum += i;
+    cout << sum << endl;
+    return 0;
+}*/
+
+// 15552
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    // cout과 cin의 속도를 빠르게
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int T, a, b;
+    cin >> T;
+    for (int i = 0;i < T;i++)
+    {
+        cin >> a >> b;
+        cout << a + b << "\n";
+        // time → endl >>> \n
+    }
+    return 0;
+}*/
+
+// 2741
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int N;
+    cin >> N;
+    for (int i = 1;i <= N;i++)
+        cout << i << "\n";
+    return 0;
+}*/
+
+// 2742
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int N;
+    cin >> N;
+    for (int i = N;i > 0;i--)
+        cout << i << "\n";
+    return 0;
+}*/
+
+// 11021
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int T, A, B;
+    cin >> T;
+    for (int i = 1;i <= T;i++)
+    {
+        cin >> A >> B;
+        cout << "Case #" << i << ": " << A + B << "\n";
+    }
+    return 0;
+}*/
+
+// 11022
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int T, A, B;
+    cin >> T;
+    for (int i = 1;i <= T;i++)
+    {
+        cin >> A >> B;
+        cout << "Case #" << i << ": " << A << " + " << B
+            << " = " << A+B << "\n";
+    }
+    return 0;
+}*/
+
+// 2438
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int N;
+    cin >> N;
+    for (int i = 1;i <= N;i++)
+    {
+        for (int j = 0;j < i;j++)
+            cout << "*";
+        cout << "\n";
+    }
+    return 0;
+}*/
+
+// 2439
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int N;
+    cin >> N;
+    for (int i = 1;i <= N;i++)
+    {
+        for (int j = 0;j < N - i;j++)
+            cout << " ";
+        for (int j = 0;j < i;j++)
+            cout << "*";
+        cout << "\n";
+    }
+    return 0;
+}*/
+
+// 10871
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int N, X, num;
+    cin >> N >> X;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> num;
+        if (num < X)
+            cout << num << " ";
+    }
+    return 0;
+}*/
+
+// while문
