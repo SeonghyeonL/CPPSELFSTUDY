@@ -76,7 +76,7 @@ int main()
 }*/
 
 // 9498
-#include <iostream>
+/*#include <iostream>
 using namespace std;
 int main()
 {
@@ -91,6 +91,76 @@ int main()
     else if (60 <= grad && grad <= 69)
         cout << "D" << endl;
     else if (0 <= grad && grad <= 59)
-        cout << "E" << endl;
+        cout << "F" << endl;
     return 0;
-}
+}*/
+
+// 2753
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int year;
+    cin >> year;
+    if (year % 4 == 0 && year % 100 != 0)
+        cout << 1 << endl;
+    else if (year % 400 == 0)
+        cout << 1 << endl;
+    else
+        cout << 0 << endl;
+    return 0;
+}*/
+
+// 14681
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int x, y;
+    cin >> x;
+    cin >> y;
+    if (x > 0)
+    {
+        if (y > 0)
+            cout << 1 << endl;
+        else if (y < 0)
+            cout << 4 << endl;
+    }
+    else if (x < 0)
+    {
+        if (y > 0)
+            cout << 2 << endl;
+        else if (y < 0)
+            cout << 3 << endl;
+    }
+    return 0;
+}*/
+
+// 2884
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int H, M;
+    cin >> H >> M;
+    // M < 45라면 M=M+15, H=H-1
+    // H < 1의 경우 M < 45라면 H=23
+    if (H < 1 && M < 45)
+    {
+        H = 23;
+        M = M + 15;
+    }
+    else if (H >= 1 && M < 45)
+    {
+        H = H - 1;
+        M = M + 15;
+    }
+    else if (M >= 45)
+    {
+        M = M - 45;
+    }
+    cout << H << " " << M << endl;
+    return 0;
+}*/
+
+// for문
