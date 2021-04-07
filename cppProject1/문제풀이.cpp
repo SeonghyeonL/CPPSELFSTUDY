@@ -332,3 +332,69 @@ int main()
 }*/
 
 // while문
+// 10952
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int A, B;
+    cin >> A >> B;
+    while (A != 0 || B != 0)
+    {
+        if (A == 0 && B == 0)
+        {
+            break;
+        }
+        else
+        {
+            cout << A + B << "\n";
+            cin >> A >> B;
+        }
+        
+    }
+    return 0;
+}*/
+
+// 10951
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int A, B;
+    cin >> A >> B;
+    while (!cin.eof())
+    {
+        cout << A + B << "\n";
+        cin >> A >> B;
+    }
+    return 0;
+}*/
+
+// 1110
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int N, ten, one, n, now = -1, cnt = 0;
+    cin >> N;
+    n = N;
+    while (now != N)
+    {
+        now = n;
+        if (now < 10)
+        {
+            ten = 0; one = now;
+        }
+        else
+        {
+            ten = now / 10; one = now % 10;
+        }
+        now = one * 10 + ((ten + one) % 10);
+        n = now;
+        cnt += 1;
+    }
+    cout << cnt;
+    return 0;
+}*/
+
+// 1차원 배열
