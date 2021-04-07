@@ -398,3 +398,185 @@ int main()
 }*/
 
 // 1차원 배열
+// 10818
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int N, num, min, max;
+    int* p;
+    cin >> N;
+    p = new int[N];
+    for (int i = 0;i < N;i++)
+        cin >> p[i];
+    min = p[0]; max = p[0];
+    for (int i = 0;i < N;i++)
+    {
+        if (min > p[i])
+            min = p[i];
+        if (max < p[i])
+            max = p[i];
+    }
+    cout << min << " " << max;
+    delete[] p;
+    return 0;
+}*/
+
+// 2562
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int max, maxnum;
+    int arr[9];
+    for (int i = 0;i < 9;i++)
+        cin >> arr[i];
+    max = arr[0]; maxnum = 1;
+    for (int i = 0;i < 9;i++)
+    {
+        if (max < arr[i])
+        {
+            max = arr[i]; maxnum = i + 1;
+        }
+    }
+    cout << max << "\n" << maxnum;
+    return 0;
+}*/
+
+// 2577
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int A, B, C, mult, now;
+    int freq[10] = { 0 };
+    cin >> A >> B >> C;
+    mult = A * B * C;
+    now = mult;
+    while (now >= 10)
+    {
+        freq[now % 10] += 1;
+        now = now / 10;
+    }
+    // 10보다 작아지면 (0~9)
+    freq[now % 10] += 1;
+    for (int i = 0;i < 10;i++)
+        cout << freq[i] << "\n";
+    return 0;
+}*/
+
+// 3052
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int N[10] = { 0 };
+    int M[42] = { 0 };
+    int ans = 0;
+    for (int i = 0;i < 10;i++)
+        cin >> N[i];
+    for (int i = 0;i < 10;i++)
+    {
+        M[N[i] % 42] += 1;
+    }
+    for (int i = 0;i < 42;i++)
+    {
+        if (M[i] != 0)
+            ans += 1;
+    }
+    cout << ans;
+    return 0;
+}*/
+
+// 1546
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int N = 0, max = 0;
+    double sum = 0;
+    int* S;
+    cin >> N;
+    S = new int[N];
+    for (int i = 0; i < N; i++)
+    {
+        cin >> S[i];
+        if (max < S[i])
+            max = S[i];
+    }
+    for (int i = 0; i < N; i++)
+    {
+        sum += (double) S[i] / max * 100;
+    }
+    cout << (double) sum / N;
+    delete[] S;
+    return 0;
+}*/
+
+// 8958
+/*#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    int num = 0, cnt = 0, grade = 0;
+    string ox;
+    cin >> num;
+    for (int i = 0;i < num;i++)
+    {
+        cin >> ox;
+        for (int j = 0;j < ox.size();j++)
+        {
+            if (ox[j] == 'O')
+            {
+                cnt += 1;
+                grade += cnt;
+            }
+            else if (ox[j] == 'X')
+            {
+                cnt = 0;
+            }
+        }
+        cout << grade << "\n";
+        grade = 0; cnt = 0;
+    }
+    return 0;
+}*/
+
+// 4344
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int C = 0, N = 0, cnt = 0;
+    double sum = 0;
+    int* G;
+    cin >> C;
+    for (int i = 0;i < C;i++)
+    {
+        cin >> N;
+        G = new int[N];
+        for (int j = 0;j < N;j++)
+        {
+            cin >> G[j];
+            sum += G[j];
+        }
+        sum /= N;
+        for (int j = 0;j < N;j++)
+        {
+            if (G[j] > sum)
+            {
+                cnt += 1;
+            }
+        }
+        cout << fixed; // cout.setf(ios::fixed);와 동일
+        // 해제 시에는 cout.unsetf(ios::fixed);
+        cout.precision(3);
+        cout << (double)cnt / N * 100 << "%\n";
+        sum = 0; cnt = 0;
+        delete[] G;
+    }
+    return 0;
+}*/
+
+// 함수
