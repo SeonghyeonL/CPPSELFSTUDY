@@ -667,4 +667,289 @@ int main()
 }*/
 
 // 문자열
+// 11654
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    char A;
+    int B;
+    cin >> A;
+    B = A;
+    cout << B;
+    return 0;
+}*/
+
+// 11720
+/*#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    int N, sum = 0;
+    string num;
+    cin >> N >> num;
+    for (int i = 0;i < N;i++)
+        sum += num[i];
+    cout << sum - 48 * N;
+    return 0;
+}*/
+
+// 10809
+/*#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    string S;
+    char al;
+    cin >> S;
+    for (int i = 0;i < 26;i++)
+    {
+        al = 97 + i;
+        if (S.find(al) != string::npos)
+        {
+            cout << S.find(al) << " ";
+        }
+        else
+        {
+            cout << -1 << " ";
+        }
+    }
+    return 0;
+}*/
+
+// 2675
+/*#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    int T = 0, R = 0;
+    string S, ANS;
+    cin >> T;
+    for (int i = 0;i < T;i++)
+    {
+        cin >> R >> S;
+        for (int j = 0;j < S.size();j++)
+        {
+            for (int k = 0;k < R;k++)
+                cout << S[j];
+        }
+        cout << "\n";
+    }
+    return 0;
+}*/
+
+// 1157
+/*#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    string alph;
+    cin >> alph;
+    // A=65, a=97
+    int num[26] = { 0 };
+    for (int i = 0;i < alph.size();i++)
+    {
+        if (alph[i] >= 97)
+            num[alph[i] - 97] += 1;
+        else
+            num[alph[i] - 65] += 1;
+    }
+    int max = num[0], maxind = 0;
+    for (int i = 0;i < 26;i++)
+    {
+        if (max < num[i])
+        {
+            max = num[i]; maxind = i;
+        }
+    }
+    for (int i = 0;i < 26;i++)
+    {
+        if (maxind != i && (max == num[i]))
+        {
+            max = -1;
+        }
+    }
+    char res;
+    if (max == -1)
+    {
+        res = 63; // ?=63
+    }
+    else
+    {
+        res = maxind + 65;
+    }
+    cout << res;
+    return 0;
+}*/
+
+// 1152
+/*#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    string a;
+    getline(cin, a);
+    int ans = 0;
+    bool exist = false;
+    for (int i = 0;i < a.size();i++)
+    {
+        if (a[i] == ' ' && i != 0 && i != a.size() - 1)
+        {
+            ans += 1;
+        }
+        else if (a[i] != ' ') { exist = true; }
+    }
+    if (exist) { cout << ans + 1; }
+    else { cout << 0; }
+    return 0;
+}*/
+
+// 2908
+/*#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    string A, B, a, b;
+    cin >> A >> B;
+    a = A; b = B;
+    for (int i = 0;i < 3;i++)
+    {
+        A[i] = a[2 - i];
+        B[i] = b[2 - i];
+    }
+    if (A[0] > B[0]) { cout << A; }
+    else if (A[0] < B[0]) { cout << B; }
+    else // A[0]==B[0]
+    {
+        if (A[1] > B[1]) { cout << A; }
+        else if (A[1] < B[1]) { cout << B; }
+        else // A[1]==B[1]
+        {
+            if (A[2] > B[2]) { cout << A; }
+            else if (A[2] < B[2]) { cout << B; }
+        }
+    }
+    return 0;
+}*/
+
+// 5622
+/*#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    string dial;
+    cin >> dial;
+    int sum = 0;
+    for (int i = 0;i < dial.size();i++)
+    {
+        if (dial[i] == 'A' || dial[i] == 'B' || dial[i] == 'C')
+            sum += 3;
+        else if (dial[i] == 'D' || dial[i] == 'E' || dial[i] == 'F')
+            sum += 4;
+        else if (dial[i] == 'G' || dial[i] == 'H' || dial[i] == 'I')
+            sum += 5;
+        else if (dial[i] == 'J' || dial[i] == 'K' || dial[i] == 'L')
+            sum += 6;
+        else if (dial[i] == 'M' || dial[i] == 'N' || dial[i] == 'O')
+            sum += 7;
+        else if (dial[i] == 'P' || dial[i] == 'Q' || dial[i] == 'R' || dial[i] == 'S')
+            sum += 8;
+        else if (dial[i] == 'T' || dial[i] == 'U' || dial[i] == 'V')
+            sum += 9;
+        else if (dial[i] == 'W' || dial[i] == 'X' || dial[i] == 'Y' || dial[i] == 'Z')
+            sum += 10;
+    }
+    cout << sum;
+    return 0;
+}*/
+
+// 2941
+/*#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    string input;
+    cin >> input;
+    int num = 1;
+    bool dz = false;
+    // c= c- dz= d- lj nj s= z=
+    for (int i = 1;i < input.size();i++)
+    {
+        if (input[i - 1] == 'c')
+        {
+            if (input[i] != '=' && input[i] != '-') { num += 1; }
+        }
+        else if (input[i - 1] == 'd')
+        {
+            if (input[i] == 'z' && i != input.size() - 1) { dz = true; }
+            else if (input[i] == 'z' && i == input.size() - 1) { num += 1; }
+            else if (input[i] != '-') { num += 1; }
+        }
+        else if (input[i - 1] == 'l')
+        {
+            if (input[i] != 'j') { num += 1; }
+        }
+        else if (input[i - 1] == 'n')
+        {
+            if (input[i] != 'j') { num += 1; }
+        }
+        else if (input[i - 1] == 's')
+        {
+            if (input[i] != '=') { num += 1; }
+        }
+        else if (!dz && input[i - 1] == 'z')
+        {
+            if (input[i] != '=') { num += 1; }
+        }
+        else if (dz && input[i - 1] == 'z')
+        {
+            if (input[i] != '=') { dz = false; num += 2; }
+            else if (input[i] == '=') { dz = false; }
+        }
+        else { num += 1; }
+    }
+    cout << num;
+    return 0;
+}*/
+
+// 1316
+/*#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    int N = 0;
+    string word;
+    int num = 0;
+    int who = 0;
+    cin >> N;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> word;
+        bool ok = true;
+        int alph[26] = {0,0,0,0,0,0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,0,0,0,0,0}; // 0으로 초기화
+        for (int j = 0;j < word.size();j++)
+        {
+            // index 0을 1로 대신 저장함!
+            who = word[j] - 97; // a is 0
+            if (alph[who] == 0) { alph[who] = j + 1; }
+            else if (alph[who] == j) { alph[who] = j + 1; }
+            else { ok = false; }
+        }
+        if (ok) { num += 1; }
+    }
+    cout << num;
+    return 0;
+}*/
+
+// 기본 수학 1
 //
