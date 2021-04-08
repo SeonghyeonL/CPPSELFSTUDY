@@ -580,3 +580,91 @@ int main()
 }*/
 
 // 함수
+// 15596
+/*#include <iostream>
+#include <vector>
+using namespace std;
+long long sum(vector<int>& a) {
+    long long ans = 0;
+    for (int i = 0;i < a.size();i++)
+    {
+        ans += a[i];
+    }
+    return ans;
+}
+int main()
+{
+    vector<int> A = { 1, 2, 3, 4, 5 };
+    cout << sum(A);
+    return 0;
+}*/
+
+// 4673
+/*#include <iostream>
+using namespace std;
+int doing(int num)
+{
+    int ind = num, sum = num;
+    while (ind >= 10)
+    {
+        sum += ind % 10;
+        ind /= 10;
+    }
+    sum += ind;
+    if (sum <= 10000)
+    {
+        return sum;
+    }
+    else
+    {
+        return -1;
+    }
+}
+int main()
+{
+    bool ans[10000] = { false };
+    for (int i = 1;i <= 10000;i++)
+    {
+        if (doing(i) != -1) // -1 : sum is over 10000
+        {
+            ans[doing(i) - 1] = true;
+        }
+    }
+    for (int i = 0;i < 10000;i++)
+    {
+        if (!ans[i]) // false
+        {
+            cout << i + 1 << "\n";
+        }
+    }
+    return 0;
+}*/
+
+// 1065
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int N, res = 0, cnt = 0;
+    cin >> N;
+    if (N < 100)
+        res = N;
+    else // N >= 100
+    {
+        for (int i = 100;i <= N;i++)
+        {
+            // abc → c-b=b-a
+            if (i < 1000)
+            {
+                if ((i % 10) - ((i / 10) % 10) == ((i / 10) % 10) - (i / 100))
+                    cnt += 1;
+            }
+        }
+        res = 99 + cnt;
+    }
+    cout << res;
+    return 0;
+}*/
+
+// 문자열
+//
