@@ -1,4 +1,4 @@
-// 입출력과 사칙연산
+// 1. 입출력과 사칙연산
 // 1008
 /*#include <iostream>
 using namespace std;
@@ -58,7 +58,7 @@ int main()
     return 0;
 }*/
 
-// if문
+// 2. if문
 // 1330
 /*#include <iostream>
 using namespace std;
@@ -163,7 +163,7 @@ int main()
     return 0;
 }*/
 
-// for문
+// 3. for문
 // 2739
 /*#include <iostream>
 using namespace std;
@@ -331,7 +331,7 @@ int main()
     return 0;
 }*/
 
-// while문
+// 4. while문
 // 10952
 /*#include <iostream>
 using namespace std;
@@ -397,7 +397,7 @@ int main()
     return 0;
 }*/
 
-// 1차원 배열
+// 5. 1차원 배열
 // 10818
 /*#include <iostream>
 using namespace std;
@@ -579,7 +579,7 @@ int main()
     return 0;
 }*/
 
-// 함수
+// 6. 함수
 // 15596
 /*#include <iostream>
 #include <vector>
@@ -666,7 +666,7 @@ int main()
     return 0;
 }*/
 
-// 문자열
+// 7. 문자열
 // 11654
 /*#include <iostream>
 using namespace std;
@@ -951,5 +951,314 @@ int main()
     return 0;
 }*/
 
-// 기본 수학 1
+// 8. 기본 수학 1
+// 1712
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    double A, B, C;
+    int ans;
+    cin >> A >> B >> C;
+    //C*ans>=A+B*ans
+    //ans=A/(C-B)+1 if C-B>0
+    if (C - B <= 0)
+        ans = -1;
+    else // C - B > 0
+        ans = A / (C - B) + 1;
+    cout << ans;
+    return 0;
+}*/
+
+// 2292
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    double N, com = 1, ans = 0;
+    cin >> N;
+    // 1→1, 2~7→2. 8~19→3, 20~37→4, 38~61→5
+    //  1       6        12        18        24
+    if (N == 1) { ans = 1; }
+    else if (N > 1)
+    {
+        for (int i = 0;N > com + (double)6 * i;i++)
+        {
+            com += (double)6 * i; ans += 1;
+        }
+        ans += 1;
+    }
+    cout << ans;
+    return 0;
+}*/
+
+// 1193
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int X = 0, sum = 0, cnt = 0;
+    cin >> X;
+    for (int i = 1;;i++)
+    {
+        if (X > i)
+        {
+            X -= i;
+        }
+        else if (X <= i)
+        {
+            sum = i+1;
+            cnt = X;
+            break;
+        }
+    }
+    if (sum % 2 == 0)
+    {
+        cout << sum - cnt << "/" << cnt;
+    }
+    else if (sum % 2 == 1)
+    {
+        cout << cnt << "/" << sum - cnt;
+    }
+    return 0;
+}*/
+
+// 2869
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int A = 0, B = 0, V = 0;
+    cin >> A >> B >> V;
+    // V는 높이, A는 낮에 올라감, B는 밤에 미끄러짐
+    int day = 0;
+    if (V > A)
+    {
+        int vaba = (V - A) / (A - B);
+        if ((V - A) % (A - B) == 0) { day = vaba + 1; }
+        else { day = vaba + 2; }
+    }
+    else if (V == A)
+    {
+        day = 1;
+    }
+    cout << day;
+    return 0;
+}*/
+
+// 10250
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int T = 0, H = 0, W = 0, N = 0;
+    // 개수, 층, 방, 손님번호
+    int floor = 0, number = 0, ans = 0;
+    cin >> T;
+    for (int i = 0;i < T;i++)
+    {
+        H = 0; W = 0; N = 0;
+        floor = 0; number = 0; ans = 0;
+        cin >> H >> W >> N;
+        number = N / H; floor = N - H*number;
+        if (floor == 0) { floor = H; number -= 1; }
+        ans = floor * 100 + number + 1;
+        cout << ans << "\n";
+    }
+    return 0;
+}*/
+
+// 2775
+/*#include <iostream>
+using namespace std;
+int people(int floor, int number)
+{
+    int result = 0;
+    if (floor == 1)
+    {
+        for (int i = 1;i <= number;i++)
+            result += i;
+    }
+    else // floor>1
+    {
+        for (int i = 1;i <= number;i++)
+            result += people(floor - 1, i);
+    }
+    return result;
+}
+int main()
+{
+    int T = 0, k = 0, n = 0;
+    cin >> T;
+    // k층에 n호
+    for (int i = 0;i < T;i++)
+    {
+        k = 0; n = 0;
+        cin >> k >> n;
+        cout << people(k, n) << "\n";
+    }
+    return 0;
+}*/
+
+// 2839
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int N = 0, ans = 0;
+    cin >> N;
+    if (N >= 5)
+    {
+        for (int i = N / 5;i >= 0;i--)
+        {
+            if ((N - i * 5) % 3 == 0)
+            {
+                ans = i + (N - i * 5) / 3; break;
+            }
+            else if ((N - i * 5) % 3 != 0 && i == 0)
+            {
+                ans = -1;
+            }
+        }
+    }
+    else
+    {
+        if (N == 3) { ans = 1; }
+        else { ans = -1; }
+    }
+    cout << ans;
+    return 0;
+}*/
+
+// 10757
+/*#include <iostream>
+#include <string>
+#include <algorithm> // reverse 이용
+using namespace std;
+int main()
+{
+    string A, B;
+    cin >> A >> B;
+    reverse(A.begin(), A.end()); reverse(B.begin(), B.end());
+    int a = 0, b = 0, sum = 0, up = 0;
+    if (A.size() >= B.size())
+    {
+        for (int i = 0;i < B.size();i++)
+        {
+            a = A[i] - 48; b = B[i] - 48;
+            sum = a + b + up;
+            if (sum >= 10) { sum -= 10; up = 1; }
+            else { up = 0; }
+            A[i] = sum + 48;
+            if(A.size()==B.size()&&i==B.size()-1&&up==1)
+            {
+                A.push_back('1');
+                up = 0;
+            }
+            else if (i == B.size() - 1 && up == 1)
+            {
+                for (int j = 1;i + j + 1 <= A.size();j++)
+                {
+                    a = A[i + j];
+                    a -= 48;
+                    if (a + up == 10)
+                    {
+                        A[i + j] = 48; up = 1;
+                        // check A[i + 2]
+                    }
+                    else // a+up<10
+                    {
+                        A[i + j] = a + up + 48; up = 0;
+                        break;
+                    }
+                    if (j == A.size() - 1 - i && up == 1)
+                    {
+                        A.push_back('1'); up = 0;
+                        break;
+                    }
+                }
+            }
+        }
+        reverse(A.begin(), A.end());
+        cout << A;
+    }
+    else // A.size() < B.size()
+    {
+        for (int i = 0;i < A.size();i++)
+        {
+            a = A[i] - 48; b = B[i] - 48;
+            sum = a + b + up;
+            if (sum >= 10) { sum -= 10; up = 1; }
+            else { up = 0; }
+            B[i] = sum + 48;
+            if (i == A.size() - 1 && up == 1)
+            {
+                for (int j = 1;i + j + 1 <= B.size();j++)
+                {
+                    a = B[i + j];
+                    a -= 48;
+                    if (a + up == 10)
+                    {
+                        B[i + j] = 48; up = 1;
+                        // check B[i + 2]
+                    }
+                    else // a+up<10
+                    {
+                        B[i + j] = a + up + 48; up = 0;
+                        break;
+                    }
+                    if (j == B.size() - 1 - i && up == 1)
+                    {
+                        B.push_back('1'); up = 0;
+                        break;
+                    }
+                }
+            }
+        }
+        reverse(B.begin(), B.end());
+        cout << B;
+    }
+    return 0;
+}*/
+
+// 1011
+/*#include <iostream>
+#include <cmath> // sqrt
+using namespace std;
+int main()
+{
+    // 1 / 1 1 / 1 2 1 / 1 2 2 1 / '1 2 3 2 1'
+    // '1 2 3 3 2 1' / 1 2 3 4 3 2 1 / 1 2 3 4 4 3 2 1
+    // 1 / 2 / 3 / 4 / '5' / '6'  / 7  / 8  / 9  / 10
+    // 1 / 2 / 4 / 6 / '9' / '12' / 16 / 20 / 25 / 30
+    // 1, 1증가, 2증가, 2증가, '3증가', '3증가', 4증가, 4증가
+    // 1부터 n까지의 합 = (1+n)*n
+    unsigned int T, x, y, dis, cnt, ans;
+    // 숫자 딱 맞아서 unsigned int로 해 줘야 함!
+    cin >> T;
+    for (int i = 0;i < T;i++)
+    {
+        cin >> x >> y;
+        dis = y - x; cnt = sqrt(dis); ans = 0;
+        // 4/5/6/7/8/9
+        // 5 6 / 7 9 / 11 12 / 15 16 / 18 20 / 23 25
+        // 2 2 / 2 3 /  3  3 /  3  4 /  4  4 /  4  5
+        if (dis > cnt * (cnt+1) && dis < (cnt+1) * (cnt+1))
+        {
+            ans = cnt * 2 + 1;
+        }
+        else if (dis == cnt * cnt)
+        {
+            ans = cnt * 2 - 1;
+        }
+        else if (dis > cnt * cnt && dis <= cnt * (cnt+1))
+        {
+            ans = cnt * 2;
+        }
+        cout << ans << "\n";
+    }
+    return 0;
+}*/
+
+// 9. 기본 수학 2
 //
