@@ -1261,4 +1261,18 @@ int main()
 }*/
 
 // 9. 기본 수학 2
-//
+// 1978
+#include <iostream>
+using namespace std;
+int main()
+{
+    // 주어진 수 N개 중에서 소수가 몇 개인지
+    int N, n, cnt = 0;
+    cin >> N;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> n;
+    }
+    return 0;
+}
+
