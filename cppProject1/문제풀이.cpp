@@ -1262,7 +1262,7 @@ int main()
 
 // 9. 기본 수학 2
 // 1978
-#include <iostream>
+/*#include <iostream>
 using namespace std;
 int main()
 {
@@ -1272,7 +1272,129 @@ int main()
     for (int i = 0;i < N;i++)
     {
         cin >> n;
+        if (n == 1) { continue; }
+        else if (n == 2) { cnt += 1; continue; }
+        else // n>2
+        {
+            for (int j = 2;j < n;j++)
+            {
+                if (n % j == 0) { break; }
+                else if (j == n - 1) { cnt += 1; }
+            }
+        }
     }
+    cout << cnt;
+    return 0;
+}*/
+
+// 2581
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int M, N;
+    int cnt = 0, sum = 0, smallnum = 0;
+    bool small = true;
+    cin >> M >> N;
+    for (int n = M;n <= N;n++)
+    {
+        if (n == 1) { continue; }
+        else if (n == 2)
+        {
+            cnt += 1; sum += n;
+            if (small)
+            {
+                smallnum = n; small = false;
+            }
+            continue;
+        }
+        else // n>2
+        {
+            for (int j = 2;j < n;j++)
+            {
+                if (n % j == 0) { break; }
+                else if (j == n - 1)
+                {
+                    cnt += 1;
+                    sum += n;
+                    if (small)
+                    {
+                        smallnum = n; small = false;
+                    }
+                }
+            }
+        }
+    }
+    if (smallnum == 0) { sum = -1; cout << sum; }
+    else { cout << sum << "\n" << smallnum; }
+    return 0;
+}*/
+
+// 11653
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int N;
+    cin >> N;
+    if (N > 1)
+    {
+        while (N != 1)
+        {
+            for (int i = 2;i <= N;i++)
+            {
+                if (N % i == 0)
+                {
+                    N /= i;
+                    cout << i << "\n";
+                    break;
+                }
+            }
+        }
+    }
+    return 0;
+}*/
+
+// 1929
+/*#include <iostream>
+using namespace std;
+int a[1000001];
+void function(int M, int N)
+{
+    // 에라토스테네스의 체
+
+    // 1. 배열을 생성하여 초기화한다.
+    for (int i = 2;i <= N;i++) { a[i] = i; }
+
+    // 2. 2부터 시작해서 특정 수의 배수에 해당하는 수를 모두 지운다.
+    // (지울 때 자기자신은 지우지 않고, 이미 지워진 수는 건너뛴다.)
+    for (int i = 2;i <= N;i++)
+    {
+        if (a[i] == 0) continue; // 이미 지워진 수라면 건너뛰기
+
+        // 아니라면, 그 배수부터 출발해서 가능한 모든 숫자 지우기
+        for (int j = 2 * i;j <= N; j += i) { a[j] = 0; }
+    }
+
+    // 3. 2부터 시작하여 남아있는 수를 모두 출력한다.
+    for (int i = M;i <= N;i++)
+    {
+        if (a[i] != 0) cout << a[i] << "\n";
+    }
+}
+int main()
+{
+    int M, N, ii;
+    cin >> M >> N;
+    function(M, N);
+    return 0;
+}*/
+
+// 4948
+#include <iostream>
+using namespace std;
+int main()
+{
     return 0;
 }
 
