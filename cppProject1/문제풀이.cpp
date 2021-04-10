@@ -1391,10 +1391,78 @@ int main()
 }*/
 
 // 4948
-#include <iostream>
+/*#include <iostream>
 using namespace std;
+int a[1000001];
+void function(int M, int N)
+{
+    int cnt = 0;
+    for (int i = 2;i <= N;i++) { a[i] = i; }
+
+    for (int i = 2;i <= N;i++)
+    {
+        if (a[i] == 0) continue;
+        for (int j = 2 * i;j <= N; j += i) { a[j] = 0; }
+    }
+
+    for (int i = M;i <= N;i++)
+    {
+        if (a[i] != 0) cnt += 1;
+    }
+    cout << cnt << "\n";
+}
 int main()
 {
+    int M;
+    cin >> M;
+    while (M != 0)
+    {
+        function(M + 1, 2 * M);
+        cin >> M;
+    }
     return 0;
-}
+}*/
 
+// 9020
+/*#include <iostream>
+using namespace std;
+int a[1000001];
+void function(int N)
+{
+    for (int i = 2;i <= N;i++) { a[i] = i; }
+
+    for (int i = 2;i <= N;i++)
+    {
+        if (a[i] == 0) continue;
+        for (int j = 2 * i;j <= N; j += i) { a[j] = 0; }
+    }
+
+    for (int i = 2;i <= N;i++)
+    {
+        if (a[i] != 0) { ; }
+    }
+    int M = N / 2;
+    for (int i = 0;i <= M;i++)
+    {
+        if (a[M + i] != 0 && a[M - i] != 0
+                          && a[M + i] + a[M - i] == N)
+        {
+            cout << a[M - i] << " " << a[M + i] << "\n";
+            break;
+        }
+    }
+}
+int main()
+{
+    // 2보다 큰 모든 짝수 → 두 소수의 합
+    int T, n;
+    cin >> T;
+    for (int i = 0;i < T;i++)
+    {
+        cin >> n;
+        function(n);
+    }
+    return 0;
+}*/
+
+// 1085
