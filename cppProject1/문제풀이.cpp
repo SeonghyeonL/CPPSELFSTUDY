@@ -1466,3 +1466,112 @@ int main()
 }*/
 
 // 1085
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    // 현재 위치 (x,y), 오른쪽 위 (w,h)
+    int x, y, w, h;
+    cin >> x >> y >> w >> h;
+    // x, y, w-x, h-y
+    if (x <= y && x <= w - x && x <= h - y) { cout << x; }
+    else if(y <= x && y <= w - x && y <= h - y) { cout << y; }
+    else if (w - x <= x && w - x <= y && w - x <= h - y) { cout << w - x; }
+    else if (h - y <= x && h - y <= y && h - y <= w - x) { cout << h - y; }
+    return 0;
+}*/
+
+// 3009
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int a1, a2, b1, b2, c1, c2, d1, d2;
+    cin >> a1 >> a2 >> b1 >> b2 >> c1 >> c2;
+    if (a1 == b1) { d1 = c1; }
+    else if (a1 == c1) { d1 = b1; }
+    else if (b1 == c1) { d1 = a1; }
+    if (a2 == b2) { d2 = c2; }
+    else if (a2 == c2) { d2 = b2; }
+    else if (b2 == c2) { d2 = a2; }
+    cout << d1 << " " << d2;
+    return 0;
+}*/
+
+// 4153
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int A, B, C;
+    int H = 0, S1 = 0, S2 = 0;
+    cin >> A >> B >> C;
+    while (A != 0 && B != 0 && C != 0)
+    {
+        if (A >= B && A >= C) { H = A; S1 = B; S2 = C; }
+        else if (B >= A && B >= C) { H = B; S1 = A; S2 = C; }
+        else if (C >= A && C >= B) { H = C; S1 = B; S2 = A; }
+        if (H * H == S1 * S1 + S2 * S2) { cout << "right" << "\n"; }
+        else { cout << "wrong" << "\n"; }
+        cin >> A >> B >> C;
+    }
+    return 0;
+}*/
+
+// 3053
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    // 유클리드(→원), 택시(→정사각형)
+    double pi = 3.14159265359;
+    double R;
+    cin >> R;
+    cout << fixed;
+    cout.precision(6);
+    cout << R * R * pi << "\n" << 2 * R * R;
+    return 0;
+}*/
+
+// 1002
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int T;
+    int x1, y1, r1, x2, y2, r2;
+    cin >> T;
+    for (int i = 0;i < T;i++)
+    {
+        cin >> x1 >> y1 >> r1 >> x2 >> y2 >> r2;
+        if(x1==x2 && y1==y2 && r1==r2)
+        {
+            cout << -1 << "\n";
+        }
+        else if((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
+            > (r1 + r2) * (r1 + r2)
+            || (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
+            < (r1 - r2) * (r1 - r2))
+        {
+            cout << 0 << "\n";
+        }
+        else if ((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
+            == (r1 + r2) * (r1 + r2)
+            || (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
+            == (r1 - r2) * (r1 - r2))
+        {
+            cout << 1 << "\n";
+        }
+        else if ((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
+            < (r1 + r2) * (r1 + r2)
+            && (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
+            > (r1 - r2) * (r1 - r2))
+        {
+            cout << 2 << "\n";
+        }
+    }
+    return 0;
+}*/
+
+// 10. 재귀
+//
