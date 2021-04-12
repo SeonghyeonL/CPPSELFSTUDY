@@ -1574,4 +1574,110 @@ int main()
 }*/
 
 // 10. 재귀
-//
+// 10872
+/*#include <iostream>
+using namespace std;
+int sum = 1;
+int fac(int n)
+{
+    if (n <= 1) { cout << sum; }
+    else { sum *= n; n -= 1; fac(n); }
+    return 0;
+}
+int main()
+{
+    int N;
+    cin >> N;
+    fac(N);
+    return 0;
+}*/
+
+// 10870
+/*#include <iostream>
+using namespace std;
+// 0 1 1 2 3 5 8 13 21 34 55 89 144 233
+// 0 1 2 3 4 5 6  7  8  9 10 11  12  13
+int pibo(int c)
+{
+    int res = 0;
+    if (c == 0) { return 0; }
+    if (c == 1) { return 1; }
+    if (c >= 2) { res = pibo(c - 1) + pibo(c - 2); return res; }
+}
+int main()
+{
+    int n, sum = 0;
+    cin >> n;
+    cout << pibo(n);
+    return 0;
+}*/
+
+// 2447
+/*#include <iostream>
+using namespace std;
+int ar[7000][7000]; // 3^8=6561
+void star(int n, int x, int y)
+{
+    if (n == 3)
+    {
+        ar[x][y] = 1;     ar[x][y + 1] = 1;     ar[x][y + 2] = 1;
+        ar[x + 1][y] = 1;                       ar[x + 1][y + 2] = 1;
+        ar[x + 2][y] = 1; ar[x + 2][y + 1] = 1; ar[x + 2][y + 2] = 1;
+    }
+    else if (n > 3)
+    {
+        n /= 3;
+        star(n, x, y);         star(n, x, y + n);         star(n, x, y + 2 * n);
+        star(n, x + n, y);                                star(n, x + n, y + 2 * n);
+        star(n, x + 2 * n, y); star(n, x + 2 * n, y + n); star(n, x + 2 * n, y + 2 * n);
+    }
+}
+int main()
+{
+    int N;
+    cin >> N;
+    star(N, 0, 0);
+    for (int i = 0;i < N;i++)
+    {
+        for (int j = 0;j < N;j++)
+        {
+            if (ar[i][j] == 1) { cout << "*"; }
+            else if (ar[i][j] == 0) { cout << " "; }
+            
+            if (j == N - 1) { cout << "\n"; }
+        }
+    }
+    return 0;
+}*/
+
+// 11729
+/*#include <iostream>
+using namespace std;
+void hanoi(int num, int from, int temp, int to)
+{
+    if (num == 1)
+    {
+        cout << from << " " << to << "\n";
+    }
+    else
+    {
+        hanoi(num - 1, from, to, temp);
+        hanoi(1, from, temp, to);
+        hanoi(num - 1, temp, from, to);
+    }
+}
+int main()
+{
+    int N, sum = 1;
+    cin >> N;
+    for (int i = 1;i < N;i++)
+    {
+        sum = sum * 2 + 1;
+    }
+    cout << sum << "\n";
+    hanoi(N, 1, 2, 3);
+    return 0;
+}*/
+
+// 11. 브루트 포스
+// 
