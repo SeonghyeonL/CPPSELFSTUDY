@@ -1680,4 +1680,179 @@ int main()
 }*/
 
 // 11. 브루트 포스
+// 2798
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int N = 0, M = 0, sum = 0;
+    cin >> N >> M;
+    int* card = new int[N];
+    for (int i = 0;i < N;i++)
+    {
+        cin >> card[i];
+    }
+    for (int i = 0;i < N - 2;i++)
+    {
+        for (int j = i + 1;j < N - 1;j++)
+        {
+            for (int k = j + 1;k < N;k++)
+            {
+                if (card[i] + card[j] + card[k] > sum
+                    && card[i] + card[j] + card[k] <= M)
+                {
+                    sum = card[i] + card[j] + card[k];
+                }
+            }
+        }
+    }
+    cout << sum;
+    delete[] card;
+    return 0;
+}*/
+
+// 2231
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int N = 0, n = 0, sum = 0, ans = 0;
+    cin >> N;
+    for (int i = 1;i < N;i++)
+    {
+        n = i;
+        sum = i + n % 10;
+        while (n > 10)
+        {
+            n /= 10;
+            sum += n % 10;
+        }
+        if (sum == N) { ans = i; break; }
+    }
+    cout << ans;
+    return 0;
+}*/
+
+// 7568
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int N = 0;
+    cin >> N;
+    int* w = new int[N];
+    int* h = new int[N];
+    int* ans = new int[N];
+    for (int i = 0;i < N;i++) { cin >> w[i] >> h[i]; }
+    for (int i = 0;i < N;i++)
+    {
+        ans[i] = 0;
+        for (int j = 0;j < N;j++)
+        {
+            if (j != i)
+            {
+                if (h[i] < h[j] && w[i] < w[j])
+                {
+                    ans[i] += 1;
+                }
+            }
+        }
+        ans[i] = ans[i] + 1;
+    }
+    for (int i = 0;i < N;i++) { cout << ans[i] << " "; }
+    delete[] w, h, ans;
+    return 0;
+}*/
+
+// 1018
+/*#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    int N = 0, M = 0;
+    cin >> N >> M;
+    int** whole = new int*[N];
+    for (int i = 0; i < N; i++) { whole[i] = new int[M]; }
+    string first;
+    for(int i = 0;i < N;i++)
+    {
+        cin >> first;
+        for (int j = 0;j < M;j++)
+        {
+            if (first[j] == 'W') { whole[i][j] = 1; }
+            else if (first[j] == 'B') { whole[i][j] = 0; }
+        }
+    }
+    int cnt1, cnt2, min = N * M;
+    for (int i = 0;i <= N - 8;i++)
+    {
+        for (int j = 0;j <= M - 8;j++)
+        {
+            cnt1 = 0; cnt2 = 0;
+            for (int ii = i;ii < i + 8;ii++)
+            {
+                for (int jj = j;jj < j + 8;jj++)
+                {
+                    if ((ii - i) % 2 == 0 && (jj - j) % 2 == 0)
+                    {
+                        if (whole[ii][jj] == 0) { cnt1 += 1; }
+                        else { cnt2 += 1; }
+                    }
+                    else if ((ii - i) % 2 == 0 && (jj - j) % 2 == 1)
+                    {
+                        if (whole[ii][jj] == 1) { cnt1 += 1; }
+                        else { cnt2 += 1; }
+                    }
+                    else if ((ii - i) % 2 == 1 && (jj - j) % 2 == 0)
+                    {
+                        if (whole[ii][jj] == 1) { cnt1 += 1; }
+                        else { cnt2 += 1; }
+                    }
+                    else if ((ii - i) % 2 == 1 && (jj - j) % 2 == 1)
+                    {
+                        if (whole[ii][jj] == 0) { cnt1 += 1; }
+                        else { cnt2 += 1; }
+                    }
+                }
+            }
+            // W=1, B=0
+            // cnt1 → 101010
+            // cnt2 → 010101
+            if (min > cnt1 && cnt2 >= cnt1) { min = cnt1; }
+            else if (min > cnt2 && cnt1 > cnt2) { min = cnt2; }
+        }
+    }
+    cout << min;
+    for (int i = 0; i < N; i++) { delete[] whole[i]; }
+    delete[] whole;
+    return 0;
+}*/
+
+// 1436
+/*#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    int N = 0; // N<=10000
+    int ans = 0, cnt = 0;
+    string ch;
+    cin >> N;
+    // (0~5)666, 666(0~9), (7~15)666, 1666(0~9), (17~25)666,
+    // 2666(0~9), (27~35)666, 3666(0~9), ...
+    // 6개(0~5) 10개(6) 9개(7~15) 10개(16) 9개(17~25)
+    // 10개(26) 9개(27~35) 10개(36)
+    // (37~45) (46) (47~55) (56) (57~
+    for (int i = 1;;i++)
+    {
+        ch = to_string(i);
+        if (ch.find("666") < i) { cnt += 1; }
+        if (cnt == N) { ans = i; break; }
+    }
+    cout << ans;
+    return 0;
+}*/
+
+// 12. 정렬
 // 
