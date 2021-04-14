@@ -1855,4 +1855,166 @@ int main()
 }*/
 
 // 12. 정렬
-// 
+// 2750
+/*#include <iostream>
+using namespace std;
+int main()
+{
+    int N = 0;
+    cin >> N;
+    int* arr = new int[N];
+    for (int i = 0;i < N;i++)
+    {
+        cin >> arr[i];
+    }
+    int temp = 0;
+    for (int i = 0;i < N;i++)
+    {
+        for (int j = 0;j < N - 1;j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+    for(int i=0;i<N;i++)
+    {
+        cout << arr[i] << "\n";
+    }
+    delete[] arr;
+    return 0;
+}*/
+
+// 2751
+/*#include <iostream>
+#include <algorithm>
+using namespace std;
+int main()
+{
+    int N = 0;
+    cin >> N;
+    int* arr = new int[N];
+    for(int i=0;i<N;i++)
+    {
+        cin >> arr[i];
+    }
+    sort(arr, arr + N);
+    for(int i=0;i<N;i++)
+    {
+        cout << arr[i] << "\n";
+    }
+    delete[] arr;
+    return 0;
+}*/
+
+// 10989
+/*#include <iostream>
+using namespace std;
+int cnt[10001] = { 0 };
+int main()
+{
+    // cout과 cin의 속도를 빠르게
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int N = 0;
+    cin >> N;
+    int n = 0;
+    for(int i=0;i<N;i++)
+    {
+        cin >> n;
+        cnt[n] += 1;
+    }
+    for (int i = 0;i <= 10000;i++)
+    {
+        if (cnt[i] != 0)
+        {
+            for (int j = 0;j < cnt[i];j++)
+            {
+                cout << i << "\n";
+            }
+        }
+    }
+    return 0;
+}*/
+
+// 2108
+/*#include <iostream>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+int full[8001] = { 0 }; // 0~3999 4000 4001~8000
+int main()
+{
+    int N = 0;
+    cin >> N;
+    int* n = new int[N];
+    double sum = 0;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> n[i];
+        full[n[i]+4000] += 1;
+        sum += n[i];
+    }
+    sort(n, n + N);
+    // 산술평균
+    cout << round(sum/N) << "\n";
+    // 중앙값
+    cout << n[N / 2] << "\n";
+    // 최빈값
+    int max = 0, num = 0, ind = 0;
+    for(int i=0;i<8001;i++)
+    {
+        if (full[i] > max) { max = full[i]; ind = i; }
+    }
+    for (int i = 0;i < 8001;i++)
+    {
+        if (i != ind)
+        {
+            if (full[i] == max) { num += 1; }
+            if (num == 1)
+            {
+                cout << i - 4000 << "\n";
+                break;
+            }
+        }
+    }
+    if (num == 0) { cout << ind-4000 << "\n"; }
+    // 범위
+    cout << n[N - 1] - n[0];
+    delete[] n;
+    return 0;
+}*/
+
+// 1427
+/*#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+bool compare(int i, int j)
+{
+    return j < i;
+}
+int main()
+{
+    string input;
+    cin >> input;
+    int size = input.size();
+    int* array = new int[size];
+    for (int i = 0;i < size;i++)
+    {
+        array[i] = input[i] - 48;
+    }
+    sort(array, array+size, compare);
+    for(int i=0;i<size;i++)
+    {
+        cout << array[i];
+    }
+    return 0;
+}*/
+
+// 11650
