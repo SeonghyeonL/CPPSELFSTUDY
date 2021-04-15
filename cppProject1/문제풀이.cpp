@@ -2018,3 +2018,143 @@ int main()
 }*/
 
 // 11650
+/*#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int N, x, y;
+int main()
+{
+    cin >> N;
+    vector<pair<int, int>> p;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> x >> y;
+        p.push_back(pair<int, int>(x, y));
+    }
+    sort(p.begin(), p.end());
+    for (int i = 0; i < N; i++)
+    {
+        cout << p[i].first << " " << p[i].second << "\n";
+    }
+}*/
+
+// 11651
+/*#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int N, x, y;
+int main()
+{
+    cin >> N;
+    vector<pair<int, int>> p;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> x >> y;
+        p.push_back(pair<int, int>(y, x));
+    }
+    sort(p.begin(), p.end());
+    for (int i = 0; i < N; i++)
+    {
+        cout << p[i].second << " " << p[i].first << "\n";
+    }
+}*/
+
+// 1181
+/*#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm> // for auto it
+using namespace std;
+int N;
+string W;
+bool Comp(string a, string b)
+{
+    if (a.size() != b.size()) // 길이 다를 경우
+    {
+        return a.size() < b.size(); // 길이 오름차순
+    }
+    else { return a < b; } // 길이 동일 → 사전 순서
+}
+int main()
+{
+    cin >> N;
+    vector<string> words;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> W;
+        auto it = find(words.begin(), words.end(), W);
+        if (it == words.end()){ words.push_back(W); }
+        // 즉 찾을 수 없을 때만 추가하기
+    }
+    sort(words.begin(), words.end(), Comp);
+    for (int i = 0; i < words.size(); i++)
+    {
+        cout << words[i] << "\n";
+    }
+    return 0;
+}*/
+
+// 10814
+/*#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int N, age;
+string name;
+int main()
+{
+    cin >> N;
+    vector<pair<int, int>> info;
+    vector<string> who;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> age >> name;
+        info.push_back(pair<int, int>(age, i));
+        who.push_back(name);
+    }
+    sort(info.begin(), info.end());
+    for (int i = 0;i < N;i++)
+    {
+        cout << info[i].first << " " << who[info[i].second] << "\n";
+    }
+    return 0;
+}*/
+
+// 18870
+/*#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int N, n, cnt;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    cin >> N;
+    vector<int> all(N);
+    for (int i = 0;i < N;i++)
+    {
+        cin >> all[i];
+    }
+    vector<int> p(all); // 원본 벡터 복사
+    std::sort(p.begin(), p.end());
+    p.erase(unique(p.begin(), p.end()), p.end());
+    for(int i=0;i<N;i++)
+    {
+        // i번째 요소값의 위치 it
+        auto it = lower_bound(p.begin(), p.end(), all[i]);
+        // it에서 cv벡터의 시작 주소값을 빼준 값이 답
+        cout << it - p.begin() << " ";
+    }
+    return 0;
+}*/
+
+// 13. 집합과 맵
+
+// 14. 백트래킹
+// 
