@@ -2157,4 +2157,159 @@ int main()
 // 13. 집합과 맵
 
 // 14. 백트래킹
+// 15649
+/*#include <iostream>
+using namespace std;
+int N, M;
+int arr[9] = { 0 }; // 0~8
+bool visited[9] = { 0 }; // 0~8
+void function(int cnt);
+int main()
+{
+    cin >> N >> M;
+    function(0);
+    return 0;
+}
+void function(int cnt)
+{
+    if (cnt != M)
+    {
+        for (int i = 1;i <= N;i++)
+        {
+            if (!visited[i])
+            {
+                visited[i] = true;
+                arr[cnt] = i;
+                function(cnt+1);
+                visited[i] = false;
+            }
+        }
+    }
+    else // cnt==M
+    {
+        for (int i = 0;i < M;i++)
+        {
+            cout << arr[i] << " ";
+        }
+        cout << "\n";
+        return;
+    }
+}*/
+
+// 15650
+/*#include <iostream>
+using namespace std;
+int N, M;
+int arr[9] = { 0 }; // 0~8
+bool visited[9] = { 0 }; // 0~8
+void function(int num, int cnt);
+int main()
+{
+    cin >> N >> M;
+    function(1, 0);
+    return 0;
+}
+void function(int num, int cnt)
+{
+    if (cnt != M)
+    {
+        for (int i = num;i <= N;i++)
+        {
+            if (!visited[i])
+            {
+                visited[i] = true;
+                arr[cnt] = i;
+                function(i + 1, cnt + 1);
+                visited[i] = false;
+            }
+        }
+    }
+    else // cnt==M
+    {
+        for (int i = 0;i < M;i++)
+        {
+            cout << arr[i] << " ";
+        }
+        cout << "\n";
+        return;
+    }
+}*/
+
+// 15651
+/*#include <iostream>
+using namespace std;
+int N, M;
+int arr[7] = { 0 };
+void function(int cnt);
+int main()
+{
+    cin >> N >> M;
+    function(0);
+    return 0;
+}
+void function(int cnt)
+{
+    if (cnt != M)
+    {
+        for (int i = 1;i <= N;i++)
+        {
+            arr[cnt] = i;
+            function(cnt + 1);
+        }
+        return;
+    }
+    else // cnt==M
+    {
+        for (int i = 0;i < M;i++)
+        {
+            cout << arr[i] << " ";
+        }
+        cout << "\n";
+        return;
+    }
+}*/
+
+// 15652
+/*#include <iostream>
+using namespace std;
+int N, M;
+int arr[8] = { 0 };
+void function(int up, int cnt);
+int main()
+{
+    cin >> N >> M;
+    function(1, 0);
+    return 0;
+}
+void function(int up, int cnt)
+{
+    if (cnt != M)
+    {
+        for (int i = up;i <= N;i++)
+        {
+            arr[cnt] = i;
+            function(i, cnt + 1);
+        }
+        return;
+    }
+    else // cnt==M
+    {
+        for (int i = 0;i < M;i++)
+        {
+            cout << arr[i] << " ";
+        }
+        cout << "\n";
+        return;
+    }
+}*/
+
+// 9663
+
+// 2580
+
+// 14888
+
+// 14889
+
+// 15. 
 // 
