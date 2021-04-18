@@ -2304,10 +2304,134 @@ void function(int up, int cnt)
 }*/
 
 // 9663
+/*#include <iostream>
+using namespace std;
+int N = 0, cnt = 0;
+int chess[15] = { 0 }; // 0~14, 1<=N<15
+bool check(int a)
+{
+    for (int i = 1;i < a;i++)
+    {
+        if(chess[i]==chess[a]||a-i==abs(chess[a]-chess[i]))
+        {
+            return false;
+        }
+    }
+    return true;
+}
+void queen(int a)
+{
+    if (a == N + 1) { cnt += 1; }
+    else
+    {
+        for (int i = 1;i <= N;i++)
+        {
+            chess[a] = i;
+            if (check(a)) { queen(a + 1); }
+        }
+    }
+}
+int main()
+{
+    cin >> N;
+    queen(1);
+    cout << cnt;
+    return 0;
+}*/
 
 // 2580
+/*#include <iostream>
+#include <vector>
+using namespace std;
+vector<int> zerox;
+vector<int> zeroy;
+int quiz[9][9] = { 0 };
+bool finish = false;
+bool check(int x, int y)
+{
+    int xnum = x / 3;
+    int ynum = y / 3;
+    // 같은행에 없고, 같은 열에 없고, 3x3에 없고
+    for (int i = 0;i < 9;i++)
+    {
+        if (i != y && quiz[x][i] == quiz[x][y])
+        { return false; }
+        else if (i != x && quiz[i][y] == quiz[x][y])
+        { return false; }
+    }
+    for (int i = xnum * 3;i < xnum * 3 + 3;i++)
+    {
+        for (int j = ynum * 3;j < ynum * 3 + 3;j++)
+        {
+            if (i != x && j != y && quiz[i][j] == quiz[x][y])
+            { return false; }
+        }
+    }
+    return true;
+}
+void doit(int cnt)
+{
+    if (cnt == zerox.size()) { finish = true; return; }
+    else
+    {
+        for (int i = 1;i <= 9;i++)
+        {
+            quiz[zerox[cnt]][zeroy[cnt]] = i;
+            if (check(zerox[cnt], zeroy[cnt]))
+            {
+                doit(cnt + 1);
+            }
+            if (finish) { return; }
+        }
+        // 최적해를 못찾았을 경우 값 비워주기!
+        quiz[zerox[cnt]][zeroy[cnt]] = 0;
+        return;
+    }
+}
+int main()
+{
+    for (int i = 0;i < 9;i++)
+    {
+        for (int j = 0;j < 9;j++)
+        {
+            cin >> quiz[i][j];
+            if (quiz[i][j] == 0)
+            {
+                zerox.push_back(i);
+                zeroy.push_back(j);
+            }
+        }
+    }
+    doit(0);
+    for (int i = 0;i < 9;i++)
+    {
+        for (int j = 0;j < 9;j++)
+        {
+            cout << quiz[i][j] << " ";
+        }
+        cout << "\n";
+    }
+    return 0;
+}*/
 
 // 14888
+#include <iostream>
+#include <vector>
+using namespace std;
+int N, n;
+vector<int> numbers;
+int psmd[4];
+int main()
+{
+    cin >> N;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> n;
+        numbers.push_back(n);
+    }
+    for (int i = 0;i < 4;i++) { cin >> psmd[i]; }
+    return 0;
+}
 
 // 14889
 
