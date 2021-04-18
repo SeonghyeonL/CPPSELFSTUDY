@@ -2415,25 +2415,145 @@ int main()
 }*/
 
 // 14888
-#include <iostream>
+/*#include <iostream>
 #include <vector>
 using namespace std;
-int N, n;
-vector<int> numbers;
+int N;
+int maxx = -1000000000;
+int minn = 1000000000;
+int numbers[11];
 int psmd[4];
+void cal(int last, int cnt)
+{
+    if (cnt == N - 1)
+    {
+        if (last > maxx) { maxx = last; }
+        if (last < minn) { minn = last; }
+        return;
+    }
+    else
+    {
+        for (int i = 0;i < 4;i++)
+        {
+            if (psmd[i] > 0)
+            {
+                psmd[i] -= 1;
+                if (i == 0) { cal(last + numbers[cnt + 1], cnt + 1); }
+                else if (i == 1) { cal(last - numbers[cnt + 1], cnt + 1); }
+                else if (i == 2) { cal(last * numbers[cnt + 1], cnt + 1); }
+                else if (i == 3) { cal(last / numbers[cnt + 1], cnt + 1); }
+                psmd[i] += 1;
+            }
+        }
+        return;
+    }
+}
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    cin >> N;
+    for (int i = 0;i < N;i++) { cin >> numbers[i]; }
+    for (int i = 0;i < 4;i++) { cin >> psmd[i]; }
+    cal(numbers[0], 0);
+    cout << maxx << "\n" << minn;
+    return 0;
+}*/
+
+// 14889
+/*#include <iostream>
+#include <vector>
+using namespace std;
+int N;
+int team[20][20];
+int submin = 9000; // 10*9*100
+vector<int> A;
+bool already[20];
+void cal(int cnt, int last)
+{
+    if (cnt == N / 2)
+    {
+        vector<int> B;
+        for (int i = 0;i < N;i++)
+        {
+            if (!already[i]) { B.push_back(i); }
+        }
+        int A_score = 0, B_score = 0;
+        for (int i = 0;i < N / 2;i++)
+        {
+            for (int j = 0;j < N / 2;j++)
+            {
+                A_score += team[A[i]][A[j]];
+                B_score += team[B[i]][B[j]];
+            }
+        }
+        if (submin > abs(A_score - B_score))
+        { submin = abs(A_score - B_score); }
+        return;
+    }
+    // else
+    for (int i = last+1;i < N;i++)
+    {
+        if (!already[i])
+        {
+            already[i] = true;
+            A.push_back(i);
+            cal(cnt + 1, i);
+            already[i] = false;
+            A.pop_back();
+        }
+    }
+    return;
+}
 int main()
 {
     cin >> N;
     for (int i = 0;i < N;i++)
     {
-        cin >> n;
-        numbers.push_back(n);
+        for (int j = 0;j < N;j++)
+        {
+            cin >> team[i][j];
+        }
     }
-    for (int i = 0;i < 4;i++) { cin >> psmd[i]; }
+    cal(0, -1);
+    cout << submin;
     return 0;
-}
+}*/
 
-// 14889
+// 15. 동적 계획법 1
+// 1003
 
-// 15. 
+// 9184
+
+// 1904
+
+// 9461
+
+// 1149
+
+// 1932
+
+// 2579
+
+// 1463
+
+// 10844
+
+// 2156
+
+// 11053
+
+// 11054
+
+// 2565
+
+// 9251
+
+// 1912
+
+// 12865
+
+// 16. 그리디 알고리즘
 // 
