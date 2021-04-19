@@ -2524,10 +2524,88 @@ int main()
 
 // 15. µ¿Àû °èÈ¹¹ı 1
 // 1003
+/*#include <iostream>
+using namespace std;
+int T, N; // N<=40
+int Ns0[41] = { 1, 0, }; // 0~40
+int Ns1[41] = { 0, 1, };
+int cnt0, cnt1;
+void cal(int n)
+{
+    if (n == N)
+    {
+        if (N == 0) { cnt0 = 1; cnt1 = 0; }
+        else if (N == 1) { cnt0 = 0; cnt1 = 1; }
+        else { cnt0 = 0; cnt1 = 0; cal(n - 1); cal(n - 2); }
+        return;
+    }
+    else if (n == 0) { cnt0 += 1; }
+    else if (n == 1) { cnt1 += 1; }
+    else if (Ns0[n] != 0)
+    {
+        cnt0 += Ns0[n];
+        cnt1 += Ns1[n];
+    }
+    else
+    {
+        cal(n - 1); cal(n - 2);
+        Ns0[n] = cnt0; Ns1[n] = cnt1;
+    }
+    return;
+}
+int main()
+{
+    cin >> T;
+    for (int i = 0;i < T;i++)
+    {
+        cin >> N;
+        cal(N);
+        cout << cnt0 << " " << cnt1 << "\n";
+    }
+    return 0;
+}*/
 
 // 9184
+/*#include <iostream>
+using namespace std;
+int a = 0, b = 0, c = 0;
+int s_v_[51][51][51] = { 0 };
+int w(int A, int B, int C)
+{
+    if (A <= 0 || B <= 0 || C <= 0) { return 1; }
+    if (A > 20 || B > 20 || C > 20) { return w(20, 20, 20); }
+
+    if (s_v_[A][B][C] != 0) { return s_v_[A][B][C]; }
+    else // s_v_[A][B][C] == 0 (initial)
+    {
+        if (A < B && B < C)
+        {
+            s_v_[A][B][C] = w(A, B, C - 1) + w(A, B - 1, C - 1) - w(A, B - 1, C);
+        }
+        else
+        {
+            s_v_[A][B][C] = w(A - 1, B, C) + w(A - 1, B - 1, C) + w(A - 1, B, C - 1) - w(A - 1, B - 1, C - 1);
+        }
+        return s_v_[A][B][C];
+    }
+}
+int main()
+{
+    cin >> a >> b >> c;
+    while (1)
+    {
+        if (a == -1 && b == -1 && c == -1) { break; }
+        else
+        {
+            cout << "w(" << a << ", " << b << ", " << c << ") = " << w(a, b, c) << "\n";
+            cin >> a >> b >> c;
+        }
+    }
+    return 0;
+}*/
 
 // 1904
+
 
 // 9461
 
