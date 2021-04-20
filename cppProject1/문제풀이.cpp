@@ -2605,9 +2605,52 @@ int main()
 }*/
 
 // 1904
-
+/*#include <iostream>
+using namespace std;
+int N;
+int rec[1000000] = { 1, 2, };
+// 1 2 3 5 8 13 21 34
+int cal(int n)
+{
+    if (rec[n - 1] != 0) { return rec[n - 1] % 15746; }
+    else
+    {
+        rec[n - 1] = (cal(n - 1) + cal(n - 2)) % 15746; // 0일때+1일때
+        return rec[n - 1];
+    }
+}
+int main()
+{
+    cin >> N;
+    cout << cal(N);
+    return 0;
+}*/
 
 // 9461
+/*#include <iostream>
+using namespace std;
+int T = 0, N = 0;
+unsigned long rec[101] = { 0,1,1,1,2,2, };
+unsigned long P(int n)
+{
+    if (n == 0) { return 0; } // 예외
+    if (rec[n] != 0) { return rec[n]; }
+    else // n>=6
+    {
+        rec[n] = P(n - 1) + P(n - 5);
+        return rec[n];
+    }
+}
+int main()
+{
+    cin >> T;
+    for (int i = 0;i < T;i++)
+    {
+        cin >> N;
+        cout << P(N) << "\n";
+    }
+    return 0;
+}*/
 
 // 1149
 
