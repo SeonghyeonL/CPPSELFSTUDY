@@ -2653,8 +2653,53 @@ int main()
 }*/
 
 // 1149
+/*#include <iostream>
+using namespace std;
+int N;
+int cost[3] = { 0,0,0 };
+int cal[1001][3];
+int main()
+{
+    cin >> N;
+    cal[0][0] = 0; cal[0][1] = 0; cal[0][2] = 0;
+    for (int i = 1;i <= N;i++)
+    {
+        cin >> cost[0] >> cost[1] >> cost[2];
+        cal[i][0] = min(cal[i - 1][1], cal[i - 1][2]) + cost[0];
+        cal[i][1] = min(cal[i - 1][0], cal[i - 1][2]) + cost[1];
+        cal[i][2] = min(cal[i - 1][0], cal[i - 1][1]) + cost[2];
+    }
+    cout << min(cal[N][0], min(cal[N][1], cal[N][2]));
+    return 0;
+}*/
 
 // 1932
+/*#include <iostream>
+using namespace std;
+int n = 0, temp = 0;
+int trian[501][501];
+int main()
+{
+    cin >> n;
+    for (int i = 1;i <= n;i++)
+    {
+        for (int j = 1;j <= i;j++)
+        {
+            cin >> temp; // trian[i][j]
+            if (i == 1) { trian[i][j] = temp; }
+            else if (j == 1) { trian[i][j] = trian[i - 1][j] + temp; }
+            else if (j==i) { trian[i][j] = trian[i - 1][j - 1] + temp; }
+            else { trian[i][j] = max(trian[i - 1][j], trian[i - 1][j - 1]) + temp; }
+        }
+    }
+    int max = 0;
+    for (int i = 1;i <= n;i++)
+    {
+        if (max < trian[n][i]) { max = trian[n][i]; }
+    }
+    cout << max;
+    return 0;
+}*/
 
 // 2579
 
