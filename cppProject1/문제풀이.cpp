@@ -2702,8 +2702,86 @@ int main()
 }*/
 
 // 2579
+/*#include <iostream>
+using namespace std;
+int number = 0;
+int info[301] = { 0 }; // 0~300
+int sav[301][2] = { 0 };
+int cal(int index, int cnt)
+{
+    if (index == 0)
+    {
+        return max(cal(index + 1, 0), cal(index + 2, 0));
+    }
+
+    if (index == number) { return info[number]; }
+    else if (index > number) { return -99999; }
+
+    if (sav[index][cnt] > 0) { return sav[index][cnt]; }
+    else
+    {
+        if (cnt == 1)
+        {
+            sav[index][1] = info[index] + cal(index + 2, 0);
+            return sav[index][1];
+        }
+        else if (cnt == 0)
+        {
+            sav[index][0] = info[index] + max(cal(index + 1, 1), cal(index + 2, 0));
+            return sav[index][0];
+        }
+    }
+}
+int main()
+{
+    cin >> number;
+    for (int i = 1;i <= number;i++)
+    {
+        cin >> info[i];
+    }
+    cout << cal(0, 0);
+    return 0;
+}*/
 
 // 1463
+/*#include <iostream>
+using namespace std;
+int N = 0;
+// X가 3으로 나누어 떨어지면 3으로 나눈다
+// X가 2로 나누어 떨어지면 2로 나눈다
+// 1을 뺀다
+// 1을 만들고자 할 때 연산 사용 횟수의 최솟값
+int ord_min[1000001] = { 0 };
+int cal(int n)
+{
+    if (n == 1) { return 0; }
+
+    if (ord_min[n] != 0) { return ord_min[n]; }
+
+    if (n % 6 == 0)
+    {
+        ord_min[n] = 1 + min(cal(n / 3), min(cal(n / 2), cal(n - 1)));
+    }
+    else if (n % 3 == 0)
+    {
+        ord_min[n] = 1 + min(cal(n / 3), cal(n - 1));
+    }
+    else if (n % 2 == 0)
+    {
+        ord_min[n] = 1 + min(cal(n / 2), cal(n - 1));
+    }
+    else
+    {
+        ord_min[n] = 1 + cal(n - 1);
+    }
+    return ord_min[n];
+}
+int main()
+{
+    cin >> N;
+    cout << cal(N);
+    return 0;
+}*/
 
 // 10844
 
