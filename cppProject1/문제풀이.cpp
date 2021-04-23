@@ -2784,8 +2784,60 @@ int main()
 }*/
 
 // 10844
+/*#include <iostream>
+using namespace std;
+int N = 0;
+int rec[101][10] = { 0 };
+int res = 0;
+int main()
+{
+    cin >> N;
+    
+    for (int i = 0;i <= 9;i++) { rec[1][i] = 1; }
+    for (int i = 2;i <= N;i++)
+    {
+        for (int j = 0;j <= 9;j++)
+        {
+            if (j == 0) { rec[i][j] = rec[i - 1][j + 1]; }
+            else if (j == 9) { rec[i][j] = rec[i - 1][j - 1]; }
+            else { rec[i][j] = (rec[i - 1][j - 1] + rec[i - 1][j + 1]) % 1000000000; }
+        }
+    }
+    for(int i=1;i<=9;i++) { res = (res + rec[N][i]) % 1000000000; }
+    cout << res % 1000000000;
+
+    return 0;
+}*/
 
 // 2156
+/*#include <iostream>
+using namespace std;
+int n = 0;
+int num[10001] = { 0 };
+int f[10001] = { 0 };
+// 1개... 1
+// 2개... 1 2
+// 3개... max(1&2,1&3,2&3)
+// n개... f(n)... 이때 n은 3 이상
+// n 안 마심 -> f(n-1)
+// n 마시고 n-1 안 마심 -> n+f(n-2)
+// n 마시고 n-1도 마심 -> n+(n-1)+f(n-3)
+// 즉 f(n) = max(f(n-1),n+f(n-2),n+(n-1)+f(n-3))
+int main()
+{
+    cin >> n;
+    for (int i = 1;i <= n;i++) { cin >> num[i]; }
+    
+    // f[0]=0
+    f[1] = num[1]; f[2] = num[1] + num[2];
+    for (int i = 3;i <= n;i++)
+    {
+        f[i] = max(f[i - 1], max(num[i] + f[i - 2], num[i] + num[i - 1] + f[i - 3]));
+    }
+    cout << f[n];
+
+    return 0;
+}*/
 
 // 11053
 
