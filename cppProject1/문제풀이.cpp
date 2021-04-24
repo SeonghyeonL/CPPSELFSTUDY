@@ -2952,6 +2952,9 @@ int cal(int idx, int updown) // updown 1(up) 2(down)
             {
                 temp2 = cal(i, 1) + 1;
                 if (temp2 > maxx2) { maxx2 = temp2; }
+            }
+            else if (arr[idx] < arr[i])
+            {
                 temp2 = cal(i, 0) + 1;
                 if (temp2 > maxx2) { maxx2 = temp2; }
             }
@@ -2967,100 +2970,8 @@ int main()
 
     cout << cal(0, 0);
 
-    for (int i = 1;i <= 10;i++)
-    {
-        cout << res[i][0] << " " << res[i][1] << "\n";
-    }
-    
     return 0;
 }*/
-#include <iostream>
-using namespace std;
-int N = 0;
-int arr[1001] = { 0 };
-int res[1001] = { 0 };
-int rres[1001] = { 0 };
-int cal(int idx)
-{
-    // already calculated
-    if (res[idx] > 0) { return res[idx]; }
-
-    // initial
-    if (idx == 0)
-    {
-        int maxx = 0;
-        int temp = 0;
-        for (int i = 1;i <= N;i++)
-        {
-            temp = cal(i);
-            if (temp > maxx) { maxx = temp; }
-        }
-        return maxx;
-    }
-
-    // last
-    if (idx == N) { res[idx] = 1; return res[idx]; }
-
-    // 0<idx<N
-    int maxx2 = 1;
-    int temp2 = 0;
-    for (int i = idx + 1;i <= N;i++)
-    {
-        if (arr[idx] < arr[i])
-        {
-            temp2 = cal(i) + 1;
-            if (temp2 > maxx2) { maxx2 = temp2; }
-        }
-    }
-    res[idx] = maxx2;
-    return res[idx];
-}
-int rcal(int idx)
-{
-    // already calculated
-    if (rres[idx] > 0) { return rres[idx]; }
-
-    // initial
-    if (idx == 0)
-    {
-        int maxx = 0;
-        int temp = 0;
-        for (int i = N;i >= 1;i--)
-        {
-            temp = cal(i);
-            if (temp > maxx) { maxx = temp; }
-        }
-        return maxx;
-    }
-
-    // last
-    if (idx == 1) { rres[idx] = 1; return rres[idx]; }
-
-    // 1<idx<=N
-    int maxx2 = 1;
-    int temp2 = 0;
-    for (int i = idx - 1;i >= 1;i--)
-    {
-        if (arr[idx] < arr[i])
-        {
-            temp2 = rcal(i) + 1;
-            if (temp2 > maxx2) { maxx2 = temp2; }
-        }
-    }
-    rres[idx] = maxx2;
-    return rres[idx];
-}
-int realmax = 0;
-
-int main()
-{
-    cin >> N;
-    for (int i = 1;i <= N;i++) { cin >> arr[i]; }
-
-    cout << cal(0);
-
-    return 0;
-}
 
 // 2565
 
