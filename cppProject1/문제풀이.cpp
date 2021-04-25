@@ -2974,8 +2974,100 @@ int main()
 }*/
 
 // 2565
+/*#include <iostream>
+using namespace std;
+int N = 0, temp = 0;
+int leftt[501] = { 0 };
+int res[501] = { 0 };
+int cal(int idx)
+{
+    // already calculated
+    if (res[idx] > 0) { return res[idx]; }
+
+    // initial
+    if (idx == 0)
+    {
+        int maxx = 1;
+        int temp = 0;
+        for (int i = 1;i <= 500;i++)
+        {
+            if (leftt[i] > 0)
+            {
+                temp = cal(i);
+                if (temp > maxx) { maxx = temp; }
+            }
+        }
+        return maxx;
+    }
+
+    // last
+    if (idx == 500 && leftt[idx] > 0) { res[idx] = 1; return res[idx]; }
+
+    // 0<idx<N
+    int maxx2 = 1;
+    int temp2 = 0;
+    for (int i = idx + 1;i <= 500;i++)
+    {
+        if (leftt[i] > 0 && leftt[idx] < leftt[i])
+        {
+            temp2 = cal(i) + 1;
+            if (temp2 > maxx2) { maxx2 = temp2; }
+        }
+    }
+    res[idx] = maxx2;
+    return res[idx];
+}
+int main()
+{
+    cin >> N;
+    for (int i = 0;i < N;i++) { cin >> temp; cin >> leftt[temp]; }
+
+    cout << N - cal(0);
+
+    return 0;
+}*/
 
 // 9251
+#include <iostream>
+#include <string>
+using namespace std;
+string str1, str2;
+int ans[1001][1001] = { 0 };
+//     0 1 2 3 4 5 6
+//     - A C A Y K P
+// 0 - 0 0 0 0 0 0 0
+// 1 C 0 0 1 1 1 1 1
+// 2 A 0 1 1 2 2 2 2
+// 3 P 0 1 1 2 2 2 3
+// 4 C 0 1 2 2 2 2 3
+// 5 A 0 1 2 3 3 3 3
+// 6 K 0 1 2 3 3 4 4
+void cal()
+{
+    for (int i = 1;i <= str1.size();i++)
+    {
+        for (int j = 1;j <= str2.size();j++)
+        {
+            if(str1[i-1] == str2[j-1])
+            {
+                ans[i][j] = ans[i - 1][j - 1] + 1;
+            }
+            else
+            {
+                ans[i][j] = max(ans[i - 1][j], ans[i][j - 1]);
+            }
+        }
+    }
+}
+int main()
+{
+    cin >> str1 >> str2;
+
+    cal();
+    cout << ans[str1.size()][str2.size()];
+
+    return 0;
+}
 
 // 1912
 
