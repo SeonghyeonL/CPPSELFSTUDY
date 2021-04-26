@@ -3028,7 +3028,7 @@ int main()
 }*/
 
 // 9251
-#include <iostream>
+/*#include <iostream>
 #include <string>
 using namespace std;
 string str1, str2;
@@ -3067,11 +3067,102 @@ int main()
     cout << ans[str1.size()][str2.size()];
 
     return 0;
-}
+}*/
 
 // 1912
+/*#include <iostream>
+using namespace std;
+int n = 0;
+int given[100001] = { 0 };
+int ans[100001] = { 0 };
+bool fnd[100001];
+int cal(int idx)
+{
+    // initial
+    if (idx == 0)
+    {
+        int maxvalue = cal(1);
+        for (int i = 2;i <= n;i++)
+        {
+            if (maxvalue < cal(i)) { maxvalue = cal(i); }
+        }
+        return maxvalue;
+    }
+
+    // already calculated
+    if (fnd[idx]) { return ans[idx]; }
+
+    // last
+    if (idx == n)
+    {
+        ans[idx] = given[idx]; fnd[idx] = true;
+        return ans[idx];
+    }
+
+    // else
+    if (0 < idx && idx < n)
+    {
+        if (cal(idx + 1) > 0)
+        {
+            ans[idx] = given[idx] + cal(idx + 1); fnd[idx] = true;
+        }
+        else
+        {
+            ans[idx] = given[idx]; fnd[idx] = true;
+        }
+        return ans[idx];
+    }
+}
+int main()
+{
+    cin >> n;
+    for (int i = 1;i <= n;i++) { cin >> given[i]; }
+
+    cout << cal(0);
+
+    return 0;
+}*/
 
 // 12865
+/*#include <iostream>
+using namespace std;
+int N = 0, K = 0;
+int W[101] = { 0 };
+int V[101] = { 0 };
+int ans[101][100001] = { 0 };
+int main()
+{
+    cin >> N >> K;
+    for (int i = 1;i <= N;i++) { cin >> W[i] >> V[i]; }
+
+    for (int i = 1; i <= N; i++)
+    {
+        for (int j = 1; j <= K; j++)
+        {
+            ans[i][j] = ans[i - 1][j];
+            if (j - W[i] >= 0)
+            {
+                ans[i][j] = max(ans[i][j], ans[i - 1][j - W[i]] + V[i]);
+                // i번째 선택함 -> ans[i][j] = ans[i - 1][j]
+                // i번째 안선택 -> ans[i][j] = ans[i - 1][j - W[i]] + V[i]
+            }
+        }
+    }
+    cout << ans[N][K];
+
+    return 0;
+}*/
 
 // 16. 그리디 알고리즘
+// 11047
+
+// 1931
+
+// 11399
+
+// 1541
+
+// 13305
+
+// 17. 정수론 및 조합론
 // 
