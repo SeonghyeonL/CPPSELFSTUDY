@@ -3155,6 +3155,12 @@ int main()
 
 // 16. 그리디 알고리즘
 // 11047
+#include <iostream>
+using namespace std;
+int main()
+{
+    return 0;
+}
 
 // 1931
 
