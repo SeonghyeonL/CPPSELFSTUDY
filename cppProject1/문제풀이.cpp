@@ -3155,16 +3155,79 @@ int main()
 
 // 16. 그리디 알고리즘
 // 11047
-#include <iostream>
+/*#include <iostream>
 using namespace std;
+int N = 0, K = 0, cnt = 0;
+int values[11] = { 0 };
 int main()
 {
+    cin >> N >> K;
+    for (int i = 1;i <= N;i++) { cin >> values[i]; }
+
+    for (int i = N;i > 0;i--)
+    {
+        if (K / values[i] >= 1)
+        {
+            int temp = 0;
+            temp = K / values[i];
+            K -= temp * values[i];
+            cnt += temp;
+        }
+    }
+    cout << cnt;
+
     return 0;
-}
+}*/
 
 // 1931
+/*#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int N = 0, a = 0, b = 0;
+vector<pair<int, int>> info;
+int main()
+{
+    cin >> N;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> a >> b;
+        info.push_back(make_pair(b, a));
+    }
+    sort(info.begin(), info.end());
+    int nowtime = info[0].first;
+    int cnt = 1;
+    for (int i = 1;i < N;i++)
+    {
+        if (nowtime <= info[i].second)
+        {
+            cnt += 1;
+            nowtime = info[i].first;
+        }
+    }
+    cout << cnt;
+    return 0;
+}*/
 
 // 11399
+/*#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int N = 0, temp = 0;
+vector<int> timeN;
+int ans[1000] = { 0 };
+int sum = 0;
+int main()
+{
+    cin >> N;
+    for (int i = 0;i < N;i++) { cin >> temp; timeN.push_back(temp); }
+    sort(timeN.begin(), timeN.end());
+    ans[0] = timeN[0]; sum = ans[0];
+    for (int i = 1;i < N;i++) { ans[i] = ans[i - 1] + timeN[i]; sum += ans[i]; }
+    cout << sum;
+    return 0;
+}*/
 
 // 1541
 
