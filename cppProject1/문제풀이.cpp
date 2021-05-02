@@ -3230,8 +3230,97 @@ int main()
 }*/
 
 // 1541
+/*#include <iostream>
+#include <string>
+using namespace std;
+string given;
+int temp = 0;
+int ans = 0;
+bool isminus = false;
+int main()
+{
+    cin >> given;
+    for (int i = 0;i < given.size();i++)
+    {
+        if (given[i] == '+' || given[i]=='-')
+        {
+            if (!isminus)
+            {
+                ans += temp;
+                temp = 0;
+                if(given[i]=='-'){ isminus = true; }
+            }
+            else
+            {
+                ans -= temp;
+                temp = 0;
+            }
+        }
+        else
+        {
+            temp *= 10;
+            temp += given[i] - '0';
+            if (i == given.size() - 1)
+            {
+                if (!isminus) { ans += temp; }
+                else { ans -= temp; }
+            }
+        }
+    }
+    cout << ans;
+    return 0;
+}*/
 
 // 13305
+/*#include <iostream>
+using namespace std;
+int N = 0; // 2<=N<=100000
+long long roadlen[100001] = { 0 };
+long long prices[100001] = { 0 };
+long long minprice = 0;
+long long ans = 0;
+int main()
+{
+    cin >> N;
+    for (int i = 1;i <= N - 1;i++) { cin >> roadlen[i]; }
+    for (int i = 1;i <= N;i++) { cin >> prices[i]; }
+
+    minprice = prices[1];
+    ans = minprice * roadlen[1];
+    for (int i = 2;i <= N - 1;i++)
+    {
+        if (prices[i] < minprice) { minprice = prices[i]; }
+        ans += minprice * roadlen[i];
+    }
+    cout << ans;
+
+    return 0;
+}*/
 
 // 17. 정수론 및 조합론
+// 5086
+
+// 1037
+
+// 2609
+
+// 1934
+
+// 2981
+
+// 3036
+
+// 11050
+
+// 11051
+
+// 1010
+
+// 9375
+
+// 1676
+
+// 2004
+
+// 18. 스택
 // 
