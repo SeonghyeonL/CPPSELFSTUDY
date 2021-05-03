@@ -3299,12 +3299,104 @@ int main()
 
 // 17. 정수론 및 조합론
 // 5086
+/*#include <iostream>
+using namespace std;
+// 첫 번째 숫자가 두 번째 숫자의 약수 -> factor
+// 첫 번째 숫자가 두 번째 숫자의 배수 -> multiple
+// 약수와 배수 모두 아닐 경우 -> neither
+int num1 = 0, num2 = 0;
+int main()
+{
+    cin >> num1 >> num2;
+    while (!(num1 == 0 && num2 == 0))
+    {
+        if (num2 % num1 == 0) { cout << "factor" << "\n"; }
+        else if (num1 % num2 == 0) { cout << "multiple" << "\n"; }
+        else { cout << "neither" << "\n"; }
+        cin >> num1 >> num2;
+    }
+    return 0;
+}*/
 
 // 1037
+/*#include <iostream>
+using namespace std;
+int cnt = 0, temp = 0;
+int maxx = 0, minn = 0;
+int main()
+{
+    cin >> cnt;
+    cin >> temp;
+    maxx = temp; minn = temp;
+    for (int i = 1;i < cnt;i++)
+    {
+        cin >> temp;
+        if (maxx < temp) { maxx = temp; }
+        if (minn > temp) { minn = temp; }
+    }
+    cout << maxx * minn;
+    return 0;
+}*/
 
 // 2609
+/*#include <iostream>
+using namespace std;
+int num1 = 0, num2 = 0;
+int main()
+{
+    cin >> num1 >> num2;
+    if (num1 <= num2)
+    {
+        for (int i = num1;i >= 1;i--)
+        {
+            if (num2 % i == 0 && num1 % i == 0)
+            {
+                cout << i << "\n";
+                cout << i * (num1 / i) * (num2 / i);
+                break;
+            }
+        }
+    }
+    else // num1>num2
+    {
+        for (int i = num2;i >= 1;i--)
+        {
+            if (num2 % i == 0 && num1 % i == 0)
+            {
+                cout << i << "\n";
+                cout << i * (num1 / i) * (num2 / i);
+                break;
+            }
+        }
+    }
+    return 0;
+}*/
 
 // 1934
+/*#include <iostream>
+using namespace std;
+int T = 0;
+int A = 0, B = 0;
+int temp = 0;
+int main()
+{
+    cin >> T;
+    for (int i = 0;i < T;i++)
+    {
+        cin >> A >> B;
+        int minn = (A >= B) ? B : A;
+        int maxx = (A >= B) ? A : B;
+        while (maxx % minn != 0)
+        {
+            temp = minn;
+            minn = maxx % minn;
+            maxx = temp;
+        }
+        // now, maxx%minn==0 -> 최대공약수는 minn
+        cout << minn * (A / minn) * (B / minn) << "\n";
+    }
+    return 0;
+}*/
 
 // 2981
 
