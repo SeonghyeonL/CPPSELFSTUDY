@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="kakao0508.cpp" />
     <ClCompile Include="tryfirst.cpp" />
     <ClCompile Include="문제풀이.cpp" />
   </ItemGroup>
