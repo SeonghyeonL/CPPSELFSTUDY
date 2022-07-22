@@ -143,10 +143,56 @@ int main()
 
 // 2108
 
+/*
 #include <iostream>
+#include <cmath> // floor
+#include <algorithm> // sort
 using namespace std;
+int nums[500001] = {};
+int pairs[8001] = {};
 int main()
 {
+    int N = 0;
+    cin >> N;
+    for (int i = 0;i < N;i++)
+        cin >> nums[i];
+    int temp = 0;
+    for (int i = 0;i < N;i++)
+        temp += nums[i];
+    cout << floor(double(temp) / double(N) + 0.5) << endl; // »ê¼úÆò±Õ
+    sort(nums, nums + N);
+    cout << nums[N / 2] << endl; // Áß¾Ó°ª
+    for (int i = 0;i < N;i++)
+        pairs[nums[i] + 4000] += 1;
+    int max = pairs[0];
+    for (int i = 1;i < 8001;i++)
+        if (pairs[i] > max)
+            max = pairs[i];
+    bool a = false;
+    int cbres = 0;
+    for (int i = 0;i < 8001;i++)
+    {
+        if (pairs[i] == max && a == false)
+        {
+            a = true;
+            cbres = i - 4000;
+        }
+        else if (pairs[i] == max && a == true)
+        {
+            cbres = i - 4000;
+            break;
+        }
+    }
+    cout << cbres << endl; // ÃÖºó°ª
+    cout << nums[N - 1] - nums[0] << endl; // ¹üÀ§
+    return 0;
+}
+*/
 
+// 10815
+
+#include <iostream>
+int main()
+{
     return 0;
 }
