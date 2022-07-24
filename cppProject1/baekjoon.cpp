@@ -279,11 +279,34 @@ int main()
 
 // 10816
 
+/*
+#include <iostream>
+using namespace std;
+int Ns[20000002] = {};
+int Ms[500001] = {};
+int main()
+{
+    int N = 0, M = 0, temp = 0;
+    cin >> N;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> temp;
+        Ns[temp + 10000000] += 1;
+    }
+    cin >> M;
+    for (int i = 0;i < M;i++)
+        cin >> Ms[i];
+    for (int i = 0;i < M;i++)
+        cout << Ns[Ms[i] + 10000000] << " ";
+    return 0;
+}
+*/
+
+// 1764
+
 #include <iostream>
 using namespace std;
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
     return 0;
 }
