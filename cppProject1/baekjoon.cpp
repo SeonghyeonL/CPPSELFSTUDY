@@ -304,6 +304,44 @@ int main()
 
 // 1764
 
+/*
+#include <iostream>
+#include <algorithm> // sort
+#include <map>
+using namespace std;
+map<string, int> Ns;
+string Ms[500001];
+string temp;
+char name[21];
+int main()
+{
+    int N, M;
+    cin >> N >> M;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> temp;
+        Ns.insert(make_pair(temp, i));
+    }
+    int cnt = 0;
+    for (int i = 0;i < M;i++)
+    {
+        cin >> name;
+        if (Ns.find(name) != Ns.end())
+        {
+            Ms[cnt] = name;
+            cnt += 1;
+        }
+    }
+    sort(Ms, Ms + cnt);
+    cout << cnt << endl;
+    for (int i = 0;i < cnt;i++)
+        cout << Ms[i] << endl;
+    return 0;
+}
+*/
+
+// 1269
+
 #include <iostream>
 using namespace std;
 int main()
