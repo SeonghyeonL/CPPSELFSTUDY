@@ -342,6 +342,62 @@ int main()
 
 // 1269
 
+/*
+#include <iostream>
+using namespace std;
+bool a[100000001];
+bool b[100000001];
+int main()
+{
+    int A, B, temp;
+    cin >> A >> B;
+    for (int i = 0;i < A;i++)
+    {
+        cin >> temp;
+        a[temp] = true;
+    }
+    for (int i = 0;i < B;i++)
+    {
+        cin >> temp;
+        b[temp] = true;
+    }
+    int cnt = 0;
+    for (int i = 0;i < 100000001;i++)
+    {
+        if ((a[i] && !b[i]) || (!a[i] && b[i]))
+            cnt += 1;
+    }
+    cout << cnt;
+    return 0;
+}
+*/
+
+// 11478
+
+/*
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+string str;
+int main()
+{
+    cin >> str;
+    vector<string> v;
+    for (int i = 0;i < str.length();i++)
+    {
+        for (int j = 1;j <= str.length() - i;j++)
+            v.insert(v.end(), str.substr(i, j));
+    }
+    sort(v.begin(), v.end());
+    v.erase(unique(v.begin(), v.end()), v.end());
+    cout << v.size();
+    return 0;
+}
+*/
+
+// 	2477
 #include <iostream>
 using namespace std;
 int main()
