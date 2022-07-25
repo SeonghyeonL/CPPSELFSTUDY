@@ -398,6 +398,46 @@ int main()
 */
 
 // 	2477
+
+/*
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+int main()
+{
+    int N = 0;
+    int len[6], temp;
+    string ways = "";
+    cin >> N;
+    for (int i = 0;i < 6;i++)
+    {
+        cin >> temp >> len[i];
+        ways += to_string(temp);
+    }
+    // µ¿ ¼­ ³² ºÏ
+    // ¤¡ -> ³²µ¿³²µ¿ºÏ¼­ 3'13'1"42"
+    // ¦® -> µ¿ºÏµ¿ºÏ¼­³² 1'41'4"23"
+    // ¦± -> ºÏ¼­ºÏ¼­³²µ¿ 4'24'2"31"
+    // ¦° -> ¼­³²¼­³²µ¿ºÏ 2'32'3"14"
+    if (ways == "313142" || ways == "141423" || ways == "424231" || ways == "232314")
+        cout << N * (len[4] * len[5] - len[1] * len[2]);
+    else if (ways == "131423" || ways == "414231" || ways == "242314" || ways == "323142")
+        cout << N * (len[3] * len[4] - len[0] * len[1]);
+    else if (ways == "314231" || ways == "142314" || ways == "423142" || ways == "231423")
+        cout << N * (len[2] * len[3] - len[5] * len[0]);
+    else if (ways == "142313" || ways == "423141" || ways == "231424" || ways == "314232")
+        cout << N * (len[1] * len[2] - len[4] * len[5]);
+    else if (ways == "423131" || ways == "231414" || ways == "314242" || ways == "142323")
+        cout << N * (len[0] * len[1] - len[3] * len[4]);
+    else if (ways == "231314" || ways == "314142" || ways == "142423" || ways == "423231")
+        cout << N * (len[5] * len[0] - len[2] * len[3]);
+    return 0;
+}
+*/
+
+// 1004
+
 #include <iostream>
 using namespace std;
 int main()
