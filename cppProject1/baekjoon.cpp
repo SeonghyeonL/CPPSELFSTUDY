@@ -438,6 +438,88 @@ int main()
 
 // 1004
 
+/*
+#include <iostream>
+using namespace std;
+int calc(int x, int y, int xx, int yy)
+{
+    float dis = 0.0;
+    dis = (x - xx) * (x - xx) + (y - yy) * (y - yy);
+    return dis;
+}
+int main()
+{
+    int T = 0, x1 = 0, y1 = 0, x2 = 0, y2 = 0, n = 0;
+    int cx = 0, cy = 0, r = 0;
+    cin >> T;
+    for (int i = 0;i < T;i++)
+    {
+        int cnt = 0;
+        bool res[50] = { false };
+        cin >> x1 >> y1 >> x2 >> y2;
+        cin >> n;
+        for (int j = 0;j < n;j++)
+        {
+            cin >> cx >> cy >> r;
+            r = r * r;
+            if (calc(x1, y1, cx, cy) < r && calc(x2, y2, cx, cy) > r)
+                res[j] = true;
+            else if (calc(x1, y1, cx, cy) > r && calc(x2, y2, cx, cy) < r)
+                res[j] = true;
+        }
+        for (int j = 0;j < n;j++)
+        {
+            if (res[j])
+                cnt += 1;
+        }
+        cout << cnt << endl;
+    }
+    return 0;
+}
+*/
+
+// 1358
+
+/*
+#include <iostream>
+using namespace std;
+float calc(int x, int y, int xx, int yy)
+{
+    float dis = 0.0;
+    dis = (x - xx) * (x - xx) + (y - yy) * (y - yy);
+    return dis;
+}
+int main()
+{
+    int W = 0, H = 0, X = 0, Y = 0, P = 0;
+    int x = 0, y = 0, cnt = 0;
+    cin >> W >> H >> X >> Y >> P;
+    for (int i = 0;i < P;i++)
+    {
+        cin >> x >> y;
+        if (x < X)
+        {
+            if (calc(x, y, X, Y + H / 2) <= (H / 2) * (H / 2))
+                cnt += 1;
+        }
+        else if (x >= X && x <= X + W)
+        {
+            if (y >= Y && y <= Y + H)
+                cnt += 1;
+        }
+        else // x > X + W
+        {
+            if (calc(x, y, X + W, Y + H / 2) <= (H / 2) * (H / 2))
+                cnt += 1;
+        }
+    }
+    cout << cnt;
+    return 0;
+}
+*/
+
+// 2981
+
 #include <iostream>
 using namespace std;
 int main()
