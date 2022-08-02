@@ -520,7 +520,89 @@ int main()
 
 // 2981
 
+/*
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+int gcd(int a, int b)
+{
+    if (a % b == 0)
+        return b;
+    return gcd(b, a % b);
+}
+int main()
+{
+    int N = 0;
+    cin >> N;
+    vector<int> n(N);
+    for (int i = 0;i < N;i++)
+    {
+        cin >> n[i];
+    }
+    sort(n.begin(), n.end());
+    int res = n[1] - n[0];
+    for (int i = 2;i < N;i++)
+    {
+        res = gcd(res, n[i] - n[i - 1]);
+    }
+    vector<int> result;
+    for (int i = 2;i <= sqrt(res);i++)
+    {
+        if (res % i == 0)
+        {
+            result.push_back(i);
+            result.push_back(res / i);
+        }
+    }
+    result.push_back(res);
+    sort(result.begin(), result.end());
+    result.erase(unique(result.begin(), result.end()), result.end());
+    for (int i = 0;i < result.size();i++)
+    {
+        cout << result[i] << " ";
+    }
+    return 0;
+}
+*/
+
+// 3036
+
+/*
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+int gcf(int a, int b)
+{
+    if (a % b == 0)
+        return b;
+    return gcf(b, a % b);
+}
+int main()
+{
+    int N;
+    cin >> N;
+    int fst, n, fac;
+    cin >> fst;
+    for (int i = 1;i < N;i++)
+    {
+        cin >> n;
+        fac = gcf(fst, n);
+        cout << fst / fac << "/" << n / fac << endl;
+    }
+    return 0;
+}
+*/
+
+// 11050
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
 using namespace std;
 int main()
 {
