@@ -599,10 +599,128 @@ int main()
 
 // 11050
 
+/*
 #include <iostream>
 #include <vector>
 #include <algorithm>
 #include <cmath>
+using namespace std;
+int main()
+{
+    int N = 0, K = 0;
+    cin >> N >> K;
+    int upper = 1, lower = 1;
+    for (int i = 0;i < K;i++)
+    {
+        upper *= N - i;
+        lower *= K - i;
+    }
+    cout << upper / lower << endl;
+    return 0;
+}
+*/
+
+// 11051
+
+/*
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+long long DP[1001][1001];
+// DP[N][K] =DP[N-1][K-1] + DP[N-1][K] 
+int main()
+{
+    int N = 0, K = 0;
+    cin >> N >> K;
+    DP[0][0] = 1;
+    DP[1][0] = 1;
+    DP[1][1] = 1;
+    for (int i = 2;i <= N;i++)
+    {
+        
+        for (int j = 0;j <= i;j++)
+        {
+            if (j == 0 || j == i) DP[i][j] = 1;
+            else DP[i][j] = (DP[i - 1][j - 1] + DP[i - 1][j]) % 10007;
+        }
+    }
+    cout << DP[N][K] << endl;
+    return 0;
+}
+*/
+
+// 1010
+
+/*
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+long long DP[31][31];
+// DP[N][K] =DP[N-1][K-1] + DP[N-1][K]
+int main()
+{
+    int T, N, M;
+    DP[0][0] = 1;
+    DP[1][0] = 1;
+    DP[1][1] = 1;
+    cin >> T;
+    for (int i = 0;i < T;i++)
+    {
+        cin >> N >> M;
+        // M C N
+        for (int i = 2;i <= M;i++)
+        {
+
+            for (int j = 0;j <= i;j++)
+            {
+                if (j == 0 || j == i) DP[i][j] = 1;
+                else DP[i][j] = (DP[i - 1][j - 1] + DP[i - 1][j]);
+            }
+        }
+        cout << DP[M][N] << endl;
+    }
+    return 0;
+}
+*/
+
+// 9375
+
+/*
+#include <iostream>
+#include <map>
+using namespace std;
+int main()
+{
+    int T, t;
+    string name, type;
+    cin >> T;
+    for (int i = 0;i < T;i++)
+    {
+        cin >> t;
+        map<string, int> m;
+        int res = 1;
+        for (int j = 0;j < t;j++)
+        {
+            cin >> name >> type;
+            m[type] += 1;
+        }
+        for (auto iter = m.begin(); iter != m.end(); ++iter)
+        {
+            res *= (iter->second) + 1;
+        }
+        cout << res - 1 << endl;
+    }
+    return 0;
+}
+*/
+
+// 1676
+
+#include <iostream>
 using namespace std;
 int main()
 {
