@@ -720,6 +720,89 @@ int main()
 
 // 1676
 
+/*
+#include <iostream>
+using namespace std;
+int main()
+{
+    int N = 0, ans = 0;
+    cin >> N;
+    // 0의 개수 = 2&5의 개수 ~ 5의 개수
+    for (int i = 1;i <= N;i++)
+    {
+        if (i % 5 == 0)
+        {
+            if (i % 125 == 0)
+                ans += 3;
+            else if (i % 25 == 0)
+                ans += 2;
+            else
+                ans += 1;
+        }
+    }
+    cout << ans;
+    return 0;
+}
+*/
+
+// 2004
+
+/*
+#include <iostream>
+using namespace std;
+long long cal(long long a, long long num)
+{
+    long long cnt = 0;
+    for (long long i = num;i <= a;i *= num)
+        cnt += a / i;
+    return cnt;
+}
+int main()
+{
+    long long n = 0, m = 0;
+    long long ans2 = 0, ans5 = 0;
+    cin >> n >> m;
+    // nCm = n! / (n-m)! * m!
+    ans2 = cal(n, 2) - cal(n - m, 2) - cal(m, 2);
+    ans5 = cal(n, 5) - cal(n - m, 5) - cal(m, 5);
+    cout << min(ans2, ans5);
+    return 0;
+}
+*/
+
+// 24416
+
+/*
+#include <iostream>
+using namespace std;
+int cnt_fib1 = 0;
+int cnt_fib2 = 0;
+int fib1(int a)
+{
+    if (a == 1 || a == 2)
+        cnt_fib1 += 1;
+    else
+        return (fib1(a - 1) + fib1(a - 2));
+    return 0;
+}
+int fib2(int a)
+{
+    for (int i = 3;i <= a;i++)
+        cnt_fib2 += 1;
+    return 0;
+}
+int main()
+{
+    int n = 0;
+    cin >> n;
+    fib1(n), fib2(n);
+    cout << cnt_fib1 << " " << cnt_fib2 << endl;
+    return 0;
+}
+*/
+
+// 11659
+
 #include <iostream>
 using namespace std;
 int main()
