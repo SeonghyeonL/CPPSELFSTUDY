@@ -803,7 +803,69 @@ int main()
 
 // 11659
 
+/*
 #include <iostream>
+#include <vector>
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    int N, M, i, j;
+    cin >> N >> M;
+    vector<long> n(N + 1);
+    n[0] = 0;
+    for (int k = 0;k < N;k++)
+    {
+        long temp;
+        cin >> temp;
+        n[k + 1] = n[k] + temp;
+    }
+    for (int k = 0;k < M;k++)
+    {
+        cin >> i >> j;
+        cout << n[j] - n[i - 1] << '\n';
+    }
+    return 0;
+}
+*/
+
+// 2559
+
+/*
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main()
+{
+    int N, K;
+    cin >> N >> K;
+    vector<long> n(N + 1);
+    vector<long> n2(N + 1);
+    n[0] = 0;
+    for (int i = 1;i <= N;i++)
+    {
+        long temp;
+        cin >> temp;
+        n[i] = n[i - 1] + temp;
+    }
+    for (int i = 0;i <= N;i++)
+    {
+        if (i < K) n2[i] = n[i];
+        else n2[i] = n[i] - n[i - K];
+    }
+    cout << *max_element(n2.begin() + K, n2.end());
+    return 0;
+}
+*/
+
+// 16139
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 int main()
 {
