@@ -863,11 +863,89 @@ int main()
 
 // 16139
 
+/*
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+string S;
+int q, l, r;
+int sum[200001][26];
+char alpha;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cout.tie(NULL);
+    cin.tie(NULL);
+    cin >> S >> q;
+    for (int i = 0;i < S.length();i++)
+    {
+        // 'a' = 97
+        if (i == 0) sum[i][S[i] - 'a'] = 1;
+        else
+        {
+            for (int j = 0;j < 26;j++)
+            {
+                if (j == S[i] - 'a') sum[i][j] = sum[i - 1][j] + 1;
+                else sum[i][j] = sum[i - 1][j];
+            }
+        }
+    }
+    for (int i = 0;i < q;i++)
+    {
+        cin >> alpha >> l >> r;
+        int alp = alpha - 'a';
+        if (l == 0) cout << sum[r][alp] << "\n";
+        else cout << sum[r][alp] - sum[l - 1][alp] << "\n";
+    }
+    return 0;
+}
+*/
+
+// 10986
+
+/*
 #include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
 int main()
 {
+    ios_base::sync_with_stdio(false);
+    cout.tie(NULL);
+    cin.tie(NULL);
+    int N = 0, M = 0;
+    cin >> N >> M;
+    vector<long long> cnt(1000);
+    long long sum = 0;
+    for (int i = 0;i < N;i++)
+    {
+        long long temp;
+        cin >> temp;
+        sum += temp;
+        cnt[sum % M] += 1;
+    }
+    long long ans = cnt[0];
+    for (int i = 0;i < 1000;i++)
+    {
+        ans += cnt[i] * (cnt[i] - 1) / 2;
+    }
+    cout << ans;
+    return 0;
+}
+*/
+
+// 11660
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cout.tie(NULL);
+    cin.tie(NULL);
+
     return 0;
 }
