@@ -970,6 +970,120 @@ int main()
 
 // 10828
 
+/*
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main()
+{
+    vector<int> s;
+    int N;
+    string cmd;
+    cin >> N;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> cmd;
+        if (cmd == "push")
+        {
+            int num;
+            cin >> num;
+            s.push_back(num);
+        }
+        else if (cmd == "pop")
+        {
+            if (s.empty()) cout << -1 << "\n";
+            else
+            {
+                cout << s[s.size() - 1] << "\n";
+                s.pop_back();
+                s.shrink_to_fit();
+            }
+        }
+        else if (cmd == "size")
+        {
+            cout << s.size() << "\n";
+        }
+        else if (cmd == "empty")
+        {
+            if (s.empty()) cout << 1 << "\n";
+            else cout << 0 << "\n";
+        }
+        else if (cmd == "top")
+        {
+            if (s.empty()) cout << -1 << "\n";
+            else
+            {
+                cout << s[s.size() - 1] << "\n";
+            }
+        }
+    }
+    return 0;
+}
+*/
+
+// 10773
+
+/*
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main()
+{
+    int N, temp;
+    long sum = 0;
+    vector<int> m;
+    cin >> N;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> temp;
+        if (temp == 0) m.pop_back();
+        else m.push_back(temp);
+    }
+    for (int i = 0;i < m.size();i++) sum += m[i];
+    cout << sum;
+    return 0;
+}
+*/
+
+// 9012
+
+/*
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main()
+{
+    int N, sum;
+    bool res;
+    cin >> N;
+    for (int i = 0;i < N;i++)
+    {
+        char ps[51] = {};
+        cin >> ps;
+        sum = 0;
+        res = true;
+        for (int j = 0;j < 51;j++)
+        {
+            if (ps[j] == '(') sum += 1;
+            else if (ps[j] == ')') sum -= 1;
+            if (sum < 0)
+            {
+                res = false;
+                break;
+            }
+        }
+        if (res == true && sum == 0) cout << "YES\n";
+        else cout << "NO\n";
+    }
+    return 0;
+}
+*/
+
+// 4949
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
