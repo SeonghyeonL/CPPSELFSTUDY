@@ -1084,9 +1084,59 @@ int main()
 
 // 4949
 
+/*
 #include <iostream>
 #include <vector>
-#include <algorithm>
+#include <string>
+using namespace std;
+int main()
+{
+    bool res;
+
+    string p = "";
+    getline(cin, p, '.');
+    while (1)
+    {
+        if (p == "\n") break;
+        vector<char> sum;
+        res = true;
+        for (int j = 0;j < p.length();j++)
+        {
+            if (p[j] == '(') sum.push_back('(');
+            else if (p[j] == ')')
+            {
+                if (!sum.empty() && sum.back() == '(') sum.pop_back();
+                else
+                {
+                    res = false;
+                    break;
+                }
+            }
+            else if (p[j] == '[') sum.push_back('[');
+            else if (p[j] == ']')
+            {
+                if (!sum.empty() && sum.back() == '[') sum.pop_back();
+                else
+                {
+                    res = false;
+                    break;
+                }
+            }
+        }
+        if (res==true && sum.empty()) cout << "yes\n";
+        else cout << "no\n";
+        p = "";
+        getline(cin, p, '.');
+    }
+    return 0;
+}
+*/
+
+// 1874
+
+#include <iostream>
+#include <vector>
+#include <string>
 using namespace std;
 int main()
 {
