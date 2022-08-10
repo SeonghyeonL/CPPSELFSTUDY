@@ -1134,6 +1134,78 @@ int main()
 
 // 1874
 
+/*
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+int main()
+{
+    int n = 0, x = 0, cnt = 0;
+    cin >> n;
+    vector<int> ns;
+    vector<char> ans;
+    for (int i = 0;i < n;i++)
+    {
+        cin >> x;
+        while (cnt < x)
+        {
+            ans.push_back('+');
+            cnt += 1;
+            ns.push_back(cnt);
+        }
+        if (ns.back() == x)
+        {
+            ns.pop_back();
+            ans.push_back('-');
+        }
+        else
+        {
+            cout << "NO\n";
+            return 0;
+        }
+    }
+    for (int i = 0;i < ans.size();i++)
+        cout << ans[i] << "\n";
+    return 0;
+}
+*/
+
+// 17298
+
+/*
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+int main()
+{
+    int N = 0, temp = 0;;
+    cin >> N;
+    vector<int> sin, stp, res;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> temp;
+        sin.push_back(temp);
+    }
+    for (int i = N - 1;i >= 0;i--)
+    {
+        while ((!stp.empty()) && (stp[stp.size() - 1] <= sin[i]))
+            stp.pop_back();
+        if (stp.empty())
+            res.push_back(-1);
+        else // stp[stp.size() - 1] > sin[i]
+            res.push_back(stp[stp.size() - 1]);
+        stp.push_back(sin[i]);
+    }
+    for (int i = N - 1;i >= 0;i--)
+        cout << res[i] << " ";
+    return 0;
+}
+*/
+
+// 18258
+
 #include <iostream>
 #include <vector>
 #include <string>
