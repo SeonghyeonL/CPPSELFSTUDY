@@ -1206,9 +1206,128 @@ int main()
 
 // 18258
 
+/*
 #include <iostream>
+#include <queue>
+using namespace std;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cout.tie(NULL);
+    cin.tie(NULL);
+    queue<int> s;
+    int N;
+    string cmd;
+    cin >> N;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> cmd;
+        if (cmd == "push")
+        {
+            int num;
+            cin >> num;
+            s.push(num);
+        }
+        else if (cmd == "pop")
+        {
+            if (s.empty()) cout << -1 << "\n";
+            else
+            {
+                cout << s.front() << "\n";
+                s.pop();
+            }
+        }
+        else if (cmd == "size")
+        {
+            cout << s.size() << "\n";
+        }
+        else if (cmd == "empty")
+        {
+            if (s.empty()) cout << 1 << "\n";
+            else cout << 0 << "\n";
+        }
+        else if (cmd == "front")
+        {
+            if (s.empty()) cout << -1 << "\n";
+            else cout << s.front() << "\n";
+        }
+        else if (cmd == "back")
+        {
+            if (s.empty()) cout << -1 << "\n";
+            else cout << s.back() << "\n";
+        }
+    }
+    return 0;
+}
+*/
+
+// 2164
+
+/*
+#include <iostream>
+#include <queue>
+using namespace std;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cout.tie(NULL);
+    cin.tie(NULL);
+    int N = 0, temp = 0;
+    queue<int> q;
+    cin >> N;
+    for (int i = 1;i <= N;i++) q.push(i);
+    while (q.size() > 1)
+    {
+        q.pop();
+        temp = q.front();
+        q.pop();
+        q.push(temp);
+    }
+    cout << q.front();
+    return 0;
+}
+*/
+
+// 11866
+
+/*
+#include <iostream>
+#include <queue>
 #include <vector>
-#include <string>
+using namespace std;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cout.tie(NULL);
+    cin.tie(NULL);
+    int N = 0, M = 0;
+    queue<int> q;
+    vector<int> v;
+    cin >> N >> M;
+    for (int i = 1;i <= N;i++) q.push(i);
+    while (q.size() > 1)
+    {
+        for (int i = 0;i < M - 1;i++)
+        {
+            q.push(q.front());
+            q.pop();
+        }
+        v.push_back(q.front());
+        q.pop();
+    }
+    v.push_back(q.front());
+    cout << "<";
+    for (int i = 0;i < N - 1;i++) cout << v[i] << ", ";
+    cout << v[N - 1] << ">";
+    return 0;
+}
+*/
+
+// 1966
+
+#include <iostream>
+#include <queue>
+#include <vector>
 using namespace std;
 int main()
 {
