@@ -1325,9 +1325,120 @@ int main()
 
 // 1966
 
+/*
 #include <iostream>
 #include <queue>
 #include <vector>
+#include <algorithm>
+using namespace std;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cout.tie(NULL);
+    cin.tie(NULL);
+    int T = 0, N = 0, M = 0;
+    int temp = 0, cnt = 0;
+    cin >> T;
+    for (int t = 0;t < T;t++)
+    {
+        vector<int> v, res;
+        queue<pair<int, int>> q;
+        cin >> N >> M;
+        for (int i = 0;i < N;i++)
+        {
+            cin >> temp;
+            v.push_back(temp);
+            q.push(make_pair(i, temp));
+        }
+        sort(v.begin(), v.end(), greater<>());
+        cnt = 0;
+        while (cnt < N)
+        {
+            if (q.front().second != v[cnt])
+            {
+                q.push(q.front());
+                q.pop();
+            }
+            else
+            {
+                res.push_back(q.front().first);
+                q.pop();
+                cnt += 1;
+            }
+        }
+        for (int i = 0;i < N;i++)
+        {
+            if (res[i] == M)
+            {
+                cout << i + 1 << "\n";
+                break;
+            }
+        }
+    }
+    return 0;
+}
+*/
+
+// 10866
+
+/*
+#include <iostream>
+#include <deque>
+using namespace std;
+int main()
+{
+    int N = 0, temp = 0;
+    string s = "";
+    deque<int> dq;
+    cin >> N;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> s;
+        if (s == "push_front")
+        {
+            cin >> temp; dq.push_front(temp);
+        }
+        else if (s == "push_back")
+        {
+            cin >> temp; dq.push_back(temp);
+        }
+        else if (s == "pop_front")
+        {
+            if (dq.empty()) cout << -1 << "\n";
+            else
+            {
+                cout << dq.front() << "\n"; dq.pop_front();
+            }
+        }
+        else if (s == "pop_back")
+        {
+            if (dq.empty()) cout << -1 << "\n";
+            else
+            {
+                cout << dq.back() << "\n"; dq.pop_back();
+            }
+        }
+        else if (s == "size") cout << dq.size() << "\n";
+        else if (s == "empty") cout << dq.empty() << "\n";
+        else if (s == "front")
+        {
+            if (dq.empty()) cout << -1 << "\n";
+            else cout << dq.front() << "\n";
+        }
+        else if (s == "back")
+        {
+            if (dq.empty()) cout << -1 << "\n";
+            else cout << dq.back() << "\n";
+        }
+    }
+    return 0;
+}
+*/
+
+// 1021
+
+#include <iostream>
+#include <deque>
 using namespace std;
 int main()
 {
