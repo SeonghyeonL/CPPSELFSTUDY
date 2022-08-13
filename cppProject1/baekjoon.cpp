@@ -1437,8 +1437,121 @@ int main()
 
 // 1021
 
+/*
 #include <iostream>
 #include <deque>
+using namespace std;
+int main()
+{
+    int N = 0, M = 0;
+    cin >> N >> M;
+    deque<int> dq;
+    for (int i = 1;i <= N;i++) dq.push_back(i);
+    int temp = 0;
+    int total = 0, cnt = 0;
+    for (int i = 0;i < M;i++)
+    {
+        cin >> temp;
+        cnt = 0;
+        while (dq.front() != temp)
+        {
+            dq.push_back(dq.front());
+            dq.pop_front();
+            cnt += 1;
+        }
+        if (cnt > dq.size() / 2) cnt = dq.size() - cnt;
+        total += cnt;
+        dq.pop_front();
+    }
+    cout << total;
+    return 0;
+}
+*/
+
+// 5430
+
+/*
+#include <iostream>
+#include <deque>
+#include <string>
+#include <vector>
+using namespace std;
+int main()
+{
+    int T = 0;
+    cin >> T;
+    string rd = "", tp = "", tp2 = "";
+    int num = 0, temp = 0;
+    for (int i = 0;i < T;i++)
+    {
+        cin >> rd >> num >> tp;
+        deque<int> dq;
+        for (int j = 1;j < tp.size();j++)
+        {
+            if (tp[j] == '[') continue;
+            else if (tp[j] >= '0' && tp[j] <= '9') tp2 += tp[j];
+            else if (tp[j] == ',' || tp[j] == ']')
+            {
+                if (!tp2.empty())
+                {
+                    dq.push_back(stoi(tp2));
+                    tp2 = "";
+                }
+            }
+        }
+        bool direc = true;
+        bool error = false;
+        for (int j = 0;j < rd.size();j++)
+        {
+            if (rd[j] == 'R') direc = !direc;
+            else // D
+            {
+                if (dq.empty())
+                {
+                    error = true;
+                    break;
+                }
+                else
+                {
+                    if (direc) dq.pop_front();
+                    else dq.pop_back();
+                }
+            }
+        }
+        if (error) cout << "error\n";
+        else
+        {
+            cout << "[";
+            temp = dq.size();
+            if (direc)
+            {
+                for (int j = 0;j < temp;j++)
+                {
+                    cout << dq.front();
+                    dq.pop_front();
+                    if (!dq.empty()) cout << ",";
+                }
+            }
+            else
+            {
+                for (int j = 0;j < temp;j++)
+                {
+                    cout << dq.back();
+                    dq.pop_back();
+                    if (!dq.empty()) cout << ",";
+                }
+            }
+            cout << "]\n";
+        }
+    }
+    return 0;
+}
+*/
+
+// 2630
+
+#include <iostream>
+#include <vector>
 using namespace std;
 int main()
 {
