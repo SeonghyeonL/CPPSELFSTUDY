@@ -1550,6 +1550,7 @@ int main()
 
 // 2630
 
+/*
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -1560,12 +1561,10 @@ void func(int x, int y, int size)
     int temp = arr[x][y];
     for (int i = x;i < x + size;i++)
     {
-        for (int j = y;j < j + size;j++)
+        for (int j = y;j < y + size;j++)
         {
-            if (temp!=-1 && arr[i][j]!=temp)
-            {
-                temp = -1;
-            }
+            if (temp == -1) continue;
+            else if (temp != arr[i][j]) temp = -1;
         }
     }
     if (temp != -1) ans[temp] += 1;
@@ -1590,5 +1589,65 @@ int main()
     }
     func(0, 0, N);
     cout << ans[0] << "\n" << ans[1];
+    return 0;
+}
+*/
+
+// 1992
+
+/*
+#include <iostream>
+#include <string>
+using namespace std;
+int arr[64][64];
+int N = 0;
+void func(int x, int y, int size)
+{
+    int temp = arr[x][y];
+    for (int i = x;i < x + size;i++)
+    {
+        for (int j = y;j < y + size;j++)
+        {
+            if (temp == -1) continue;
+            else if (temp != arr[i][j]) temp = -1;
+        }
+    }
+    if (temp != -1) cout << temp;
+    else
+    {
+        cout << "(";
+        func(x, y, size / 2);
+        func(x, y + size / 2, size / 2);
+        func(x + size / 2, y, size / 2);
+        func(x + size / 2, y + size / 2, size / 2);
+        cout << ")";
+    }
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    string tp = "";
+    cin >> N;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> tp;
+        for (int j = 0;j < N;j++) arr[i][j] = tp[j] - '0';
+    }
+    func(0, 0, N);
+    return 0;
+}
+*/
+
+// 1780
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
     return 0;
 }
