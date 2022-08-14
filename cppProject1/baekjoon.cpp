@@ -1553,7 +1553,42 @@ int main()
 #include <iostream>
 #include <vector>
 using namespace std;
+int arr[128][128];
+int ans[2]; // w, b
+void func(int x, int y, int size)
+{
+    int temp = arr[x][y];
+    for (int i = x;i < x + size;i++)
+    {
+        for (int j = y;j < j + size;j++)
+        {
+            if (temp!=-1 && arr[i][j]!=temp)
+            {
+                temp = -1;
+            }
+        }
+    }
+    if (temp != -1) ans[temp] += 1;
+    else
+    {
+        func(x, y, size / 2);
+        func(x + size / 2, y, size / 2);
+        func(x, y + size / 2, size / 2);
+        func(x + size / 2, y + size / 2, size / 2);
+    }
+}
 int main()
 {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    int N = 0;
+    cin >> N;
+    for (int i = 0;i < N;i++)
+    {
+        for (int j = 0;j < N;j++) cin >> arr[i][j];
+    }
+    func(0, 0, N);
+    cout << ans[0] << "\n" << ans[1];
     return 0;
 }
