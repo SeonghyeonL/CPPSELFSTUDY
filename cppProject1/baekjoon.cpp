@@ -1642,6 +1642,85 @@ int main()
 
 // 1780
 
+/*
+#include <iostream>
+#include <vector>
+using namespace std;
+int arr[2500][2500];
+int ans[3]; // -1, 0, 1
+void func(int x, int y, int size)
+{
+    int temp = arr[x][y];
+    for (int i = x;i < x + size;i++)
+    {
+        for (int j = y;j < y + size;j++)
+        {
+            if (temp == 2) continue;
+            else if (temp != arr[i][j]) temp = 2;
+        }
+    }
+    if (temp != 2) ans[temp + 1] += 1;
+    else
+    {
+        func(x, y, size / 3);
+        func(x + size / 3, y, size / 3);
+        func(x + size / 3 * 2, y, size / 3);
+        func(x, y + size / 3, size / 3);
+        func(x + size / 3, y + size / 3, size / 3);
+        func(x + size / 3 * 2, y + size / 3, size / 3);
+        func(x, y + size / 3 * 2, size / 3);
+        func(x + size / 3, y + size / 3 * 2, size / 3);
+        func(x + size / 3 * 2, y + size / 3 * 2, size / 3);
+    }
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    int N = 0;
+    cin >> N;
+    for (int i = 0;i < N;i++)
+    {
+        for (int j = 0;j < N;j++) cin >> arr[i][j];
+    }
+    func(0, 0, N);
+    cout << ans[0] << "\n" << ans[1] << "\n" << ans[2];
+    return 0;
+}
+*/
+
+// 1629
+
+/*
+#include <iostream>
+#include <vector>
+using namespace std;
+long long A, B, C, res;
+long long func(long long a, long long b)
+{
+    if (b == 0) return 1;
+    else if (b == 1) return a % C;
+    else if (b % 2 == 0)
+    {
+        long long temp = func(a, b / 2) % C;
+        return (temp * temp) % C;
+    }
+    else if (b % 2 == 1) return (func(a, b - 1) * a) % C;
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    cin >> A >> B >> C;
+    cout << func(A, B);
+    return 0;
+}
+*/
+
+// 11401
+
 #include <iostream>
 using namespace std;
 int main()
