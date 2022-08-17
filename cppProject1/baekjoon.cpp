@@ -1721,6 +1721,74 @@ int main()
 
 // 11401
 
+/*
+#include <iostream>
+using namespace std;
+long long N, K, A = 1, B = 1;
+long long func(long long x)
+{
+    if (x == 0) return 1;
+    else if (x % 2 == 0)
+    {
+        long long temp = func(x / 2);
+        return (temp * temp) % 1000000007;
+    }
+    else if (x % 2 == 1)
+    {
+        return (B * func(x - 1)) % 1000000007;
+    }
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    cin >> N >> K;
+    for (int i = N;i > N - K;i--) A = (A * i) % 1000000007;
+    for (int i = K;i > 0;i--) B = (B * i) % 1000000007;
+    cout << (A * func(1000000007 - 2)) % 1000000007;
+    return 0;
+}
+*/
+
+// 2740
+
+/*
+#include <iostream>
+using namespace std;
+int N, M, K;
+int A[100][100], B[100][100];
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    cin >> N >> M;
+    for (int n = 0;n < N;n++)
+        for (int m = 0;m < M;m++)
+            cin >> A[n][m];
+    cin >> M >> K;
+    for (int m = 0;m < M;m++)
+        for (int k = 0;k < K;k++)
+            cin >> B[m][k];
+    int temp;
+    for (int n = 0;n < N;n++)
+    {
+        for (int k = 0;k < K;k++)
+        {
+            temp = 0;
+            for (int m = 0;m < M;m++)
+                temp += A[n][m] * B[m][k];
+            cout << temp << " ";
+        }
+        cout << "\n";
+    }
+    return 0;
+}
+*/
+
+// 10830
+
 #include <iostream>
 using namespace std;
 int main()
