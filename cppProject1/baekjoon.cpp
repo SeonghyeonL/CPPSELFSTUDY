@@ -1839,6 +1839,49 @@ int main()
 
 // 11444
 
+/*
+#include <iostream>
+using namespace std;
+long long n;
+long long f[2][2] = { {1,1},{1,0} };
+long long ans[2][2] = { {1,0},{0,1} };
+long long temp[2][2];
+void func(long long a[2][2], long long b[2][2])
+{
+    for (int i = 0;i < 2;i++)
+    {
+        for (int j = 0;j < 2;j++)
+        {
+            temp[i][j] = 0;
+            for (int k = 0;k < 2;k++)
+                temp[i][j] += a[i][k] * b[k][j];
+            temp[i][j] %= 1000000007;
+        }
+    }
+    for (int i = 0;i < 2;i++)
+        for (int j = 0;j < 2;j++)
+            a[i][j] = temp[i][j];
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    cin >> n;
+    n -= 1;
+    while (n > 0)
+    {
+        if (n % 2 == 1) func(ans, f);
+        func(f, f);
+        n /= 2;
+    }
+    cout << ans[0][0];
+    return 0;
+}
+*/
+
+// 6549
+
 #include <iostream>
 using namespace std;
 int main()
