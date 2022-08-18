@@ -1789,6 +1789,56 @@ int main()
 
 // 10830
 
+/*
+#include <iostream>
+using namespace std;
+long long N, B;
+long long n[5][5];
+long long temp[5][5], ans[5][5];
+void func_c(long long a[5][5], long long b[5][5])
+{
+    for (int i = 0;i < N;i++)
+        for (int j = 0;j < N;j++)
+        {
+            temp[i][j] = 0;
+            for (int k = 0;k < N;k++)
+                temp[i][j] += a[i][k] * b[k][j];
+            temp[i][j] %= 1000;
+        }
+    for (int i = 0;i < N;i++)
+        for (int j = 0;j < N;j++)
+            a[i][j] = temp[i][j];
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    cin >> N >> B;
+    for (int i = 0;i < N;i++)
+    {
+        for (int j = 0;j < N;j++)
+            cin >> n[i][j];
+        ans[i][i] = 1;
+    }
+    while (B > 0)
+    {
+        if (B % 2 == 1) func_c(ans, n);
+        func_c(n, n);
+        B /= 2;
+    }
+    for (int i = 0;i < N;i++)
+    {
+        for (int j = 0;j < N;j++)
+            cout << ans[i][j] << " ";
+        cout << "\n";
+    }
+    return 0;
+}
+*/
+
+// 11444
+
 #include <iostream>
 using namespace std;
 int main()
