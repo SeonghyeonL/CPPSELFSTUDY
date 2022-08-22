@@ -1883,11 +1883,44 @@ int main()
 // 6549
 
 #include <iostream>
+#include <vector>
 using namespace std;
+int n;
+void segtree(vector<int> a, vector<int> t, int n, int s, int e)
+{
+    if (s == e) t[n] = s;
+    else
+    {
+        int mid = (s + e) / 2;
+        segtree(a, t, n * 2, s, mid);
+        segtree(a, t, n * 2 + 1, mid + 1, e);
+        t[n] = min(a[t[n * 2]], a[t[n * 2 + 1]]);
+    }
+}
+int findmin(vector<int> a, vector<int> t, int n, int s, int e, int l, int r)
+{
+
+}
+long long getmax(vector<int> a, vector<int> t, int s, int e)
+{
+    int arr_size = a.size();
+    int min_h;
+}
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
+    cin >> n;
+    while (n != 0)
+    {
+        vector<int> arr(n);
+        for (int i = 0;i < n;i++) cin >> arr[i];
+        int h = ceil(log2(n));
+        int tree_size = 1 << (h + 1);
+        vector<int> tree(tree_size);
+        segtree(arr, tree, 1, 0, n - 1);
+        cin >> n;
+    }
     return 0;
 }
