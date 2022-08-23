@@ -1882,11 +1882,14 @@ int main()
 
 // 6549
 
+/*
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <cmath>
 using namespace std;
-int n;
-void segtree(vector<int> a, vector<int> t, int n, int s, int e)
+typedef long long ll;
+void segtree(vector<int> &a, vector<int> &t, int n, int s, int e)
 {
     if (s == e) t[n] = s;
     else
@@ -1894,33 +1897,72 @@ void segtree(vector<int> a, vector<int> t, int n, int s, int e)
         int mid = (s + e) / 2;
         segtree(a, t, n * 2, s, mid);
         segtree(a, t, n * 2 + 1, mid + 1, e);
-        t[n] = min(a[t[n * 2]], a[t[n * 2 + 1]]);
+        if (a[t[n * 2]] <= a[t[n * 2 + 1]]) t[n] = t[n * 2];
+        else t[n] = t[n * 2 + 1];
     }
 }
-int findmin(vector<int> a, vector<int> t, int n, int s, int e, int l, int r)
+int findmin(vector<int> &a, vector<int> &t, int n, int s, int e, int l, int r)
 {
-
+    if (l > e || r < s) return -1; // ¹þ¾î³²
+    if (l <= s && e <= r) return t[n]; // Æ÷ÇÔ
+    int mid = (s + e) / 2;
+    int tp1 = findmin(a, t, n * 2, s, mid, l, r);
+    int tp2 = findmin(a, t, n * 2 + 1, mid + 1, e, l, r);
+    if (tp1 == -1) return tp2;
+    else if (tp2 == -1) return tp1;
+    else
+    {
+        if (a[tp1] <= a[tp2]) return tp1;
+        else return tp2;
+    }
 }
-long long getmax(vector<int> a, vector<int> t, int s, int e)
+ll getmax(vector<int> &a, vector<int> &t, int s, int e)
 {
     int arr_size = a.size();
-    int min_h;
+    int min_h = findmin(a, t, 1, 0, arr_size - 1, s, e);
+    ll area = (ll)(e - s + 1) * (ll)a[min_h];
+    if (s < min_h)
+    {
+        ll temp = getmax(a, t, s, min_h - 1);
+        if (area < temp) area = temp;
+    }
+    if (e > min_h)
+    {
+        ll temp = getmax(a, t, min_h + 1, e);
+        if (area < temp) area = temp;
+    }
+    return area;
 }
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    cin >> n;
-    while (n != 0)
+    while (1)
     {
+        int n;
+        cin >> n;
+        if (n == 0) break;
         vector<int> arr(n);
         for (int i = 0;i < n;i++) cin >> arr[i];
-        int h = ceil(log2(n));
-        int tree_size = 1 << (h + 1);
+        int h = (int)(ceil(log2(n))+1e-9);
+        int tree_size = (1 << (h + 1));
         vector<int> tree(tree_size);
         segtree(arr, tree, 1, 0, n - 1);
-        cin >> n;
+        cout << getmax(arr, tree, 0, n - 1) << "\n";
     }
+    return 0;
+}
+*/
+
+// 1920
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
     return 0;
 }
