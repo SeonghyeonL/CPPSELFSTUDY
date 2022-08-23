@@ -1957,6 +1957,45 @@ int main()
 
 // 1920
 
+/*
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int N, M, temp;
+int n[100001]; // vector is slower
+int fd(int a)
+{
+    int s = 0, e = N - 1;
+    int mid;
+    while (e>=s)
+    {
+        mid = (s + e) / 2;
+        if (n[mid] == a) return 1;
+        else if (n[mid] > a) e = mid - 1;
+        else if (n[mid] < a) s = mid + 1;
+    }
+    return 0;
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    cin >> N;
+    for (int i = 0;i < N;i++) cin >> n[i];
+    sort(n, n + N);
+    cin >> M;
+    for (int i = 0;i < M;i++)
+    {
+        cin >> temp;
+        cout << fd(temp) << "\n";
+    }
+    return 0;
+}
+*/
+
+// 1654
+
 #include <iostream>
 using namespace std;
 int main()
