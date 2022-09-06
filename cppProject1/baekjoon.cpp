@@ -1996,6 +1996,51 @@ int main()
 
 // 1654
 
+/*
+#include <iostream>
+#include <vector>
+using namespace std;
+int K, N;
+vector<int> centi(10001);
+long long mid, lef, rig, las;
+int maxx = 0;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    cin >> K >> N;
+    for (int i = 0;i < K;i++)
+    {
+        cin >> centi[i];
+        if (maxx < centi[i]) maxx = centi[i];
+    }
+    mid = (1 + centi[0]) / 2;
+    lef = 1;
+    rig = maxx;
+    las = 0;
+    while (lef <= rig)
+    {
+        int sum = 0;
+        mid = (lef + rig) / 2;
+        for (int i = 0;i < K;i++) sum += centi[i] / mid;
+        if (sum >= N)
+        {
+            if (las < mid) las = mid;
+            lef = mid + 1;
+        }
+        else if (sum < N)
+        {
+            rig = mid - 1;
+        }
+    }
+    cout << las;
+    return 0;
+}
+*/
+
+// 2805
+
 #include <iostream>
 using namespace std;
 int main()
