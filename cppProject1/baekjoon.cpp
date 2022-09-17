@@ -2042,11 +2042,46 @@ int main()
 // 2805
 
 #include <iostream>
+#include <vector>
 using namespace std;
+int N, M;
+vector<int> meter;
+long long mid, lef, rig, las;
+int maxx = 0;
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
+    cin >> N >> M;
+    for (int i = 0;i < N;i++)
+    {
+        int temp;
+        cin >> temp;
+        meter.push_back(temp);
+        if (maxx < temp) maxx = temp;
+    }
+    lef = 0;
+    rig = maxx;
+    las = 0;
+    while (lef <= rig)
+    {
+        long long sum = 0;
+        mid = (lef + rig) / 2;
+        for (int i = 0;i < N;i++)
+        {
+            if (meter[i]>mid) sum += meter[i] - mid;
+        }
+        if (sum >= M)
+        {
+            if (las < mid) las = mid;
+            lef = mid + 1;
+        }
+        else if (sum < M)
+        {
+            rig = mid - 1;
+        }
+    }
+    cout << las;
     return 0;
 }
