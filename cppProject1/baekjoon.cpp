@@ -2145,6 +2145,109 @@ int main()
 
 // 1300
 
+/*
+#include <iostream>
+#include <algorithm>
+using namespace std;
+long long N, k;
+long long lef, rig, mid, ans, cnt;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    cin >> N >> k;
+    lef = 1, rig = N * N, ans = 0;
+    while (lef <= rig)
+    {
+        cnt = 0;
+        mid = (lef + rig) / 2;
+        for (int i = 1;i <= N;i++) cnt += min(mid / i, N);
+        if (cnt < k) lef = mid + 1;
+        else if (cnt >= k) ans = mid, rig = mid - 1;
+    }
+    cout << ans;
+    return 0;
+}
+*/
+
+// 12015
+
+/*
+#include <iostream>
+#include <vector>
+using namespace std;
+int N, a;
+int lef, rig, mid;
+vector<int> res;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    cin >> N;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> a;
+        if (i == 0) res.push_back(a);
+        else
+        {
+            if (res.back() < a) res.push_back(a);
+            else
+            {
+                lef = 0, rig = res.size() - 1;
+                while (lef < rig)
+                {
+                    mid = (lef + rig) / 2;
+                    if (a <= res[mid]) rig = mid;
+                    else lef = mid + 1;
+                }
+                res[rig] = a;
+            }
+        }
+    }
+    cout << res.size();
+    return 0;
+}
+*/
+
+// 11005
+
+/*
+#include <iostream>
+#include <vector>
+using namespace std;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    int N, B, temp;
+    vector<int> chng;
+    cin >> N >> B;
+    while (N >= B)
+    {
+        temp = N % B;
+        chng.push_back(temp);
+        N = N / B;
+    }
+    chng.push_back(N);
+    char alpha; // A = 65
+    for (int i = chng.size() - 1;i >= 0;i--)
+    {
+        if (chng[i] > 9)
+        {
+            alpha = chng[i] - 10 + 65;
+            cout << alpha;
+        }
+        else cout << chng[i];
+    }
+    return 0;
+}
+*/
+
+// 2671
+
 #include <iostream>
 using namespace std;
 int main()
@@ -2152,5 +2255,6 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
+
     return 0;
 }
