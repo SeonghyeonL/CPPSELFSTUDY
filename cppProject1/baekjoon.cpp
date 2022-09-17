@@ -2041,6 +2041,7 @@ int main()
 
 // 2805
 
+/*
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -2083,5 +2084,73 @@ int main()
         }
     }
     cout << las;
+    return 0;
+}
+*/
+
+// 2110
+
+/*
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int N, C;
+vector<int> x;
+long long mid, lef, rig, ans;
+long long last_idx, cnt;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    cin >> N >> C;
+    for (int i = 0;i < N;i++)
+    {
+        int temp;
+        cin >> temp;
+        x.push_back(temp);
+    }
+    sort(x.begin(), x.end());
+    lef = 0;
+    rig = x[N - 1];
+    ans = 0;
+    while (lef <= rig)
+    {
+        mid = (lef + rig) / 2;
+        last_idx = 0;
+        cnt = 1;
+        for (int i = 1;i < N;i++)
+        {
+            if (x[i] - x[last_idx] >= mid)
+            {
+                last_idx = i;
+                cnt++;
+            }
+        }
+        if (cnt >= C)
+        {
+            if (ans < mid) ans = mid;
+            lef = mid + 1;
+        }
+        else if (cnt < C)
+        {
+            rig = mid - 1;
+        }
+    }
+    cout << ans;
+    return 0;
+}
+*/
+
+// 1300
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
     return 0;
 }
