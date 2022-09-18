@@ -2248,6 +2248,63 @@ int main()
 
 // 2671
 
+/*
+#include <iostream>
+#include <string>
+using namespace std;
+string s;
+bool tf = true;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    cin >> s;
+    int cnt = 0;
+    while (cnt < s.size() && tf==true)
+    {
+        if (s[cnt] == '1')
+        {
+            if (cnt + 2 <= s.size() && s[cnt + 1] == '0' && s[cnt + 2] == '0')
+            {
+                cnt += 1;
+                while (cnt <= s.size() && s[cnt] == '0') cnt += 1;
+                if (cnt < s.size()) // 100~'1'
+                {
+                    cnt += 1;
+                    while (s[cnt] == '1')
+                    {
+                        if (cnt < s.size())
+                        {
+                            if (s[cnt + 1] == '1') cnt += 1;
+                            else if (s[cnt + 1] == '0') // 뒤가 0인 1 등장
+                            {
+                                // 101 -> 1 제거, 100 -> 1 유지
+                                if (cnt + 2 <= s.size() && s[cnt + 2] == '1') cnt += 1;
+                                else if (cnt + 2 > s.size()) tf = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+                else tf = false; // 100~ 뒤에 1 없음
+            }
+            else tf = false; // 1 뒤에 00 없음
+        }
+        else if (s[cnt] == '0')
+        {
+            if (s[cnt + 1] == '1') cnt += 2;
+            else tf = false; // 00 (X)
+        }
+    }
+    if (tf) cout << "SUBMARINE";
+    else cout << "NOISE";
+    return 0;
+}
+*/
+
+// 2003
+
 #include <iostream>
 using namespace std;
 int main()
