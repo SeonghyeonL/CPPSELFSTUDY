@@ -2305,6 +2305,41 @@ int main()
 
 // 2003
 
+/*
+#include <iostream>
+#include <vector>
+using namespace std;
+int N, temp, cnt;
+long long M;
+vector<long long> A;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    cin >> N >> M;
+    A.push_back(0);
+    for (int i = 0;i < N;i++)
+    {
+        cin >> temp;
+        if (i == 0) A.push_back(temp);
+        else A.push_back(temp + A[i]);
+    }
+    cnt = 0;
+    for (int i = 0;i < A.size()-1;i++)
+    {
+        for (int j = i + 1;j < A.size();j++)
+        {
+            if (A[j] - A[i] == M) cnt += 1;
+        }
+    }
+    cout << cnt;
+    return 0;
+}
+*/
+
+// 1920
+
 #include <iostream>
 using namespace std;
 int main()
