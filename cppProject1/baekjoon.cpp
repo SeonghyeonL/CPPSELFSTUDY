@@ -2340,6 +2340,51 @@ int main()
 
 // 1920
 
+/*
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int N, M, temp;
+vector<int> A;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    cin >> N;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> temp; A.push_back(temp);
+    }
+    sort(A.begin(), A.end());
+    cin >> M;
+    for (int i = 0;i < M;i++)
+    {
+        cin >> temp;
+        int lef = 0;
+        int rig = A.size() - 1;
+        int mid;
+        bool exi = false;
+        while (lef<=rig)
+        {
+            mid = (lef + rig) / 2;
+            if (A[mid] > temp) rig = mid - 1;
+            else if (A[mid] < temp) lef = mid + 1;
+            else if (A[mid] == temp)
+            {
+                exi = true; break;
+            }
+        }
+        if (exi) cout << "1\n";
+        else cout << "0\n";
+    }
+    return 0;
+}
+*/
+
+// 11279
+
 #include <iostream>
 using namespace std;
 int main()
