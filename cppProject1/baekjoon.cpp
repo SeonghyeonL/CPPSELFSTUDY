@@ -2415,8 +2415,9 @@ int main()
 }
 */
 
-//
+// 1927
 
+/*
 #include <iostream>
 #include <queue>
 using namespace std;
@@ -2425,6 +2426,108 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
+    int N, temp;
+    priority_queue<int, vector<int>, greater<int>> heap;
+    // priority_queue<int, vector<int>, greater<int>> 오름차순
+    // priority_queue<int, vector<int>, less<int>> 내림차순
+    cin >> N;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> temp;
+        if (temp == 0)
+        {
+            if (heap.empty()) cout << 0 << "\n";
+            else
+            {
+                cout << heap.top() << "\n";
+                heap.pop();
+            }
+        }
+        else heap.push(temp);
+    }
+    return 0;
+}
+*/
 
+// 11286
+
+/*
+#include <iostream>
+#include <queue>
+using namespace std;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    int N, temp;
+    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<>> heap;
+    // 절댓값, 원본값 (first 기준 정렬, 같으면 second 기준 정렬)
+    cin >> N;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> temp;
+        if (temp == 0)
+        {
+            if (heap.empty()) cout << 0 << "\n";
+            else
+            {
+                cout << heap.top().second << "\n";
+                heap.pop();
+            }
+        }
+        else heap.push({ abs(temp),temp });
+    }
+    return 0;
+}
+*/
+
+// 1655
+
+/*
+#include <iostream>
+#include <queue>
+using namespace std;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    priority_queue<int, vector<int>, greater<>> upheap; // 오름
+    priority_queue<int, vector<int>, less<>> downheap; // 내림
+    int N, temp, uptemp, downtemp;
+    cin >> N;
+    for (int i = 0;i < N;i++)
+    {
+        cin >> temp;
+        if (i == 0) downheap.push(temp); // 처음엔 최대에
+        else if (i == 1) upheap.push(temp); // 두 번째는 최소에
+        else if (upheap.size() < downheap.size()) upheap.push(temp); // 최대>=최소
+        else downheap.push(temp);
+
+        if (i>0 && (upheap.top() < downheap.top())) // empty 방지
+        {
+            uptemp = upheap.top();
+            downtemp = downheap.top();
+            upheap.pop(); downheap.pop();
+            upheap.push(downtemp);
+            downheap.push(uptemp); // 서로의 top 바꾸기
+        }
+
+        cout << downheap.top() << "\n"; // 최대의 top이 항상 답
+    }
+    return 0;
+}
+*/
+
+// 11066
+
+#include <iostream>
+using namespace std;
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
     return 0;
 }
