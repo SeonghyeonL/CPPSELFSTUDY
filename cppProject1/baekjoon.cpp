@@ -2522,6 +2522,48 @@ int main()
 
 // 11066
 
+/*
+#include <iostream>
+#include <algorithm>
+using namespace std;
+#define INF 1000000000
+int sum[502];
+int findmin[502][502];
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    int T, K, temp;
+    cin >> T;
+    for (int i = 0;i < T;i++)
+    {
+        cin >> K;
+        for (int j = 1;j <= K;j++)
+        {
+            cin >> temp;
+            sum[j] = sum[j - 1] + temp;
+        }
+        for (int j = 1;j <= K;j++)
+        {
+            for (int k = 1;k <= K - j;k++)
+            {
+                findmin[k][j + k] = INF;
+                for (int m = k;m <= j + k - 1;m++)
+                {
+                    findmin[k][j + k] = min(findmin[k][j + k],
+                        findmin[k][m] + findmin[m + 1][j + k] + sum[j + k] - sum[k - 1]);
+                }
+            }
+        }
+        cout << findmin[1][K] << "\n";
+    }
+    return 0;
+}
+*/
+
+// 11049
+
 #include <iostream>
 using namespace std;
 int main()
@@ -2529,5 +2571,6 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
+
     return 0;
 }
